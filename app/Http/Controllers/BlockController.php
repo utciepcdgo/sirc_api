@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers;
 
 use App\Http\Resources\BlockResource;
@@ -15,12 +17,12 @@ class BlockController extends Controller
 
     public function store(Request $request)
     {
-        $data = $request->validate([
-            'votes_obtained' => ['required', 'integer'],
-            'valid_vote_issued' => ['required', 'integer'],
-            'profitability' => ['required', 'numeric'],
-            'municipality_id' => ['required'],
-        ]);
+        $data = $request->validate(array(
+            'votes_obtained' => array('required', 'integer'),
+            'valid_vote_issued' => array('required', 'integer'),
+            'profitability' => array('required', 'numeric'),
+            'municipality_id' => array('required'),
+        ));
 
         return new BlockResource(Block::create($data));
     }
@@ -32,12 +34,12 @@ class BlockController extends Controller
 
     public function update(Request $request, Block $block)
     {
-        $data = $request->validate([
-            'votes_obtained' => ['required', 'integer'],
-            'valid_vote_issued' => ['required', 'integer'],
-            'profitability' => ['required', 'numeric'],
-            'municipality_id' => ['required'],
-        ]);
+        $data = $request->validate(array(
+            'votes_obtained' => array('required', 'integer'),
+            'valid_vote_issued' => array('required', 'integer'),
+            'profitability' => array('required', 'numeric'),
+            'municipality_id' => array('required'),
+        ));
 
         $block->update($data);
 
