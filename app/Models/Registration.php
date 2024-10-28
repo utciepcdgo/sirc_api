@@ -8,10 +8,9 @@ use Carbon\Traits\Date;
 use Illuminate\Database\Eloquent\Casts\Json;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
- * show off @property, @property-read, @property-write
- *
  * @property int $id
  * @property string $name
  * @property string $first_name
@@ -39,7 +38,13 @@ class Registration extends Model
         'curp',
         'cic_code',
         'expedition_date',
+        'block_id',
     );
+
+    public function block(): BelongsTo
+    {
+        return $this->belongsTo(Block::class);
+    }
 
     protected function casts(): array
     {

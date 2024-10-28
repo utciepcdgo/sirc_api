@@ -7,16 +7,16 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration {
     public function up(): void
     {
-        Schema::create('parties', function (Blueprint $table) {
+        Schema::create('coalitions', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('acronym');
+            $table->string('acronym')->nullable();
             $table->string('logo');
         });
     }
 
     public function down(): void
     {
-        Schema::dropIfExists('parties');
+        Schema::dropIfExists('coalitions');
     }
 };

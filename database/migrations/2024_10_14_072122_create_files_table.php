@@ -1,6 +1,6 @@
 <?php
 
-use Files\FileType;
+use App\Models\Files\FileType;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;

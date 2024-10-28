@@ -10,7 +10,7 @@ return new class extends Migration {
         Schema::create('municipalities', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('shield');
+            $table->string('shield')->nullable(); // Escudo (URL a imagen)
             $table->string('abbreviation');
         });
     }
