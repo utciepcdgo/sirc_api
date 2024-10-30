@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Resources\App\Models\Migrants;
+namespace App\Http\Resources;
 
 use App\Models\Migrants\Country;
 use Illuminate\Http\Request;

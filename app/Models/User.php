@@ -51,6 +51,9 @@ class User extends Authenticatable
 
     public function entities(): BelongsToMany
     {
-        return $this->belongsToMany(Entity::class, 'associations')->using(Association::class);
+        return $this->belongsToMany(Entity::class, 'associations')
+            ->withPivotValue('user_id', 1)
+            ;
     }
+
 }

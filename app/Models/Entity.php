@@ -14,11 +14,14 @@ use Illuminate\Database\Eloquent\Relations\MorphToMany;
 /**
  * @property int $id
  * @property string $name
+ * @property int $user_id
+ *
  */
 class Entity extends Model
 {
     protected $fillable = array(
         'name',
+        'user_id'
     );
 
     public function users(): MorphToMany
