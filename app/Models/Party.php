@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
+use App\DB\Pivots\Association;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 /**
@@ -16,16 +20,16 @@ class Party extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
+    public $timestamps = false;
+
+    protected $fillable = array(
         'name',
         'acronym',
         'logo',
-    ];
+    );
 
-    public $timestamps = false;
-
-    public function entities(): MorphMany
+    public function entities(): BelongsToMany
     {
-        return $this->morphMany(Entity::class, 'entityable');
+        return $this->belongsToMany(Entity::class, 'associations')->using(Association::class);
     }
 }

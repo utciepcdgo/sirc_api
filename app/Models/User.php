@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\DB\Pivots\Association;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -49,8 +49,8 @@ class User extends Authenticatable
         );
     }
 
-    public function entities(): HasMany
+    public function entities(): BelongsToMany
     {
-        return $this->hasMany(Entity::class);
+        return $this->belongsToMany(Entity::class, 'associations')->using(Association::class);
     }
 }

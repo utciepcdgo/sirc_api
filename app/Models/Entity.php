@@ -1,33 +1,38 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
+use App\DB\Pivots\Association;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 /**
  * @property int $id
- * @property string $entityable_type
- * @property string $entityable_id
- * @property int $user_id
+ * @property string $name
  */
-
 class Entity extends Model
 {
-    public function user(): BelongsTo
+    protected $fillable = array(
+        'name',
+    );
+
+    public function users(): MorphToMany
     {
-        return $this->belongsTo(User::class);
+        return $this->morphedByMany(User::class, 'association')->using(Association::class);
     }
 
-    public function entityable(): MorphTo
+    public function parties(): MorphToMany
     {
-        return $this->morphTo();
+        return $this->morphedByMany(Party::class, 'association')->using(Association::class);
     }
 
-    protected $fillable = [
-        'entityable_type',
-        'entityable_id',
-        'user_id',
-    ];
+    public function coalitions(): MorphToMany
+    {
+        return $this->morphedByMany(Coalition::class, 'association')->using(Association::class);
+    }
 }

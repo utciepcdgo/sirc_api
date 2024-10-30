@@ -9,9 +9,7 @@ return new class extends Migration {
     {
         Schema::create('entities', function (Blueprint $table) {
             $table->id();
-            $table->string('entitiable_type');
-            $table->integer('entitiable_id');
-            $table->foreignId('user_id');
+            $table->string('name');
             $table->timestamps();
         });
     }

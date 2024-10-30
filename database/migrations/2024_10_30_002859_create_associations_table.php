@@ -10,11 +10,12 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        //
-        Schema::create('users_parties', function (Blueprint $table) {
+        Schema::create('associations', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained();
-            $table->foreignId('party_id')->constrained();
+            $table->string('association_type');
+            $table->integer('association_id');
+            $table->foreignId('entity_id')->constrained();
+            $table->timestamps();
         });
     }
 
@@ -23,6 +24,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('associations');
     }
 };
