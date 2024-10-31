@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
+
 /**
  * @property int $id
  * @property string $name
@@ -20,8 +21,10 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string $occupation
  * @property string $voter_key Clave de Elector.
  * @property string $curp
- * @property string $cic_code Código CIC.
  * @property Date $expedition_date Fecha de expedición de la credencial de Elector.
+ * @property string $ocr_code
+ * @property string $cic_code Código CIC.
+ * @property Json $extra_fields - Campos extra (Núm. de emisión, OCR, CIC, Sección Electoral)
  */
 class Registration extends Model
 {
