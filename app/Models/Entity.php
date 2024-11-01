@@ -7,6 +7,7 @@ namespace App\Models;
 use App\DB\Pivots\Association;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
@@ -24,18 +25,8 @@ class Entity extends Model
         'user_id'
     );
 
-    public function users(): MorphToMany
+    public function associations(): BelongsToMany
     {
-        return $this->morphedByMany(User::class, 'association')->using(Association::class);
-    }
-
-    public function parties(): MorphToMany
-    {
-        return $this->morphedByMany(Party::class, 'association')->using(Association::class);
-    }
-
-    public function coalitions(): MorphToMany
-    {
-        return $this->morphedByMany(Coalition::class, 'association')->using(Association::class);
+        return $this->belongsToMany(Association::class);
     }
 }

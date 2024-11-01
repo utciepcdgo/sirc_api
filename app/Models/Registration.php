@@ -16,15 +16,12 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string $name
  * @property string $first_name
  * @property string $second_name
- * @property Json $placedate_birth Lugar y fecha de nacimiento.
- * @property Json $address_length_residence Incluye la dirección y el tiempo de residencia.
+ * @property Json birthplace - Lugar y fecha de nacimiento.
+ * @property Json $address_length_residence - Incluye la dirección y el tiempo de residencia.
  * @property string $occupation
- * @property string $voter_key Clave de Elector.
+ * @property string $voter_key - Clave de Elector.
  * @property string $curp
- * @property Date $expedition_date Fecha de expedición de la credencial de Elector.
- * @property string $ocr_code
- * @property string $cic_code Código CIC.
- * @property Json $extra_fields - Campos extra (Núm. de emisión, OCR, CIC, Sección Electoral)
+ * @property Json voter_card - Campos extra (Núm. de emisión, OCR, CIC, Sección Electoral)
  */
 class Registration extends Model
 {
@@ -34,13 +31,12 @@ class Registration extends Model
         'name',
         'first_name',
         'second_name',
-        'placedate_birth',
+        'birthplace',
         'address_length_residence',
         'occupation',
         'voter_key',
         'curp',
-        'cic_code',
-        'expedition_date',
+        'voter_card',
         'block_id',
     );
 
@@ -54,6 +50,7 @@ class Registration extends Model
         return array(
             'placedate_birth' => 'json',
             'address_length_residence' => 'json',
+            'voter_card' => 'json',
         );
     }
 }

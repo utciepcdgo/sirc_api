@@ -36,6 +36,24 @@ class User extends Authenticatable
         'remember_token',
     );
 
+    public function associations(): BelongsToMany
+    {
+        return $this->belongsToMany(related: Association::class, table: 'associations_users', foreignPivotKey: 'user_id', relatedPivotKey: 'id', relatedKey: 'association_id',
+        );
+    }
+
+    public function party(): BelongsToMany
+    {
+        return $this->belongsToMany(related: Party::class, table: 'associations_users', foreignPivotKey: 'user_id', relatedPivotKey: 'id')
+            ->using(Association::class);
+    }
+
+    public function coalition(): BelongsToMany
+    {
+        return $this->belongsToMany(related: Coalition::class, table: 'associations_users', foreignPivotKey: 'user_id', relatedPivotKey: 'id')
+            ->using(Association::class);
+    }
+
     /**
      * Get the attributes that should be cast.
      *
@@ -49,11 +67,12 @@ class User extends Authenticatable
         );
     }
 
-    public function entities(): BelongsToMany
-    {
-        return $this->belongsToMany(Entity::class, 'associations')
-            ->withPivotValue('user_id', 1)
-            ;
-    }
+    //    public function entities(string $className): BelongsToMany
+    //    {
+    //        return $this->belongsToMany(match ($className) {
+    //            "App\Models\Coalition" => Coalition::class,
+    //            "App\Models\Party" => Party::class,
+    //        }, 'associations', 'user_id');
+    //    }
 
 }
