@@ -14,7 +14,6 @@ return new class extends Migration {
             $table->id();
             $table->string('association_type');
             $table->integer('association_id');
-            $table->foreignId('entity_id')->constrained();
             $table->timestamps();
         });
     }
