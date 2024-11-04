@@ -16,13 +16,12 @@ return new class extends Migration
             $table->string('name');
             $table->string('first_name');
             $table->string('second_name');
-            $table->json('placedate_birth');
-            $table->json('address_length_residence');
+            $table->json('birthplace')->comment('Lugar y fecha de nacimiento');
+            $table->json('address_length_residence')->comment('Dirección y tiempo de residencia');
             $table->string('occupation');
-            $table->string('voter_key');
+            $table->string('voter_key')->comment('Clave de Elector');
             $table->string('curp');
-            $table->string('cic_code')->nullable();
-            $table->date('expedition_date')->nullable();
+            $table->json('voter_card');
             // Relationship with block Model
             $table->foreignIdFor(Block::class);
             $table->timestamps();

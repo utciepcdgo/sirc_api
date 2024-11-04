@@ -7,14 +7,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @property int $id
- * @property int votes_obtained
- * @property int valid_vote_issued
- * @property float rentability
+ * @property int $votes_obtained - Votos obtenidos.
+ * @property int $valid_vote_issued - Votos válidos emitidos.
+ * @property float $rentability - Rentabilidad.
  */
 class Block extends Model
 {
@@ -27,34 +26,31 @@ class Block extends Model
         'valid_vote_issued',
         'rentability',
         'municipality_id',
-        'party_id',
+        'entity_id',
     );
 
-    protected $with = array('municipality', 'party');
+    protected $with = array('municipality', 'entity_id');
 
-    public function municipality(): HasOne
+    /**
+     * @return BelongsTo<Municipality, Block>
+     */
+    public function municipality(): BelongsTo
     {
-        return $this->hasOne(Municipality::class, 'id', 'municipality_id');
-    }
-
-    public function party(): BelongsTo
-    {
-        return $this->belongsTo(Party::class);
-    }
-
-    public function coalition(): HasOne
-    {
-        return $this->hasOne(Coalition::class);
+        return $this->belongsTo(Municipality::class);
     }
 
     /**
-     * Get the parent imageable model (Pary or Coalition).
+     * TODO: Verificar que se retorne la entidad relacionada i.e. Partido->Entidad->Bloque
+     * @return BelongsTo<Entity, Block>
      */
-    public function blockable(): MorphTo
+    public function entity(): BelongsTo
     {
-        return $this->morphTo();
+        return $this->belongsTo(Entity::class);
     }
 
+    /**
+     * @return HasMany<Registration>
+     */
     public function registrations(): HasMany
     {
         return $this->hasMany(Registration::class);

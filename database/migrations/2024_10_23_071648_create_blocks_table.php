@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Coalition;
+use App\Models\Entity;
 use App\Models\Municipality;
 use App\Models\Party;
 use Illuminate\Database\Migrations\Migration;
@@ -16,8 +17,7 @@ return new class extends Migration {
             $table->integer('valid_vote_issued')->comment('Votación válida emitida');
             $table->float('rentability');
             $table->foreignIdFor(Municipality::class);
-            $table->foreignIdFor(Party::class);
-            $table->foreignIdFor(Coalition::class)->nullable();
+            $table->foreignIdFor(Entity::class);
             $table->softDeletes();
         });
     }

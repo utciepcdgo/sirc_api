@@ -4,21 +4,28 @@ declare(strict_types=1);
 
 namespace App\Models;
 
-use App\DB\Pivots\Association;
+use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
+/**
+ * @property int $id
+ * @property string $name
+ * @property string $email
+ */
+
 class User extends Authenticatable
 {
-    /** @use HasFactory<\Database\Factories\UserFactory> */
+    /** @use HasFactory<UserFactory> */
     use HasFactory, Notifiable;
 
     /**
      * The attributes that are mass assignable.
      *
-     * @var array<int, string>
+     * @type array<int, string>
      */
     protected $fillable = array(
         'name',
@@ -29,29 +36,28 @@ class User extends Authenticatable
     /**
      * The attributes that should be hidden for serialization.
      *
-     * @var array<int, string>
+     * @type array<string>
      */
     protected $hidden = array(
         'password',
         'remember_token',
     );
 
-    public function associations(): BelongsToMany
+    /**
+     * @return BelongsToMany<Entity>
+     */
+    public function entities(): BelongsToMany
     {
-        return $this->belongsToMany(related: Association::class, table: 'associations_users', foreignPivotKey: 'user_id', relatedPivotKey: 'id', relatedKey: 'association_id',
-        );
+        // Plantea usar una tabla pivote (user_entity) Debe ser: entity_user
+        return $this->belongsToMany(Entity::class, 'entity_user');
     }
 
-    public function party(): BelongsToMany
+    /**
+     * @return HasManyThrough<Registration>
+     */
+    public function registrations(): HasManyThrough
     {
-        return $this->belongsToMany(related: Party::class, table: 'associations_users', foreignPivotKey: 'user_id', relatedPivotKey: 'id')
-            ->using(Association::class);
-    }
-
-    public function coalition(): BelongsToMany
-    {
-        return $this->belongsToMany(related: Coalition::class, table: 'associations_users', foreignPivotKey: 'user_id', relatedPivotKey: 'id')
-            ->using(Association::class);
+        return $this->hasManyThrough(Registration::class, Entity::class);
     }
 
     /**
@@ -66,13 +72,4 @@ class User extends Authenticatable
             'password' => 'hashed',
         );
     }
-
-    //    public function entities(string $className): BelongsToMany
-    //    {
-    //        return $this->belongsToMany(match ($className) {
-    //            "App\Models\Coalition" => Coalition::class,
-    //            "App\Models\Party" => Party::class,
-    //        }, 'associations', 'user_id');
-    //    }
-
 }

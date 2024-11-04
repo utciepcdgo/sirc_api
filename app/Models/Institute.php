@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Models;
 
-use App\DB\Pivots\Association;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
@@ -13,18 +12,21 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
  * @property int $id
  * @property string $name
  * @property string $acronym
- * @property string $logo
  */
-class Party extends Model
+class Institute extends Model
 {
     use HasFactory;
 
     public $timestamps = false;
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @type array<int, string>
+     */
     protected $fillable = array(
         'name',
         'acronym',
-        'logo',
     );
 
     /**

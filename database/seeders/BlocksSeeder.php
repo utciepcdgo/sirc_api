@@ -8,6 +8,5 @@ class BlocksSeeder extends Seeder
 {
     public function run(): void
     {
-        $pan
     }
 }
