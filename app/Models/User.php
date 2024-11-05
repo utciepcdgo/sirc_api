@@ -48,7 +48,7 @@ class User extends Authenticatable
      */
     public function entities(): BelongsToMany
     {
-        // Plantea usar una tabla pivote (user_entity) Debe ser: entity_user
+        // Plantea usar una tabla pivote
         return $this->belongsToMany(Entity::class, 'entity_user');
     }
 

@@ -7,6 +7,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 /**
@@ -26,6 +27,14 @@ class Entity extends Model
         'entitiable_type',
     );
 
+    /**
+     * @var array<int, string>
+     */
+    protected array $allowedToHaveBlocks = array(
+        Party::class,
+        Coalition::class,
+    );
+
     protected $with = array('entitiable');
 
     /**
@@ -42,5 +51,13 @@ class Entity extends Model
     public function users(): BelongsToMany
     {
         return $this->belongsToMany(User::class);
+    }
+
+    /**
+     * @return BelongsToMany<Block>
+     */
+    public function blocks(): BelongsToMany
+    {
+        return $this->belongsToMany(Block::class, 'block_entity');
     }
 }

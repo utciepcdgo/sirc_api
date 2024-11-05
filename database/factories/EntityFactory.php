@@ -24,6 +24,7 @@ class EntityFactory extends Factory
             Coalition::class,
         );
 
+        // @phpstan-ignore-next-line
         $applicant = Arr::random($applicants)::factory()->create();
 
         return array(

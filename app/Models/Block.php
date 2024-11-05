@@ -29,7 +29,7 @@ class Block extends Model
         'entity_id',
     );
 
-    protected $with = array('municipality', 'entity_id');
+    protected $with = array('municipality', 'entity');
 
     /**
      * @return BelongsTo<Municipality, Block>
@@ -40,7 +40,6 @@ class Block extends Model
     }
 
     /**
-     * TODO: Verificar que se retorne la entidad relacionada i.e. Partido->Entidad->Bloque
      * @return BelongsTo<Entity, Block>
      */
     public function entity(): BelongsTo
@@ -56,3 +55,4 @@ class Block extends Model
         return $this->hasMany(Registration::class);
     }
 }
+
