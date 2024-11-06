@@ -15,11 +15,8 @@ class BlockResource extends JsonResource
             'id' => $this->id,
             'votes_obtained' => $this->votes_obtained,
             'valid_vote_issued' => $this->valid_vote_issued,
-            'profitability' => $this->profitability,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
-
             'municipality_id' => $this->municipality_id,
+            'entity_id' => $this->entity_id,
         ];
     }
 }

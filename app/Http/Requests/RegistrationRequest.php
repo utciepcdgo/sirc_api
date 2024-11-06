@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace App\Http\Requests;
 
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Exceptions\HttpResponseException;
 
 class RegistrationRequest extends FormRequest
 {
@@ -20,6 +22,7 @@ class RegistrationRequest extends FormRequest
             'voter_key' => array('required', 'regex:[A-Z]{6}[0-9]{8}[A-Z]{1}[0-9]{3}'),
             'curp' => array('required', 'regex:/^([A-Z][AEIOUX][A-Z]{2}\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])[HM](?:AS|B[CS]|C[CLMSH]|D[FG]|G[TR]|HG|JC|M[CNS]|N[ETL]|OC|PL|Q[TR]|S[PLR]|T[CSL]|VZ|YN|ZS)[B-DF-HJ-NP-TV-Z]{3}[A-Z\d])(\d)$/'),
             'voter_card' => array('required', 'json', 'json_schema_validator:voter_card.php'),
+            'block_id' => array('required', 'exists:blocks,id'),
         );
     }
 
@@ -34,5 +37,14 @@ class RegistrationRequest extends FormRequest
             'expectedData.required' => 'required.jsonData',
             'expectedData.json' => 'expectedData.needs.needs.to.be.a.valid.json',
         );
+    }
+
+    public function failedValidation(Validator $validator)
+    {
+        throw new HttpResponseException(response()->json(array(
+            'success' => false,
+            'message' => 'Validation errors',
+            'data' => $validator->errors(),
+        )));
     }
 }

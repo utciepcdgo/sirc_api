@@ -24,12 +24,15 @@ class PartyFactory extends Factory
         array('name' => 'Partido Estatal Renovación', 'acronym' => 'RENOVACIÓN', 'logo' => 'renovacion.png'),
     );
 
+
     public function definition(): array
     {
+        $party = $this->faker->unique()->randomElement($this->parties);
+
         return array(
-            'name' => $this->faker->name(),
-            'acronym' => $this->faker->word(),
-            'logo' => $this->faker->word(),
+            'name' => $party['name'],
+            'acronym' => $party['acronym'],
+            'logo' => $party['logo'],
         );
     }
 }

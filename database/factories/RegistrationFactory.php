@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Database\Factories;
 
+use App\Models\Block;
 use App\Models\Registration;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Carbon;
@@ -22,9 +23,10 @@ class RegistrationFactory extends Factory
             'second_name' => $this->faker->name(),
             'placedate_birth' => $this->faker->words(),
             'address_length_residence' => $this->faker->address(),
-            'ocupation' => $this->faker->word(),
+            'occupation' => $this->faker->word(),
             'voter_key' => $this->faker->word(),
             'curp' => $this->faker->word(),
+            'block_id' => Block::factory(),
         );
     }
 }

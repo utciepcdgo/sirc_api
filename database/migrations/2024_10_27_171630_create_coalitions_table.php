@@ -10,7 +10,7 @@ return new class extends Migration {
         Schema::create('coalitions', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('acronym')->nullable();
+            $table->string('acronym')->unique();
             $table->string('logo');
         });
     }
