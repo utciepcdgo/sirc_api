@@ -39,6 +39,8 @@ class Registration extends Model
         'block_id',
     );
 
+    protected $with = array('block');
+
     /**
      * @return BelongsTo<Block, Registration>
      */

@@ -15,8 +15,7 @@ class EntityResource extends JsonResource
     {
         return array(
             'id' => $this->id,
-            'entitiable_id' => $this->entitiable_id,
-            'entitiable_type' => $this->entitiable_type,
+            'entitiable' => $this->entitiable,
 //            'blocks' => BlockResource::collection($this->whenLoaded('blocks')),
         );
     }
