@@ -21,15 +21,15 @@ class Block extends Model
 
     public $timestamps = false;
 
-    protected $fillable = array(
+    protected $fillable = [
         'votes_obtained',
         'valid_vote_issued',
         'rentability',
         'municipality_id',
         'entity_id',
-    );
+    ];
 
-    protected $with = array('municipality', 'entity');
+    protected $with = ['municipality', 'entity'];
 
     /**
      * @return BelongsTo<Municipality, Block>
@@ -55,4 +55,3 @@ class Block extends Model
         return $this->hasMany(Registration::class);
     }
 }
-

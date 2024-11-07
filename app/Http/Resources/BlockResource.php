@@ -17,6 +17,7 @@ class BlockResource extends JsonResource
             'valid_vote_issued' => $this->valid_vote_issued,
             'municipality' => new MunicipalityResource($this->whenLoaded('municipality')),
             'entity' => new EntityResource($this->whenLoaded('entity')),
+            'registrations' => $this->registrations,
         ];
     }
 }

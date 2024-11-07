@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Casts\Json;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -26,7 +27,7 @@ class Registration extends Model
 {
     use HasFactory;
 
-    protected $fillable = array(
+    protected $fillable = [
         'name',
         'first_name',
         'second_name',
@@ -37,9 +38,9 @@ class Registration extends Model
         'curp',
         'voter_card',
         'block_id',
-    );
+    ];
 
-    protected $with = array('block');
+    protected $with = ['block'];
 
     /**
      * @return BelongsTo<Block, Registration>
@@ -51,10 +52,10 @@ class Registration extends Model
 
     protected function casts(): array
     {
-        return array(
-            'placedate_birth' => 'json',
+        return [
+            'birthplace' => 'json',
             'address_length_residence' => 'json',
             'voter_card' => 'json',
-        );
+        ];
     }
 }
