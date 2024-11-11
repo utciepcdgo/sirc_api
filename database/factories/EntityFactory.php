@@ -18,20 +18,20 @@ class EntityFactory extends Factory
 
     public function definition(): array
     {
-        $applicants = array(
+        $applicants = [
             Institute::class,
             Party::class,
             Coalition::class,
-        );
+        ];
 
         // @phpstan-ignore-next-line
         $applicant = Arr::random($applicants)::factory()->create();
 
-        return array(
+        return [
             'entitiable_id' => $applicant->getMorphClass(),
             'entitiable_type' => $applicant->getKey(),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
-        );
+        ];
     }
 }

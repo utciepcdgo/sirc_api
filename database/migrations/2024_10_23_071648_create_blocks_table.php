@@ -13,8 +13,8 @@ return new class extends Migration {
     {
         Schema::create('blocks', function (Blueprint $table) {
             $table->id();
-            $table->integer('votes_obtained');
-            $table->integer('valid_vote_issued')->comment('Votación válida emitida');
+            $table->string('votes_obtained');
+            $table->string('valid_vote_issued')->comment('Votación válida emitida');
             $table->float('rentability');
             $table->foreignIdFor(Municipality::class);
             $table->foreignIdFor(Entity::class);

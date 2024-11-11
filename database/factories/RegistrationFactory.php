@@ -21,7 +21,7 @@ class RegistrationFactory extends Factory
             'name' => $this->faker->name(),
             'first_name' => $this->faker->firstName(),
             'second_name' => $this->faker->name(),
-            'placedate_birth' => $this->faker->words(),
+            'birthplace' => $this->faker->words(),
             'address_length_residence' => $this->faker->address(),
             'occupation' => $this->faker->word(),
             'voter_key' => $this->faker->word(),
