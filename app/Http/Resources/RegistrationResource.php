@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Resources;
 
 use App\Models\Registration;
+use App\Models\Registrations\Position;
 use Illuminate\Database\Eloquent\Casts\Json;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -30,6 +31,8 @@ class RegistrationResource extends JsonResource
             'curp' => $this->curp,
             'voter_card' => $this->voter_card,
             'block' => new BlockResource($this->whenLoaded('block')),
+            'position' => Position::find($this->position_id),
+            'postulation' => $this->whenLoaded('postulation'),
         ];
     }
 }

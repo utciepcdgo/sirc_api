@@ -23,6 +23,8 @@ class RegistrationRequest extends FormRequest
             'curp' => ['required', 'regex:/^([A-Z][AEIOUX][A-Z]{2}\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])[HM](?:AS|B[CS]|C[CLMSH]|D[FG]|G[TR]|HG|JC|M[CNS]|N[ETL]|OC|PL|Q[TR]|S[PLR]|T[CSL]|VZ|YN|ZS)[B-DF-HJ-NP-TV-Z]{3}[A-Z\d])(\d)$/'],
             'voter_card' => ['required', 'json'],
             'block_id' => ['required', 'exists:blocks,id'],
+            'position_id' => ['required', 'exists:positions,id'],
+            'postulation_id' => ['required', 'exists:postulations,id'],
         ];
     }
 

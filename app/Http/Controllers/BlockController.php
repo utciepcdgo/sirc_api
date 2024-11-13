@@ -12,17 +12,17 @@ class BlockController extends Controller
 {
     public function index()
     {
-        return BlockResource::collection(Block::all());
+        return BlockResource::collection(Block::filter()->get());
     }
 
     public function store(Request $request)
     {
-        $data = $request->validate(array(
-            'votes_obtained' => array('required', 'integer'),
-            'valid_vote_issued' => array('required', 'integer'),
-            'profitability' => array('required', 'numeric'),
-            'municipality_id' => array('required'),
-        ));
+        $data = $request->validate([
+            'votes_obtained' => ['required', 'integer'],
+            'valid_vote_issued' => ['required', 'integer'],
+            'profitability' => ['required', 'numeric'],
+            'municipality_id' => ['required'],
+        ]);
 
         return new BlockResource(Block::create($data));
     }
@@ -34,12 +34,12 @@ class BlockController extends Controller
 
     public function update(Request $request, Block $block)
     {
-        $data = $request->validate(array(
-            'votes_obtained' => array('required', 'integer'),
-            'valid_vote_issued' => array('required', 'integer'),
-            'profitability' => array('required', 'numeric'),
-            'municipality_id' => array('required'),
-        ));
+        $data = $request->validate([
+            'votes_obtained' => ['required', 'integer'],
+            'valid_vote_issued' => ['required', 'integer'],
+            'profitability' => ['required', 'numeric'],
+            'municipality_id' => ['required'],
+        ]);
 
         $block->update($data);
 

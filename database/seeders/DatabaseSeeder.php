@@ -13,7 +13,6 @@ use App\Models\Party;
 use App\Models\Registrations\Position;
 use App\Models\Registrations\Postulation;
 use App\Models\User;
-
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -32,21 +31,21 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('password'),
         ]);
 
-        //        $parties = array(
-        //            array('name' => 'Partido Acción Nacional', 'acronym' => 'PAN', 'logo' => 'pan.png'),
-        //            array('name' => 'Partido Revolucionario Institucional', 'acronym' => 'PRI', 'logo' => 'pri.png'),
-        //            array('name' => 'Partido Verde Ecologista de México', 'acronym' => 'PVEM', 'logo' => 'pvem.png'),
-        //            array('name' => 'Partido del Trabajo', 'acronym' => 'PT', 'logo' => 'pt.png'),
-        //            array('name' => 'Movimiento Ciudadano', 'acronym' => 'MC', 'logo' => 'mc.png'),
-        //            array('name' => 'Morena', 'acronym' => 'MORENA', 'logo' => 'morena.png'),
-        //            array('name' => 'Partido Encuentro Solidario', 'acronym' => 'PES', 'logo' => 'pes.png'),
-        //            array('name' => 'Partido Villista', 'acronym' => 'PV', 'logo' => 'pv.png'),
-        //            array('name' => 'Partido Estatal Renovación', 'acronym' => 'RENOVACIÓN', 'logo' => 'renovacion.png'),
-        //        );
-        //
-        //        foreach ($parties as $party) {
-        //            Party::create($party);
-        //        }
+        $parties = [
+            ['name' => 'Partido Acción Nacional', 'acronym' => 'PAN', 'logo' => 'pan.png'],
+            ['name' => 'Partido Revolucionario Institucional', 'acronym' => 'PRI', 'logo' => 'pri.png'],
+            ['name' => 'Partido Verde Ecologista de México', 'acronym' => 'PVEM', 'logo' => 'pvem.png'],
+            ['name' => 'Partido del Trabajo', 'acronym' => 'PT', 'logo' => 'pt.png'],
+            ['name' => 'Movimiento Ciudadano', 'acronym' => 'MC', 'logo' => 'mc.png'],
+            ['name' => 'Morena', 'acronym' => 'MORENA', 'logo' => 'morena.png'],
+            ['name' => 'Partido Encuentro Solidario', 'acronym' => 'PES', 'logo' => 'pes.png'],
+            ['name' => 'Partido Villista', 'acronym' => 'PV', 'logo' => 'pv.png'],
+            ['name' => 'Partido Estatal Renovación', 'acronym' => 'RENOVACIÓN', 'logo' => 'renovacion.png'],
+        ];
+
+        foreach ($parties as $party) {
+            Party::create($party);
+        }
 
         $coalitions = [
             ['name' => 'Sigamos Haremos Historia en Durango', 'acronym' => 'JHH', 'logo' => 'shhd.png'],
@@ -122,49 +121,54 @@ class DatabaseSeeder extends Seeder
         }
 
         $municipalities = [
-            ['name' => 'Canatlán', 'abbreviation' => 'CAN'],
-            ['name' => 'Canelas', 'abbreviation' => 'CNS'],
-            ['name' => 'Coneto de Comonfort', 'abbreviation' => 'COC'],
-            ['name' => 'Cuencamé', 'abbreviation' => 'CME'],
-            ['name' => 'Durango', 'abbreviation' => 'DGO'],
-            ['name' => 'General Simón Bolívar', 'abbreviation' => 'SIM'],
-            ['name' => 'Gómez Palacio', 'abbreviation' => 'GZP'],
-            ['name' => 'Guadalupe Victoria', 'abbreviation' => 'GVC'],
-            ['name' => 'Guanaceví', 'abbreviation' => 'GVI'],
-            ['name' => 'Hidalgo', 'abbreviation' => 'HGO'],
-            ['name' => 'Indé', 'abbreviation' => 'IND'],
-            ['name' => 'Lerdo', 'abbreviation' => 'LDO'],
-            ['name' => 'Mapimí', 'abbreviation' => 'MPI'],
-            ['name' => 'Mezquital', 'abbreviation' => 'MEZ'],
-            ['name' => 'Nazas', 'abbreviation' => 'NAZ'],
-            ['name' => 'Nombre de Dios', 'abbreviation' => 'NOM'],
-            ['name' => 'Ocampo', 'abbreviation' => 'OCA'],
-            ['name' => 'El Oro', 'abbreviation' => 'ORO'],
-            ['name' => 'Otáez', 'abbreviation' => 'OTA'],
-            ['name' => 'Pánuco de Coronado', 'abbreviation' => 'PCO'],
-            ['name' => 'Peñón Blanco', 'abbreviation' => 'PBO'],
-            ['name' => 'Poanas', 'abbreviation' => 'POA'],
-            ['name' => 'Pueblo Nuevo', 'abbreviation' => 'PNO'],
-            ['name' => 'Rodeo', 'abbreviation' => 'RDO'],
-            ['name' => 'San Bernardo', 'abbreviation' => 'SBO'],
-            ['name' => 'San Dimas', 'abbreviation' => 'SDI'],
-            ['name' => 'San Juan de Guadalupe', 'abbreviation' => 'SJG'],
-            ['name' => 'San Juan del Río', 'abbreviation' => 'SJR'],
-            ['name' => 'San Luis de Cordero', 'abbreviation' => 'SLC'],
-            ['name' => 'San Pedro del Gallo', 'abbreviation' => 'SPG'],
-            ['name' => 'Santa Clara', 'abbreviation' => 'SCL'],
-            ['name' => 'Santiago Papasquiaro', 'abbreviation' => 'SGO'],
-            ['name' => 'Súchil', 'abbreviation' => 'SUC'],
-            ['name' => 'Tamazula', 'abbreviation' => 'TAM'],
-            ['name' => 'Tepehuanes', 'abbreviation' => 'TEP'],
-            ['name' => 'Tlahualilo', 'abbreviation' => 'TLO'],
-            ['name' => 'Topia', 'abbreviation' => 'TOP'],
-            ['name' => 'Vicente Guerrero', 'abbreviation' => 'VGO'],
-            ['name' => 'Nuevo Ideal', 'abbreviation' => 'NVO'],
+            ['id' => 1, 'name' => 'Canatlán', 'abbreviation' => 'CAN'],
+            ['id' => 2, 'name' => 'Canelas', 'abbreviation' => 'CNS'],
+            ['id' => 3, 'name' => 'Coneto de Comonfort', 'abbreviation' => 'COC'],
+            ['id' => 4, 'name' => 'Cuencamé', 'abbreviation' => 'CME'],
+            ['id' => 5, 'name' => 'Durango', 'abbreviation' => 'DGO'],
+            ['id' => 6, 'name' => 'General Simón Bolívar', 'abbreviation' => 'SIM'],
+            ['id' => 7, 'name' => 'Gómez Palacio', 'abbreviation' => 'GZP'],
+            ['id' => 8, 'name' => 'Guadalupe Victoria', 'abbreviation' => 'GVC'],
+            ['id' => 9, 'name' => 'Guanaceví', 'abbreviation' => 'GVI'],
+            ['id' => 10, 'name' => 'Hidalgo', 'abbreviation' => 'HGO'],
+            ['id' => 11, 'name' => 'Indé', 'abbreviation' => 'IND'],
+            ['id' => 12, 'name' => 'Lerdo', 'abbreviation' => 'LDO'],
+            ['id' => 13, 'name' => 'Mapimí', 'abbreviation' => 'MPI'],
+            ['id' => 14, 'name' => 'Mezquital', 'abbreviation' => 'MEZ'],
+            ['id' => 15, 'name' => 'Nazas', 'abbreviation' => 'NAZ'], // 15
+            ['id' => 16, 'name' => 'Nombre de Dios', 'abbreviation' => 'NOM'],
+            ['id' => 17, 'name' => 'Ocampo', 'abbreviation' => 'OCA'],
+            ['id' => 18, 'name' => 'El Oro', 'abbreviation' => 'ORO'],
+            ['id' => 19, 'name' => 'Otáez', 'abbreviation' => 'OTA'],
+            ['id' => 20, 'name' => 'Pánuco de Coronado', 'abbreviation' => 'PCO'],
+            ['id' => 21, 'name' => 'Peñón Blanco', 'abbreviation' => 'PBO'],
+            ['id' => 22, 'name' => 'Poanas', 'abbreviation' => 'POA'],
+            ['id' => 23, 'name' => 'Pueblo Nuevo', 'abbreviation' => 'PNO'],
+            ['id' => 24, 'name' => 'Rodeo', 'abbreviation' => 'RDO'],
+            ['id' => 25, 'name' => 'San Bernardo', 'abbreviation' => 'SBO'],
+            ['id' => 26, 'name' => 'San Dimas', 'abbreviation' => 'SDI'],
+            ['id' => 27, 'name' => 'San Juan de Guadalupe', 'abbreviation' => 'SJG'],
+            ['id' => 28, 'name' => 'San Juan del Río', 'abbreviation' => 'SJR'],
+            ['id' => 29, 'name' => 'San Luis de Cordero', 'abbreviation' => 'SLC'],
+            ['id' => 30, 'name' => 'San Pedro del Gallo', 'abbreviation' => 'SPG'], //30
+            ['id' => 31, 'name' => 'Santa Clara', 'abbreviation' => 'SCL'],
+            ['id' => 32, 'name' => 'Santiago Papasquiaro', 'abbreviation' => 'SGO'],
+            ['id' => 33, 'name' => 'Súchil', 'abbreviation' => 'SUC'],
+            ['id' => 34, 'name' => 'Tamazula', 'abbreviation' => 'TAM'],
+            ['id' => 35, 'name' => 'Tepehuanes', 'abbreviation' => 'TEP'],
+            ['id' => 36, 'name' => 'Tlahualilo', 'abbreviation' => 'TLO'],
+            ['id' => 37, 'name' => 'Topia', 'abbreviation' => 'TOP'],
+            ['id' => 38, 'name' => 'Vicente Guerrero', 'abbreviation' => 'VGO'],
+            ['id' => 39, 'name' => 'Nuevo Ideal', 'abbreviation' => 'NVO'],
         ];
 
         foreach ($municipalities as $municipality) {
             Municipality::create($municipality);
         }
+
+        $this->call([
+            BlocksSeeder::class,
+            MunicipalityDistrictSeeder::class,
+        ]);
     }
 }

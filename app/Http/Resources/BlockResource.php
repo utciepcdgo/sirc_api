@@ -17,7 +17,9 @@ class BlockResource extends JsonResource
             'valid_vote_issued' => $this->valid_vote_issued,
             'municipality' => new MunicipalityResource($this->whenLoaded('municipality')),
             'entity' => new EntityResource($this->whenLoaded('entity')),
-            'registrations' => $this->registrations,
+
+            // TODO: Not return the 'registrations' key if the relationship is not loaded.
+            'registrations' => RegistrationResource::collection($this->whenLoaded('registrations')),
         ];
     }
 }

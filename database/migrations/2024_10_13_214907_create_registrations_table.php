@@ -3,6 +3,8 @@
 declare(strict_types=1);
 
 use App\Models\Block;
+use App\Models\Registrations\Position;
+use App\Models\Registrations\Postulation;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -24,6 +26,8 @@ return new class extends Migration
             $table->json('voter_card');
             // Relationship with block Model
             $table->foreignIdFor(Block::class);
+            $table->foreignIdFor(Position::class);
+            $table->foreignIdFor(Postulation::class);
             $table->timestamps();
         });
     }

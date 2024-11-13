@@ -13,10 +13,12 @@ class EntityResource extends JsonResource
 {
     public function toArray(Request $request): array
     {
-        return array(
+        return [
             'id' => $this->id,
-            'entitiable' => $this->entitiable,
-//            'blocks' => BlockResource::collection($this->whenLoaded('blocks')),
-        );
+            'entitiable_type' => $this->entitiable_type,
+            'name' => $this->entitiable->name,
+            'acronym' => $this->entitiable->acronym,
+            'logo' => $this->entitiable->acronym.'.png',
+        ];
     }
 }

@@ -12,7 +12,6 @@ return new class extends Migration {
             $table->string('name');
             $table->string('roman_number');
             $table->integer('arabic_number');
-            $table->foreignId('municipality_id')->constrained();
         });
     }
 

@@ -4,10 +4,9 @@ declare(strict_types=1);
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Abbasudo\Purity\Traits\Filterable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 /**
@@ -18,24 +17,24 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
  */
 class Entity extends Model
 {
-    use HasFactory;
+    use Filterable;
 
     public $timestamps = false;
 
-    protected $fillable = array(
+    protected $fillable = [
         'entitiable_id',
         'entitiable_type',
-    );
+    ];
 
     /**
      * @var array<int, string>
      */
-    protected array $allowedToHaveBlocks = array(
+    protected array $allowedToHaveBlocks = [
         Party::class,
         Coalition::class,
-    );
+    ];
 
-    protected $with = array('entitiable');
+    protected $with = ['entitiable'];
 
     /**
      * @return MorphTo<Model, Entity>

@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Casts\Attribute;
+use App\Models\Registrations\Position;
+use App\Models\Registrations\Postulation;
 use Illuminate\Database\Eloquent\Casts\Json;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -22,11 +22,11 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string $curp
  * @property Json $voter_card - Campos extra (Núm. de emisión, OCR, CIC, Sección Electoral)
  * @property int $block_id - ID del bloque al que pertenece.
+ * @property Position $position_id - Cargo que ocupa.
+ * @property Postulation $postulation_id - Postulación a la que pertenece Propietario|Suplente.
  */
 class Registration extends Model
 {
-    use HasFactory;
-
     protected $fillable = [
         'name',
         'first_name',
@@ -38,6 +38,8 @@ class Registration extends Model
         'curp',
         'voter_card',
         'block_id',
+        'position_id',
+        'postulation_id',
     ];
 
     protected $with = ['block'];
@@ -48,6 +50,22 @@ class Registration extends Model
     public function block(): BelongsTo
     {
         return $this->belongsTo(Block::class);
+    }
+
+    /**
+     * @return BelongsTo<Position, Registration>
+     */
+    public function position(): BelongsTo
+    {
+        return $this->belongsTo(Position::class, 'position_id', 'id');
+    }
+
+    /**
+     * @return BelongsTo<Postulation, Registration>
+     */
+    public function postulation(): BelongsTo
+    {
+        return $this->belongsTo(Postulation::class, 'postulation_id', 'id');
     }
 
     protected function casts(): array
