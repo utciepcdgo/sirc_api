@@ -6,6 +6,7 @@ namespace App\Http\Resources;
 
 use App\Models\Registration;
 use App\Models\Registrations\Position;
+use App\Models\Registrations\Postulation;
 use Illuminate\Database\Eloquent\Casts\Json;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -14,7 +15,6 @@ use Illuminate\Http\Resources\Json\JsonResource;
 class RegistrationResource extends JsonResource
 {
     /**
-     * @param Request $request
      * @return array<string, BlockResource|Json|int|string>
      */
     public function toArray(Request $request): array
@@ -32,7 +32,7 @@ class RegistrationResource extends JsonResource
             'voter_card' => $this->voter_card,
             'block' => new BlockResource($this->whenLoaded('block')),
             'position' => Position::find($this->position_id),
-            'postulation' => $this->whenLoaded('postulation'),
+            'postulation' => Postulation::find($this->postulation_id),
         ];
     }
 }

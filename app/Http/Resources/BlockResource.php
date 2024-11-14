@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use App\Models\Block;
+use App\Models\Registration;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -19,7 +20,7 @@ class BlockResource extends JsonResource
             'entity' => new EntityResource($this->whenLoaded('entity')),
 
             // TODO: Not return the 'registrations' key if the relationship is not loaded.
-            'registrations' => RegistrationResource::collection($this->whenLoaded('registrations')),
+            'registrations' => Registration::with('position', 'postulation')->where('block_id', $this->id)->get()
         ];
     }
 }
