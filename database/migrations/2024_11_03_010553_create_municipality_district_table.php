@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('municipality_district', function (Blueprint $table) {
             $table->id();
+            $table->string('shield')->nullable();
             $table->foreignId('municipality_id')->constrained();
             $table->foreignId('district_id')->constrained();
         });
