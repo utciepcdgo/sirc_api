@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use App\Models\Registrations\Gender;
 use App\Models\Registrations\Position;
 use App\Models\Registrations\Postulation;
+use App\Models\Registrations\Sex;
 use Illuminate\Database\Eloquent\Casts\Json;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -15,15 +17,17 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string $name
  * @property string $first_name
  * @property string $second_name
- * @property Json $birthplace - Lugar y fecha de nacimiento.
- * @property Json $address_length_residence - Incluye la dirección y el tiempo de residencia.
+ * @property string $birthplace - Lugar y fecha de nacimiento.
+ * @property string $address_length_residence - Incluye la dirección y el tiempo de residencia.
  * @property string $occupation
  * @property string $voter_key - Clave de Elector.
  * @property string $curp
- * @property Json $voter_card - Campos extra (Núm. de emisión, OCR, CIC, Sección Electoral)
+ * @property string $voter_card - Campos extra (Núm. de emisión, OCR, CIC, Sección Electoral)
  * @property int $block_id - ID del bloque al que pertenece.
  * @property Position $position_id - Cargo que ocupa.
  * @property Postulation $postulation_id - Postulación a la que pertenece Propietario|Suplente.
+ * @property Sex $sex_id - Sexo de la candidatura.
+ * @property Gender $gender_id - Género de la candidatura.
  */
 class Registration extends Model
 {
@@ -40,9 +44,11 @@ class Registration extends Model
         'block_id',
         'position_id',
         'postulation_id',
+        'sex_id',
+        'gender_id',
     ];
 
-    protected $with = ['block'];
+    protected $with = ['sex', 'gender', 'postulation', 'position'];
 
     /**
      * @return BelongsTo<Block, Registration>
@@ -66,6 +72,22 @@ class Registration extends Model
     public function postulation(): BelongsTo
     {
         return $this->belongsTo(Postulation::class, 'postulation_id', 'id');
+    }
+
+    /**
+     * @return BelongsTo<Sex, Registration>
+     */
+    public function sex(): BelongsTo
+    {
+        return $this->belongsTo(Sex::class, 'sex_id', 'id');
+    }
+
+    /**
+     * @return BelongsTo<Gender, Registration>
+     */
+    public function gender(): BelongsTo
+    {
+        return $this->belongsTo(Gender::class, 'gender_id', 'id');
     }
 
     protected function casts(): array

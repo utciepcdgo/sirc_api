@@ -10,8 +10,10 @@ use App\Models\Entity;
 use App\Models\Institute;
 use App\Models\Municipality;
 use App\Models\Party;
+use App\Models\Registrations\Gender;
 use App\Models\Registrations\Position;
 use App\Models\Registrations\Postulation;
+use App\Models\Registrations\Sex;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -166,9 +168,32 @@ class DatabaseSeeder extends Seeder
             Municipality::create($municipality);
         }
 
+        Sex::insert([
+            ['name' => 'Mujer'],
+            ['name' => 'Hombre'],
+        ]);
+
+        Gender::insert([
+            ['name' => 'Agénero'],
+            ['name' => 'Asexual'],
+            ['name' => 'Bisexual'],
+            ['name' => 'Género Fluido'],
+            ['name' => 'Heterosexual'],
+            ['name' => 'Homosexual'],
+            ['name' => 'Intersexual'],
+            ['name' => 'No Binario'],
+            ['name' => 'Pansexual'],
+            ['name' => 'Queer'],
+            ['name' => 'Transexual'],
+            ['name' => 'Transgénero'],
+            ['name' => 'Travesti'],
+            ['name' => 'Prefiero no especificar'],
+        ]);
+
         $this->call([
             BlocksSeeder::class,
             MunicipalityDistrictSeeder::class,
         ]);
+
     }
 }
