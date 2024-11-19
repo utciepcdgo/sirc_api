@@ -33,8 +33,8 @@ class RegistrationResource extends JsonResource
             'curp' => $this->curp,
             'voter_card' => json_decode($this->voter_card, true),
             'block' => [
-                "id" => $this->block->id,
-                "municipality" => $this->block->municipality->name
+                'id' => $this->block->id,
+                'municipality' => $this->block->municipality->name,
             ],
             'position' => Position::find($this->position_id),
             'postulation' => Postulation::find($this->postulation_id),

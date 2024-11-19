@@ -18,7 +18,7 @@ class EntityResource extends JsonResource
             'entitiable_type' => $this->entitiable_type,
             'name' => $this->entitiable->name,
             'acronym' => $this->entitiable->acronym,
-            'logo' => $this->entitiable->acronym.'.png',
+            'logo' => $this->entitiable->logo,
         ];
     }
 }

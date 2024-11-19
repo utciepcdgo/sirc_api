@@ -16,7 +16,7 @@ class MunicipalityResource extends JsonResource
         return array(
             'id' => $this->id,
             'name' => $this->name,
-//            'shield' => $this->shield,
+            'shield' => $this->shield,
 //            'abbreviation' => $this->abbreviation,
 //            'districts_count' => $this->districts_count
         );

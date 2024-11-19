@@ -1,9 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Resources;
 
 use App\Models\Block;
-use App\Models\Registration;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -18,9 +19,13 @@ class BlockResource extends JsonResource
             'valid_vote_issued' => $this->valid_vote_issued,
             'municipality' => new MunicipalityResource($this->whenLoaded('municipality')),
             'entity' => new EntityResource($this->whenLoaded('entity')),
-
-            // TODO: Not return the 'registrations' key if the relationship is not loaded.
-            'registrations' => Registration::with('position', 'postulation')->where('block_id', $this->id)->get()
+            'registrations' => [
+                'stats' => [
+                    'total' => $this->registrations->count(),
+                    'women' => $this->registrations->where('sex_id', '=', 1)->count(),
+                    'mans' => $this->registrations->where('sex_id', '=', 2)->count(),
+                ],
+            ],
         ];
     }
 }
