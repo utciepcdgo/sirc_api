@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('first_name');
             $table->string('second_name');
             $table->json('birthplace')->comment('Lugar y fecha de nacimiento');
-            $table->json('address_length_residence')->comment('Dirección y tiempo de residencia');
+            $table->json('residence')->comment('Dirección y tiempo de residencia');
             $table->string('occupation');
             $table->string('voter_key')->comment('Clave de Elector');
             $table->string('curp');

@@ -27,7 +27,7 @@ class RegistrationResource extends JsonResource
             'first_name' => $this->first_name,
             'second_name' => $this->second_name,
             'birthplace' => json_decode($this->birthplace, true),
-            'address_length_residence' => json_decode($this->address_length_residence, true),
+            'residence' => json_decode($this->residence, true),
             'occupation' => $this->occupation,
             'voter_key' => $this->voter_key,
             'curp' => $this->curp,

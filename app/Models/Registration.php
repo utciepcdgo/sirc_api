@@ -8,9 +8,18 @@ use App\Models\Registrations\Gender;
 use App\Models\Registrations\Position;
 use App\Models\Registrations\Postulation;
 use App\Models\Registrations\Sex;
-use Illuminate\Database\Eloquent\Casts\Json;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+
+/**
+ * TODO:
+ *  - ❌ Falta agregar el campo reelección.
+ *  - ❌ Falta agregar el campo mote/sobrenombre (opcional).
+ *  - ❌ Falta agregar el campo Múm. exterior (opcional).
+ *  - ❌ Falta agregar el campo País y Estado y, combinarlos en un solo campo (birthplace > place).
+ *  - ✅ Cambiar el campo address_length_residence por 'residence' y:
+ *      - Agregarle el campo número exterior (opcional).
+ */
 
 /**
  * @property int $id
@@ -18,11 +27,12 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string $first_name
  * @property string $second_name
  * @property string $birthplace - Lugar y fecha de nacimiento.
- * @property string $address_length_residence - Incluye la dirección y el tiempo de residencia.
+ * @property string $residence - Incluye la dirección y el tiempo de residencia.
  * @property string $occupation
  * @property string $voter_key - Clave de Elector.
  * @property string $curp
  * @property string $voter_card - Campos extra (Núm. de emisión, OCR, CIC, Sección Electoral)
+ * @property int $council_number - Número de Regiduría
  * @property int $block_id - ID del bloque al que pertenece.
  * @property Position $position_id - Cargo que ocupa.
  * @property Postulation $postulation_id - Postulación a la que pertenece Propietario|Suplente.
@@ -36,7 +46,7 @@ class Registration extends Model
         'first_name',
         'second_name',
         'birthplace',
-        'address_length_residence',
+        'residence',
         'occupation',
         'voter_key',
         'curp',
@@ -94,7 +104,7 @@ class Registration extends Model
     {
         return [
             'birthplace' => 'json',
-            'address_length_residence' => 'json',
+            'residence' => 'json',
             'voter_card' => 'json',
         ];
     }

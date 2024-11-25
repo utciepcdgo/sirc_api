@@ -17,7 +17,7 @@ class RegistrationRequest extends FormRequest
             'first_name' => ['required', 'min:3'],
             'second_name' => ['required', 'min:3'],
             'birthplace' => ['required', 'json'],
-            'address_length_residence' => ['required', 'json'],
+            'residence' => ['required', 'json'],
             'occupation' => ['required', 'min:3'],
             'voter_key' => ['required', 'regex:/^[A-Z]{6}[0-9]{8}[A-Z]{1}[0-9]{3}/'],
             'curp' => ['required', 'regex:/^([A-Z][AEIOUX][A-Z]{2}\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])[HM](?:AS|B[CS]|C[CLMSH]|D[FG]|G[TR]|HG|JC|M[CNS]|N[ETL]|OC|PL|Q[TR]|S[PLR]|T[CSL]|VZ|YN|ZS)[B-DF-HJ-NP-TV-Z]{3}[A-Z\d])(\d)$/'],
@@ -48,7 +48,7 @@ class RegistrationRequest extends FormRequest
     {
         $this->merge([
             'birthplace' => json_encode($this->birthplace),
-            'address_length_residence' => json_encode($this->address_length_residence),
+            'residence' => json_encode($this->residence),
             'voter_card' => json_encode($this->voter_card),
         ]);
     }

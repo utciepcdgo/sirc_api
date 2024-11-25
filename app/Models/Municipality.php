@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
  * @property string $name
  * @property string $shield
  * @property string $abbreviation
+ * @property int $councils
  */
 class Municipality extends Model
 {
