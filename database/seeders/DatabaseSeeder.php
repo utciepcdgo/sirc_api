@@ -171,6 +171,7 @@ class DatabaseSeeder extends Seeder
         Sex::insert([
             ['name' => 'Mujer'],
             ['name' => 'Hombre'],
+            ['name' => 'No Binario'],
         ]);
 
         Gender::insert([
