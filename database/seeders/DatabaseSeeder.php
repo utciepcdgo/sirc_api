@@ -15,6 +15,7 @@ use App\Models\Registrations\Position;
 use App\Models\Registrations\Postulation;
 use App\Models\Registrations\Sex;
 use App\Models\User;
+
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -169,12 +170,6 @@ class DatabaseSeeder extends Seeder
         }
 
         Sex::insert([
-            ['name' => 'Mujer'],
-            ['name' => 'Hombre'],
-            ['name' => 'No Binario'],
-        ]);
-
-        Gender::insert([
             ['name' => 'Agénero'],
             ['name' => 'Asexual'],
             ['name' => 'Bisexual'],
@@ -182,13 +177,18 @@ class DatabaseSeeder extends Seeder
             ['name' => 'Heterosexual'],
             ['name' => 'Homosexual'],
             ['name' => 'Intersexual'],
-            ['name' => 'No Binario'],
             ['name' => 'Pansexual'],
             ['name' => 'Queer'],
             ['name' => 'Transexual'],
             ['name' => 'Transgénero'],
             ['name' => 'Travesti'],
             ['name' => 'Prefiero no especificar'],
+        ]);
+
+        Gender::insert([
+            ['name' => 'Mujer'],
+            ['name' => 'Hombre'],
+            ['name' => 'No Binario'],
         ]);
 
         $this->call([
