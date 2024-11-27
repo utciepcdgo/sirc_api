@@ -182,7 +182,7 @@ class DatabaseSeeder extends Seeder
             ['name' => 'Transexual'],
             ['name' => 'Transgénero'],
             ['name' => 'Travesti'],
-            ['name' => 'Prefiero no especificar'],
+            ['name' => 'Ninguno'],
         ]);
 
         Gender::insert([
