@@ -193,6 +193,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             BlocksSeeder::class,
+            AssignmentsSeeder::class, // Siglados
             MunicipalityDistrictSeeder::class,
         ]);
 

@@ -26,6 +26,10 @@ class BlockResource extends JsonResource
                     'mans' => $this->registrations->where('sex_id', '=', 2)->count(),
                 ],
             ],
+            'assignments' => [
+                'municipality' => ($this->assignment->municipality) ?? null,
+                'councils' => (json_decode((string) $this->assignment?->councils)) ?? null,
+            ],
         ];
     }
 }
