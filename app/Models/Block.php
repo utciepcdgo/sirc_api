@@ -59,6 +59,9 @@ class Block extends Model
         return $this->hasMany(Registration::class);
     }
 
+    /**
+     * @return HasOne<Assignment>
+     */
     public function assignment(): HasOne
     {
         return $this->hasOne(Assignment::class);

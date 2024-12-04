@@ -10,7 +10,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * @property int $id
- * @property bool $municipality
+ * @property bool $municipality - Si es verdadero, le corresponde al Partido en cuestión.
+ * @property bool $syndic - Si es verdadero, le corresponde al Partido en cuestión.
  * @property array $councils
  */
 class Assignment extends Model
@@ -25,6 +26,9 @@ class Assignment extends Model
 
     protected $table = 'assignments';
 
+    /**
+     * @return BelongsTo<Block, Assignment>
+     */
     public function block(): BelongsTo
     {
         return $this->belongsTo(Block::class);
@@ -34,6 +38,7 @@ class Assignment extends Model
     {
         return [
             'municipality' => 'boolean',
+            'syndic' => 'boolean',
             'councils' => 'array',
         ];
     }
