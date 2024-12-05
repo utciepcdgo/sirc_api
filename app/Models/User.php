@@ -16,7 +16,6 @@ use Illuminate\Notifications\Notifiable;
  * @property string $name
  * @property string $email
  */
-
 class User extends Authenticatable
 {
     /** @use HasFactory<UserFactory> */
@@ -27,21 +26,21 @@ class User extends Authenticatable
      *
      * @type array<int, string>
      */
-    protected $fillable = array(
+    protected $fillable = [
         'name',
         'email',
         'password',
-    );
+    ];
 
     /**
      * The attributes that should be hidden for serialization.
      *
      * @type array<string>
      */
-    protected $hidden = array(
+    protected $hidden = [
         'password',
         'remember_token',
-    );
+    ];
 
     /**
      * @return BelongsToMany<Entity>
@@ -67,9 +66,9 @@ class User extends Authenticatable
      */
     protected function casts(): array
     {
-        return array(
+        return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
-        );
+        ];
     }
 }

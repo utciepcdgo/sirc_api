@@ -1417,6 +1417,13 @@ class BlocksSeeder extends Seeder
                 'votes_obtained' => '112',
                 'valid_vote_issued' => '2,125',
                 'rentability' => 5.27],
+            // Para pruebas
+            [
+                'municipality_id' => 1,
+                'entity_id' => 12,
+                'votes_obtained' => '1,819',
+                'valid_vote_issued' => '14,759',
+                'rentability' => 12.32],
         ];
 
         foreach ($blocks as $block) {
