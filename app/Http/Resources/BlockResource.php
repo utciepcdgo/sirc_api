@@ -23,7 +23,7 @@ class BlockResource extends JsonResource
                 'stats' => [
                     'total' => $this->registrations->count(),
                     'women' => $this->registrations->where('sex_id', '=', 1)->count(),
-                    'men' => $this->registrations->where('sex_id', '=', 2)->count(),
+                    'man' => $this->registrations->where('sex_id', '=', 2)->count(),
                 ],
             ],
             'assignments' => [

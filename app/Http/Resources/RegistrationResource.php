@@ -40,6 +40,7 @@ class RegistrationResource extends JsonResource
             'postulation' => Postulation::find($this->postulation_id),
             'sex' => Sex::find($this->sex_id),
             'gender' => Gender::find($this->gender_id),
+            'compensatory' => $this->compensatory_measure,
             'entity' => [
                 'name' => $this->block->entity->entitiable->name,
                 'acronym' => $this->block->entity->entitiable->acronym,

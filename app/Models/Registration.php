@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use App\Models\Registrations\Compensatory;
 use App\Models\Registrations\Gender;
 use App\Models\Registrations\Position;
 use App\Models\Registrations\Postulation;
@@ -38,6 +39,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property Postulation $postulation_id - Postulación a la que pertenece Propietario|Suplente.
  * @property Sex $sex_id - Sexo de la candidatura.
  * @property Gender $gender_id - Género de la candidatura.
+ * @property Compensatory $compensatory_id - Medida compensatoria.
  */
 class Registration extends Model
 {
@@ -56,6 +58,7 @@ class Registration extends Model
         'postulation_id',
         'sex_id',
         'gender_id',
+        'compensatory_id',
     ];
 
     protected $with = ['sex', 'gender', 'postulation', 'position'];
@@ -98,6 +101,14 @@ class Registration extends Model
     public function gender(): BelongsTo
     {
         return $this->belongsTo(Gender::class, 'gender_id', 'id');
+    }
+
+    /**
+     * @return BelongsTo<Compensatory, Registration>
+     */
+    public function compensatory(): BelongsTo
+    {
+        return $this->belongsTo(Compensatory::class, 'compensatory_id', 'id');
     }
 
     protected function casts(): array

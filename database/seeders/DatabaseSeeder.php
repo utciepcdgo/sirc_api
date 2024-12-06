@@ -10,6 +10,7 @@ use App\Models\Entity;
 use App\Models\Institute;
 use App\Models\Municipality;
 use App\Models\Party;
+use App\Models\Registrations\Compensatory;
 use App\Models\Registrations\Gender;
 use App\Models\Registrations\Position;
 use App\Models\Registrations\Postulation;
@@ -189,6 +190,15 @@ class DatabaseSeeder extends Seeder
             ['name' => 'Mujer'],
             ['name' => 'Hombre'],
             ['name' => 'No Binario'],
+        ]);
+
+        Compensatory::insert([
+            ['name' => 'Jóven'],
+            ['name' => 'Discapacidad permanente'],
+            ['name' => 'Diversidad sexual'],
+            ['name' => 'Persona adulta mayor'],
+            ['name' => 'Migrante'],
+            ['name' => 'Indígena'],
         ]);
 
         $this->call([

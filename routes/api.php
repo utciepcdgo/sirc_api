@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use App\Http\Controllers\BlockController;
+use App\Http\Controllers\CompensatoryController;
 use App\Http\Controllers\GenreController;
 use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\SexController;
@@ -21,3 +22,6 @@ Route::get('/sexes', [SexController::class, 'index']);
 
 // Genres
 Route::get('/genres', [GenreController::class, 'index']);
+
+// Compensatories | Medidas Compensatorias
+Route::get('/compensatories', [CompensatoryController::class, 'index']);
