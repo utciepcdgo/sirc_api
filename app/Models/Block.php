@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+// TODO: Add trait for various methods such as isCompleted, isPending, etc.
 /**
  * @property int $id
  * @property int $votes_obtained - Votos obtenidos.

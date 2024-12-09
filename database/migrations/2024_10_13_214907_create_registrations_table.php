@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use App\Models\Block;
+use App\Models\Registrations\Compensatory;
 use App\Models\Registrations\Gender;
 use App\Models\Registrations\Position;
 use App\Models\Registrations\Postulation;
@@ -26,12 +27,13 @@ return new class extends Migration
             $table->string('voter_key')->comment('Clave de Elector');
             $table->string('curp');
             $table->json('voter_card');
-            // Relationship with block Model
+            // Relationships
             $table->foreignIdFor(Block::class);
             $table->foreignIdFor(Position::class);
             $table->foreignIdFor(Postulation::class);
             $table->foreignIdFor(Sex::class);
             $table->foreignIdFor(Gender::class);
+            $table->foreignIdFor(Compensatory::class);
             $table->timestamps();
         });
     }
