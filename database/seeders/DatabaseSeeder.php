@@ -16,8 +16,6 @@ use App\Models\Registrations\Position;
 use App\Models\Registrations\Postulation;
 use App\Models\Registrations\Sex;
 use App\Models\User;
-
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
