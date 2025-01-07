@@ -50,7 +50,7 @@ class DatabaseSeeder extends Seeder
         }
 
         $coalitions = [
-            ['name' => 'Sigamos Haremos Historia en Durango', 'acronym' => 'JHH', 'logo' => 'shhd.png'],
+            ['name' => 'Sigamos Haciendo Historia en Durango', 'acronym' => 'JHH', 'logo' => 'shhd.png'],
             ['name' => 'Va por Durango', 'acronym' => 'VXM', 'logo' => 'vxd.png'],
         ];
 
