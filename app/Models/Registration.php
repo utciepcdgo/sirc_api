@@ -61,7 +61,7 @@ class Registration extends Model
         'compensatory_id',
     ];
 
-    protected $with = ['sex', 'gender', 'postulation', 'position'];
+    protected $with = ['sex', 'gender', 'postulation', 'position', 'compensatory'];
 
     /**
      * @return BelongsTo<Block, Registration>

@@ -7,6 +7,8 @@ use App\Http\Controllers\CompensatoryController;
 use App\Http\Controllers\GenreController;
 use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\SexController;
+use App\Http\Resources\PostulationResource;
+use App\Models\Registrations\Postulation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -25,3 +27,8 @@ Route::get('/genres', [GenreController::class, 'index']);
 
 // Compensatories | Medidas Compensatorias
 Route::get('/compensatories', [CompensatoryController::class, 'index']);
+
+// Postulations | Postulaciones
+Route::get('/postulations', function () {
+    return PostulationResource::collection(Postulation::all());
+});

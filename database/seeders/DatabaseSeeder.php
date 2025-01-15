@@ -80,11 +80,11 @@ class DatabaseSeeder extends Seeder
         }
 
         $postulations = [
-            ['name' => 'Gubernatura'],
-            ['name' => 'Diputación'],
-            ['name' => 'Presidencia Municipal'],
-            ['name' => 'Sindicatura'],
-            ['name' => 'Regiduría'],
+            ['name' => 'Gubernatura', 'active' => false],
+            ['name' => 'Diputación', 'active' => false],
+            ['name' => 'Presidencia Municipal', 'active' => true],
+            ['name' => 'Sindicatura', 'active' => true],
+            ['name' => 'Regiduría', 'active' => true],
         ];
 
         foreach ($postulations as $postulation) {
@@ -168,7 +168,7 @@ class DatabaseSeeder extends Seeder
             Municipality::create($municipality);
         }
 
-        Sex::insert([
+        Gender::insert([
             ['name' => 'Agénero'],
             ['name' => 'Asexual'],
             ['name' => 'Bisexual'],
@@ -184,7 +184,7 @@ class DatabaseSeeder extends Seeder
             ['name' => 'Ninguno'],
         ]);
 
-        Gender::insert([
+        Sex::insert([
             ['name' => 'Mujer'],
             ['name' => 'Hombre'],
             ['name' => 'No Binario'],

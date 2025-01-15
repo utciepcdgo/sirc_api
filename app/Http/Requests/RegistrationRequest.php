@@ -26,7 +26,8 @@ class RegistrationRequest extends FormRequest
             'position_id' => ['required', 'exists:positions,id'],
             'postulation_id' => ['required', 'exists:postulations,id'],
             'sex_id' => ['required', 'exists:sexes,id'],
-            'gender_id' => ['required', 'exists:genders,id']
+            'gender_id' => ['required', 'exists:genders,id'],
+            'compensatory_id' => ['required', 'exists:compensatories,id'],
         ];
     }
 
