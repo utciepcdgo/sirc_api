@@ -13,6 +13,11 @@ class BlockResource extends JsonResource
 {
     public function toArray(Request $request): array
     {
+        /**
+         * Include list of registrations if request includes query parameter 'include=registrations'
+         */
+        $includeRegistrations = $request->query('include') === 'registrations';
+
         return [
             'id' => $this->id,
             'votes_obtained' => $this->votes_obtained,
@@ -25,6 +30,9 @@ class BlockResource extends JsonResource
                     'women' => $this->registrations->where('sex_id', '=', 1)->count(),
                     'man' => $this->registrations->where('sex_id', '=', 2)->count(),
                 ],
+                'list' => $includeRegistrations
+                    ? RegistrationResource::collection($this->whenLoaded('registrations'))
+                    : null,
             ],
             'assignments' => [
                 'municipality' => $this->assignment->municipality,
