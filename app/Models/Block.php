@@ -11,10 +11,12 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Ramsey\Uuid\Uuid;
 
 // TODO: Add trait for various methods such as isCompleted, isPending, etc.
 /**
  * @property int $id
+ * @property uuid $uuid
  * @property int $votes_obtained - Votos obtenidos.
  * @property int $valid_vote_issued - Votos válidos emitidos.
  * @property float $rentability - Rentabilidad.

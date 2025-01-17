@@ -9,8 +9,10 @@ use App\Models\Registrations\Gender;
 use App\Models\Registrations\Position;
 use App\Models\Registrations\Postulation;
 use App\Models\Registrations\Sex;
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Ramsey\Uuid\Uuid;
 
 /**
  * TODO:
@@ -24,6 +26,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * @property int $id
+ * @property Uuid $uuid
  * @property string $name
  * @property string $first_name
  * @property string $second_name
@@ -43,6 +46,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  */
 class Registration extends Model
 {
+    use HasUuids;
+
     protected $fillable = [
         'name',
         'first_name',
@@ -109,6 +114,16 @@ class Registration extends Model
     public function compensatory(): BelongsTo
     {
         return $this->belongsTo(Compensatory::class, 'compensatory_id', 'id');
+    }
+
+    /**
+     * Get the columns that should receive a unique identifier.
+     *
+     * @return array<int, string>
+     */
+    public function uniqueIds(): array
+    {
+        return ['uuid']; 		//your new column name
     }
 
     protected function casts(): array

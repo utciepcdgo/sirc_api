@@ -12,6 +12,7 @@ return new class extends Migration {
     {
         Schema::create('blocks', function (Blueprint $table) {
             $table->id();
+            $table->uuid();
             $table->string('votes_obtained');
             $table->string('valid_vote_issued')->comment('Votación válida emitida');
             $table->float('rentability');

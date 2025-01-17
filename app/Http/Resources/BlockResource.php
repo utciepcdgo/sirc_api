@@ -20,6 +20,7 @@ class BlockResource extends JsonResource
 
         return [
             'id' => $this->id,
+            'uuid' => $this->uuid,
             'votes_obtained' => $this->votes_obtained,
             'valid_vote_issued' => $this->valid_vote_issued,
             'municipality' => new MunicipalityResource($this->whenLoaded('municipality')),

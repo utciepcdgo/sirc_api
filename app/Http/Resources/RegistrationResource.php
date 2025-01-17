@@ -24,6 +24,7 @@ class RegistrationResource extends JsonResource
     {
         return [
             'id' => $this->id,
+            'uuid' => $this->uuid,
             'name' => $this->name,
             'first_name' => $this->first_name,
             'second_name' => $this->second_name,
