@@ -43,10 +43,15 @@ class RegistrationResource extends JsonResource
             'sex' => Sex::find($this->sex_id),
             'gender' => Gender::find($this->gender_id),
             'compensatory' => Compensatory::find($this->compensatory_id),
+            'migrant' => new MigrantResource($this->migrant),
             'entity' => [
                 'name' => $this->block->entity->entitiable->name,
                 'acronym' => $this->block->entity->entitiable->acronym,
             ],
+            'coalition' => [
+                'is_assigned' => ($this->block->assignment->municipality || $this->block->assignment->syndic || empty(json_decode($this->block->assignment->councils)->list)),
+                'name' => $this->block->entity->entitiable->coalition->name ?? null
+            ]
         ];
     }
 }

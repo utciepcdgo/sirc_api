@@ -212,7 +212,7 @@ class AssignmentsSeeder extends Seeder
             ['block_id' => 195, 'municipality' => true, 'syndic' => true, 'councils' => '{"list":[]}'],
             ['block_id' => 196, 'municipality' => true, 'syndic' => true, 'councils' => '{"list":[]}'],
             ['block_id' => 197, 'municipality' => true, 'syndic' => true, 'councils' => '{"list":[]}'],
-            ['block_id' => 198, 'municipality' => true, 'syndic' => true, 'councils' => '{"list":[]}'],
+            ['block_id' => 198, 'municipality' => true, 'syndic' => true, 'councils' => '{"list":[1, 3, 6]}'],
             ['block_id' => 199, 'municipality' => true, 'syndic' => true, 'councils' => '{"list":[]}'],
             ['block_id' => 200, 'municipality' => true, 'syndic' => true, 'councils' => '{"list":[]}'],
             ['block_id' => 201, 'municipality' => true, 'syndic' => true, 'councils' => '{"list":[]}'],

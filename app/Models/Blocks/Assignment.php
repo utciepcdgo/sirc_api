@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property int $id
  * @property bool $municipality - Si es verdadero, le corresponde al Partido en cuestión.
  * @property bool $syndic - Si es verdadero, le corresponde al Partido en cuestión.
- * @property array $councils
+ * @property string $councils
  */
 class Assignment extends Model
 {

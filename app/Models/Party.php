@@ -6,6 +6,7 @@ namespace App\Models;
 
 use Abbasudo\Purity\Traits\Filterable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 /**
@@ -32,5 +33,14 @@ class Party extends Model
     public function entities(): MorphMany
     {
         return $this->morphMany(Entity::class, 'entitiable');
+    }
+
+    /**
+     * Relations between Party and Coalition
+     * @return BelongsTo<Coalition, Party>
+     */
+    public function coalition(): BelongsTo
+    {
+        return $this->belongsTo(Coalition::class);
     }
 }

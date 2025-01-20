@@ -5,6 +5,7 @@ declare(strict_types=1);
 use App\Http\Controllers\BlockController;
 use App\Http\Controllers\CompensatoryController;
 use App\Http\Controllers\GenreController;
+use App\Http\Controllers\MigrantController;
 use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\SexController;
 use App\Http\Resources\PostulationResource;
@@ -32,3 +33,6 @@ Route::get('/compensatories', [CompensatoryController::class, 'index']);
 Route::get('/postulations', function () {
     return PostulationResource::collection(Postulation::all());
 });
+
+// Migrants | Migrantes
+Route::apiResource('/migrants', MigrantController::class);

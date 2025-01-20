@@ -34,15 +34,15 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $parties = [
-            ['name' => 'Partido Acción Nacional', 'acronym' => 'PAN', 'logo' => 'https://s3.us-east-1.amazonaws.com/static.appsiepcdurango.mx/emblemas/PAN.svg'],
-            ['name' => 'Partido Revolucionario Institucional', 'acronym' => 'PRI', 'logo' => 'https://s3.us-east-1.amazonaws.com/static.appsiepcdurango.mx/emblemas/PRI.svg'],
-            ['name' => 'Partido Verde Ecologista de México', 'acronym' => 'PVEM', 'logo' => 'https://s3.us-east-1.amazonaws.com/static.appsiepcdurango.mx/emblemas/PVEM.svg'],
-            ['name' => 'Partido del Trabajo', 'acronym' => 'PT', 'logo' => 'https://s3.us-east-1.amazonaws.com/static.appsiepcdurango.mx/emblemas/PT.svg'],
-            ['name' => 'Movimiento Ciudadano', 'acronym' => 'MC', 'logo' => 'https://s3.us-east-1.amazonaws.com/static.appsiepcdurango.mx/emblemas/MC.svg'],
-            ['name' => 'Morena', 'acronym' => 'MORENA', 'logo' => 'https://s3.us-east-1.amazonaws.com/static.appsiepcdurango.mx/emblemas/MORENA.svg'],
-            ['name' => 'Partido Encuentro Solidario', 'acronym' => 'PES', 'logo' => 'pes.png'],
-            ['name' => 'Partido Villista', 'acronym' => 'PV', 'logo' => 'pv.png'],
-            ['name' => 'Partido Estatal Renovación', 'acronym' => 'RENOVACIÓN', 'logo' => 'renovacion.png'],
+            ['name' => 'Partido Acción Nacional', 'acronym' => 'PAN', 'logo' => 'https://s3.us-east-1.amazonaws.com/static.appsiepcdurango.mx/emblemas/PAN.svg', 'coalition_id' => null],
+            ['name' => 'Partido Revolucionario Institucional', 'acronym' => 'PRI', 'logo' => 'https://s3.us-east-1.amazonaws.com/static.appsiepcdurango.mx/emblemas/PRI.svg', 'coalition_id' => null],
+            ['name' => 'Partido Verde Ecologista de México', 'acronym' => 'PVEM', 'logo' => 'https://s3.us-east-1.amazonaws.com/static.appsiepcdurango.mx/emblemas/PVEM.svg', 'coalition_id' => 1],
+            ['name' => 'Partido del Trabajo', 'acronym' => 'PT', 'logo' => 'https://s3.us-east-1.amazonaws.com/static.appsiepcdurango.mx/emblemas/PT.svg', 'coalition_id' => 1],
+            ['name' => 'Movimiento Ciudadano', 'acronym' => 'MC', 'logo' => 'https://s3.us-east-1.amazonaws.com/static.appsiepcdurango.mx/emblemas/MC.svg', 'coalition_id' => null],
+            ['name' => 'Morena', 'acronym' => 'MORENA', 'logo' => 'https://s3.us-east-1.amazonaws.com/static.appsiepcdurango.mx/emblemas/MORENA.svg', 'coalition_id' => 1],
+            ['name' => 'Partido Encuentro Solidario', 'acronym' => 'PES', 'logo' => 'pes.png', 'coalition_id' => null],
+            ['name' => 'Partido Villista', 'acronym' => 'PV', 'logo' => 'pv.png', 'coalition_id' => null],
+            ['name' => 'Partido Estatal Renovación', 'acronym' => 'RENOVACIÓN', 'logo' => 'renovacion.png', 'coalition_id' => null],
         ];
 
         foreach ($parties as $party) {
@@ -203,6 +203,7 @@ class DatabaseSeeder extends Seeder
             BlocksSeeder::class,
             AssignmentsSeeder::class, // Siglados
             MunicipalityDistrictSeeder::class,
+            CountriesSeeder::class,
         ]);
 
     }

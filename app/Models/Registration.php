@@ -12,6 +12,7 @@ use App\Models\Registrations\Sex;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Ramsey\Uuid\Uuid;
 
 /**
@@ -66,7 +67,7 @@ class Registration extends Model
         'compensatory_id',
     ];
 
-    protected $with = ['sex', 'gender', 'postulation', 'position', 'compensatory'];
+    protected $with = ['sex', 'gender', 'postulation', 'position', 'compensatory', 'migrant'];
 
     /**
      * @return BelongsTo<Block, Registration>
@@ -114,6 +115,15 @@ class Registration extends Model
     public function compensatory(): BelongsTo
     {
         return $this->belongsTo(Compensatory::class, 'compensatory_id', 'id');
+    }
+
+    /**
+     * Migrant
+     * @return HasOne<Migrant>
+     */
+    public function migrant(): HasOne
+    {
+        return $this->hasOne(Migrant::class);
     }
 
     /**
