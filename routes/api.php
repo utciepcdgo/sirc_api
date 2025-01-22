@@ -8,7 +8,9 @@ use App\Http\Controllers\GenreController;
 use App\Http\Controllers\MigrantController;
 use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\SexController;
+use App\Http\Resources\CountryResource;
 use App\Http\Resources\PostulationResource;
+use App\Models\Migrants\Country;
 use App\Models\Registrations\Postulation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -36,3 +38,8 @@ Route::get('/postulations', function () {
 
 // Migrants | Migrantes
 Route::apiResource('/migrants', MigrantController::class);
+
+// Countries | Países
+Route::get('/countries', function () {
+    return CountryResource::collection(Country::all());
+});
