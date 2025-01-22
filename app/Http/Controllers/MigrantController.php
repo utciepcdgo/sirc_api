@@ -15,7 +15,14 @@ class MigrantController extends Controller
 
     public function store(MigrantRequest $request)
     {
-        return new MigrantResource(Migrant::create($request->validated()));
+        $validated = $request->validated();
+        $migrant = Migrant::updateOrCreate(
+            ['registration_id' => $validated['registration_id'] ?? null], // Assuming 'registration_id' is part of the validated data
+            $validated
+        );
+
+        return new MigrantResource($migrant);
+//        return new MigrantResource(Migrant::create($request->validated()));
     }
 
     public function show(Migrant $migrant)
