@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use Abbasudo\Purity\Traits\Filterable;
 use App\Models\Registrations\Compensatory;
 use App\Models\Registrations\Gender;
 use App\Models\Registrations\Position;
@@ -47,6 +48,7 @@ use Ramsey\Uuid\Uuid;
  */
 class Registration extends Model
 {
+    use Filterable;
     use HasUuids;
 
     protected $fillable = [
@@ -119,6 +121,7 @@ class Registration extends Model
 
     /**
      * Migrant
+     *
      * @return HasOne<Migrant>
      */
     public function migrant(): HasOne

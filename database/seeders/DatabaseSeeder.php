@@ -197,6 +197,7 @@ class DatabaseSeeder extends Seeder
             ['name' => 'Persona adulta mayor'],
             ['name' => 'Migrante'],
             ['name' => 'Indígena'],
+            ['name' => 'Ninguna'],
         ]);
 
         $this->call([

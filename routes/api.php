@@ -43,3 +43,6 @@ Route::apiResource('/migrants', MigrantController::class);
 Route::get('/countries', function () {
     return CountryResource::collection(Country::all());
 });
+
+// Formats | Formatos
+//Route::get('format/{format}', function ($format)
