@@ -71,11 +71,14 @@ class FormatController extends Controller
             })
             ->get()
             ->pluck('municipality');
-        $totalRegistrations = Registration::filter(['entity_id' => ['$eq' => $request->query('entity_id')]])->count();
+        $totalRegistrations = Registration::whereHas('block.entity', function ($query) use ($request) {
+            $query->where('id', $request->query('entity_id'));
+        })
+            ->filter(['entity_id' => ['$eq' => $request->query('entity_id')]])->count();
         $entity = Entity::find($request->query('entity_id'))->entitiable->name;
         $subscribed = [
-            ['name' => 'Alejandro Parra Villa'],
-            ['name' => 'José Manuel Parra Villa'],
+            ['name' => 'Alejandro Parra Villa', 'ownership' => 'Presidencia de Partido'],
+            ['name' => 'José Manuel Parra Villa', 'ownership' => 'Secretaria/o General'],
         ];
 
         return response()->json([
