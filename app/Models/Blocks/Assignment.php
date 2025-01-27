@@ -20,6 +20,7 @@ class Assignment extends Model
 
     protected $fillable = [
         'municipality',
+        'syndic',
         'councils',
         'block_id',
     ];

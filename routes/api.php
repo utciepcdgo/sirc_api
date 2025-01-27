@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use App\Http\Controllers\BlockController;
 use App\Http\Controllers\CompensatoryController;
+use App\Http\Controllers\FormatController;
 use App\Http\Controllers\GenreController;
 use App\Http\Controllers\MigrantController;
 use App\Http\Controllers\RegistrationController;
@@ -45,4 +46,4 @@ Route::get('/countries', function () {
 });
 
 // Formats | Formatos
-//Route::get('format/{format}', function ($format)
+Route::get('/format', [FormatController::class, 'index']);

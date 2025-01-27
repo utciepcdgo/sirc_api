@@ -28,6 +28,10 @@ class Municipality extends Model
         'abbreviation',
     ];
 
+    protected $filterFields = [
+        'name',
+    ];
+
     /**
      * @return BelongsTo<Block, Municipality>
      */

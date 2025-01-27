@@ -12,7 +12,7 @@ return new class extends Migration {
             $table->id();
             $table->boolean('municipality');
             $table->boolean('syndic');
-            $table->json('councils');
+            $table->json('councils')->nullable();
             $table->foreignIdFor(Block::class);
         });
     }

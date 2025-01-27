@@ -72,7 +72,6 @@ class DatabaseSeeder extends Seeder
             ['entitiable_id' => 8, 'entitiable_type' => 'App\Models\Party'], // PV 9
             ['entitiable_id' => 9, 'entitiable_type' => 'App\Models\Party'], // RENOVACIÓN 10
             ['entitiable_id' => 1, 'entitiable_type' => 'App\Models\Coalition'], // SHHD 11
-            ['entitiable_id' => 2, 'entitiable_type' => 'App\Models\Coalition'], // VXD 12
         ];
 
         foreach ($entities as $entity) {
@@ -205,6 +204,7 @@ class DatabaseSeeder extends Seeder
             AssignmentsSeeder::class, // Siglados
             MunicipalityDistrictSeeder::class,
             CountriesSeeder::class,
+            UsersSeeder::class,
         ]);
 
     }
