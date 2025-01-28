@@ -10,20 +10,31 @@ use App\Models\Parties\Subscribed;
 
 class SubscribedController extends Controller
 {
-    public function index() {}
+    public function index()
+    {
+    }
 
     public function store(SubscribedRequest $request)
     {
         $validated = $request->validated();
-        $subscribed = Subscribed::updateOrCreate(
-            ['entity_id' => $validated['entity_id'] ?? null],
-            $validated
-        );
+        $subscribedRecords = [];
 
-        return new SubscribedResource($subscribed);
+        foreach ($validated as $data) {
+            $subscribed = Subscribed::updateOrCreate(
+                ['entity_id' => $data['entity_id']],
+                $data
+            );
+            $subscribedRecords[] = $subscribed;
+        }
+
+        return SubscribedResource::collection(collect($subscribedRecords));
     }
 
-    public function show() {}
+    public function show()
+    {
+    }
 
-    public function update() {}
+    public function update()
+    {
+    }
 }

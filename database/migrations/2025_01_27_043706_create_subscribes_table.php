@@ -1,24 +1,25 @@
 <?php
 
+use App\Models\Entity;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSuscribedsTable extends Migration
+class CreateSubscribesTable extends Migration
 {
     public function up(): void
     {
-        Schema::create('suscribeds', function (Blueprint $table) {
+        Schema::create('subscribes', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->string('ownership');
-            $table->foreignId('entity_id');
+            $table->foreignIdFor(Entity::class);
             $table->timestamps();
         });
     }
 
     public function down(): void
     {
-        Schema::dropIfExists('suscribeds');
+        Schema::dropIfExists('subscribeds');
     }
 }

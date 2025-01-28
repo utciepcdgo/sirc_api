@@ -5,8 +5,10 @@ declare(strict_types=1);
 namespace App\Models;
 
 use Abbasudo\Purity\Traits\Filterable;
+use App\Models\Parties\Subscribed;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 /**
@@ -25,6 +27,7 @@ class Entity extends Model
         'entitiable_id',
         'entitiable_type',
     ];
+
 
     /**
      * @var array<int, string>
@@ -58,5 +61,13 @@ class Entity extends Model
     public function blocks(): BelongsToMany
     {
         return $this->belongsToMany(Block::class, 'block_entity');
+    }
+
+    /**
+     * @return BelongsToMany<Subscribed>
+     */
+    public function subscribes(): BelongsToMany
+    {
+        return $this->belongsToMany(Subscribed::class, 'entity_subscribes');
     }
 }

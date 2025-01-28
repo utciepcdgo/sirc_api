@@ -9,6 +9,7 @@ use App\Http\Controllers\GenreController;
 use App\Http\Controllers\MigrantController;
 use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\SexController;
+use App\Http\Controllers\SubscribedController;
 use App\Http\Resources\CountryResource;
 use App\Http\Resources\PostulationResource;
 use App\Models\Migrants\Country;
@@ -47,3 +48,6 @@ Route::get('/countries', function () {
 
 // Formats | Formatos
 Route::get('/format', [FormatController::class, 'index']);
+
+// Subscribed | Suscritos
+Route::apiResource('/subscribed', SubscribedController::class);

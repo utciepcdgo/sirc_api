@@ -9,8 +9,9 @@ class SubscribedRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required'],
-            'entity_id' => ['required', 'exists:entities'],
+            '*.name' => ['required'],
+            '*.ownership' => ['required'],
+            '*.entity_id' => ['required', 'exists:entities'],
         ];
     }
 
