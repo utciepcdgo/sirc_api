@@ -7,6 +7,7 @@ namespace App\Http\Controllers;
 use App\Http\Resources\FormatResource;
 use App\Models\Block;
 use App\Models\Entity;
+use App\Models\Parties\Representative;
 use App\Models\Registration;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -76,10 +77,7 @@ class FormatController extends Controller
         })
             ->filter(['entity_id' => ['$eq' => $request->query('entity_id')]])->count();
         $entity = Entity::find($request->query('entity_id'))->entitiable->name;
-        $subscribed = [
-            ['name' => 'Alejandro Parra Villa', 'ownership' => 'Presidencia de Partido'],
-            ['name' => 'José Manuel Parra Villa', 'ownership' => 'Secretaria/o General'],
-        ];
+        $representantives = Representative::where('entity_id', $request->query('entity_id'))->get();
 
         return response()->json([
             'data' => [
@@ -87,7 +85,7 @@ class FormatController extends Controller
                 'municipalities' => $municipalities,
                 'total_registrations' => $totalRegistrations,
                 'entity' => $entity,
-                'subscribed' => $subscribed,
+                'subscribed' => $representantives,
             ],
         ]);
     }
