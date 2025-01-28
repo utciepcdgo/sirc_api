@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Parties;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class SubscribedRequest extends FormRequest
+class RepresentativeRequest extends FormRequest
 {
     public function rules(): array
     {
         return [
             '*.name' => ['required'],
             '*.ownership' => ['required'],
-            '*.entity_id' => ['required', 'exists:entities'],
+            '*.entity_id' => ['required', 'exists:entities,id'],
         ];
     }
 

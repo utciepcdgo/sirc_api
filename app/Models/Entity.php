@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Models;
 
 use Abbasudo\Purity\Traits\Filterable;
+use App\Models\Parties\Representative;
 use App\Models\Parties\Subscribed;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -64,10 +65,10 @@ class Entity extends Model
     }
 
     /**
-     * @return BelongsToMany<Subscribed>
+     * @return HasMany<Representative>
      */
-    public function subscribes(): BelongsToMany
+    public function representatives(): HasMany
     {
-        return $this->belongsToMany(Subscribed::class, 'entity_subscribes');
+        return $this->hasMany(Representative::class);
     }
 }

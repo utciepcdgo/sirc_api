@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace App\Models\Parties;
 
 use App\Models\Entity;
@@ -11,10 +9,10 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 /**
  * @property int $id
  * @property string $name
- * @property string $ownership - Presidencia de Partido, Secretaria/o General, Representación propietaria, etc.
+ * @property string $ownership
  * @property Entity $entity_id
  */
-class Subscribed extends Model
+class Representative extends Model
 {
     protected $fillable = [
         'name',
@@ -22,13 +20,11 @@ class Subscribed extends Model
         'entity_id',
     ];
 
-    protected $table = 'subscribeds';
-
     /**
-     * @return BelongsTo<Entity, Subscribed>
+     * @return BelongsTo<Entity, Representative>
      */
     public function entity(): BelongsTo
     {
-        return $this->belongsTo(Entity::class, 'entity_id');
+        return $this->belongsTo(Entity::class);
     }
 }
