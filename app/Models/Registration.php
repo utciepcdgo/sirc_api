@@ -10,6 +10,7 @@ use App\Models\Registrations\Gender;
 use App\Models\Registrations\Position;
 use App\Models\Registrations\Postulation;
 use App\Models\Registrations\Sex;
+use App\Traits\FilterableByRelation;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -50,6 +51,7 @@ class Registration extends Model
 {
     use Filterable;
     use HasUuids;
+    use FilterableByRelation;
 
     protected $fillable = [
         'name',

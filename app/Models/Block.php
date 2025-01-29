@@ -6,6 +6,7 @@ namespace App\Models;
 
 use Abbasudo\Purity\Traits\Filterable;
 use App\Models\Blocks\Assignment;
+use App\Traits\FilterableByRelation;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -16,7 +17,7 @@ use Ramsey\Uuid\Uuid;
 // TODO: Add trait for various methods such as isCompleted, isPending, etc.
 /**
  * @property int $id
- * @property uuid $uuid
+ * @property Uuid $uuid
  * @property int $votes_obtained - Votos obtenidos.
  * @property int $valid_vote_issued - Votos válidos emitidos.
  * @property float $rentability - Rentabilidad.
@@ -25,6 +26,7 @@ class Block extends Model
 {
     use Filterable;
     use SoftDeletes;
+    use FilterableByRelation;
 
     public $timestamps = false;
 
@@ -69,5 +71,4 @@ class Block extends Model
     {
         return $this->hasOne(Assignment::class);
     }
-
 }
