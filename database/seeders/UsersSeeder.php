@@ -64,7 +64,6 @@ class UsersSeeder extends Seeder
             $user = User::create($user);
             // Create API Token
             $user->createToken('api_token')->plainTextToken;
-            $user->entities()->attach(($index + 1));
         }
     }
 }

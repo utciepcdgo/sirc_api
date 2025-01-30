@@ -16,28 +16,33 @@ class FormatController extends Controller
 {
     public function index(Request $request): JsonResponse
     {
-        $compensatories = Registration::whereHas('block.entity', function ($query) use ($request) {
-            $query->where('id', $request->query('entity_id'));
-        })
-            ->filterByX('block.assignment', 'coalition')
-            ->filter(['compensatory_id' => ['$ne' => 7]])
-            ->get();
+        // Obtenemos el tipo de entidad Partido, Coaliciòn o Independiente.
+        $entityType = Entity::find($request->query('entity_id'))->entitiable_type;
 
-        $municipalities = Block::with('municipality')
+        /**
+         * Si el tipo de entidad es Independiente, retornamos un error dado que este tipo
+         * de recurso no es válido para esa entidad.
+         */
+        if ($entityType === 'App\Models\Independent') {
+            return response()->json([
+                'error' => 'Formato no válido para esta entidad.',
+            ], 400);
+        }
+
+        $compensatories = Registration::filterByX('block.assignment', $entityType)
+            ->whereHas('block.entity', function ($query) use ($request) {
+                $query->where('id', $request->query('entity_id'));
+            })->filter(['compensatory_id' => ['$ne' => 7]])->get();
+
+        $municipalities = Block::filterByX('assignment', $entityType)->with('municipality')
             ->where('entity_id', '=', $request->query('entity_id'))
-            ->whereHas('registrations')
-            ->whereDoesntHave('assignment', function ($query) {
-                $query->where('municipality', false)
-                    ->orWhere('syndic', false)
-                    ->orWhere('councils', '!=', null);
-            })
-            ->get()
-            ->pluck('municipality');
-        $totalRegistrations = Registration::whereHas('block.entity', function ($query) use ($request) {
-            $query->where('id', $request->query('entity_id'));
-        })
-            ->filter(['entity_id' => ['$eq' => $request->query('entity_id')]])->count();
-        $entity = Entity::find($request->query('entity_id'))->entitiable->name;
+            ->whereHas('registrations')->get()->pluck('municipality');
+
+        // Nos ahorramos una consulta dado que el número de municipios es igual al número de registros.
+        $totalRegistrations = $municipalities->count();
+
+        $entity = Entity::find($request->query('entity_id'));
+
         $representantives = Representative::where('entity_id', $request->query('entity_id'))->get();
 
         return response()->json([
@@ -45,17 +50,28 @@ class FormatController extends Controller
                 'compensatories' => FormatResource::collection($compensatories),
                 'municipalities' => $municipalities,
                 'total_registrations' => $totalRegistrations,
-                'entity' => $entity,
+                'entity' => [
+                    'name' => $entity->entitiable->name,
+                    'acronym' => $entity->entitiable->acronym,
+                ],
                 'subscribed' => $representantives,
             ],
         ]);
     }
 
-    public function store(Request $request) {}
+    public function store(Request $request)
+    {
+    }
 
-    public function show($id) {}
+    public function show($id)
+    {
+    }
 
-    public function update(Request $request, $id) {}
+    public function update(Request $request, $id)
+    {
+    }
 
-    public function destroy($id) {}
+    public function destroy($id)
+    {
+    }
 }

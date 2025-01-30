@@ -207,5 +207,24 @@ class DatabaseSeeder extends Seeder
             UsersSeeder::class,
         ]);
 
+        $entity_user = [
+            ['entity_id' => 2, 'user_id' => 2],
+            ['entity_id' => 3, 'user_id' => 3],
+            ['entity_id' => 4, 'user_id' => 4],
+            ['entity_id' => 5, 'user_id' => 5],
+            ['entity_id' => 6, 'user_id' => 6],
+            ['entity_id' => 7, 'user_id' => 7],
+            ['entity_id' => 8, 'user_id' => 8],
+            ['entity_id' => 9, 'user_id' => 9],
+            ['entity_id' => 10, 'user_id' => 10],
+            ['entity_id' => 11, 'user_id' => 4],
+            ['entity_id' => 11, 'user_id' => 5],
+            ['entity_id' => 11, 'user_id' => 7],
+        ];
+
+        foreach ($entity_user as $entity) {
+            User::find($entity['user_id'])->entities()->attach($entity['entity_id']);
+        }
+
     }
 }

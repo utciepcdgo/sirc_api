@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BlockController;
 use App\Http\Controllers\CompensatoryController;
 use App\Http\Controllers\FormatController;
@@ -18,8 +19,25 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/user', function (Request $request) {
-    return $request->user();
+    $user = $request->user();
+    return response()->json([
+        'id' => $user->id,
+        'name' => $user->name,
+        'email' => $user->email,
+        'entities' => $user->entities->map(function ($entity) {
+            return [
+                'id' => $entity->id,
+                'name' => $entity->entitiable->name,
+                'acronym' => $entity->entitiable->acronym,
+            ];
+        }),
+    ]);
 })->middleware('auth:sanctum');
+
+// Authenticaction | Autenticación
+Route::post('/login', [AuthController::class, 'login']);
+Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
+Route::get('/user', [AuthController::class, 'user'])->middleware('auth:sanctum');
 
 Route::apiResource('/registrations', RegistrationController::class);
 Route::apiResource('/blocks', BlockController::class);

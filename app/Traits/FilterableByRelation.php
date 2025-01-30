@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Traits;
 
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Model;
 
 trait FilterableByRelation
 {
@@ -13,9 +12,9 @@ trait FilterableByRelation
      * Filter the model by the given relation.
      * Si los parámetros 'municipality', 'syndic' y 'councils' son falsos, se filtra por Coalición.
      *
-     * @param  string  $relation  - The relation to filter by.
-     * @param  int  $entityId  - The entity id to filter by.
-     * @param  string  $filteringBy  - The filtering by to filter by. Possible values: 'coalition', 'party'.
+     * @param string $relation - The relation to filter by.
+     * @param string $filteringBy - The filtering by to filter by. Possible values: 'coalition', 'party'.
+     * @return Builder
      */
     public static function filterByX(string $relation, string $filteringBy): Builder
     {
@@ -29,6 +28,6 @@ trait FilterableByRelation
     // Helper function for filterBy method to define if it is filtering by Coalition or Party based on param $filteringBy.
     public static function _filterByHelper(string $_filteringBy): array
     {
-        return $_filteringBy === 'coalition' ? [true, ! null] : [false, null];
+        return $_filteringBy === 'App\Models\Coalition' ? [true, ! null] : [false, null];
     }
 }

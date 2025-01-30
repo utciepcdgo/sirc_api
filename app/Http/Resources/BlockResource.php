@@ -40,6 +40,7 @@ class BlockResource extends JsonResource
                 'syndic' => $this->assignment->syndic,
                 'councils' => (json_decode((string)$this->assignment?->councils)) ?? null,
             ],
+            'shared_entity' => new EntityResource($this->whenLoaded('sharedEntity')),
         ];
     }
 }

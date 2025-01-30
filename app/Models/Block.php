@@ -38,7 +38,7 @@ class Block extends Model
         'entity_id',
     ];
 
-    protected $with = ['municipality', 'entity', 'assignment'];
+    protected $with = ['municipality', 'entity', 'assignment', 'sharedEntity'];
 
     /**
      * @return BelongsTo<Municipality, Block>
@@ -71,4 +71,13 @@ class Block extends Model
     {
         return $this->hasOne(Assignment::class);
     }
+
+    /**
+     * @return HasOne<Entity>
+     */
+    public function sharedEntity(): HasOne
+    {
+        return $this->hasOne(Entity::class, 'id', 'shared_entity_id');
+    }
+
 }
