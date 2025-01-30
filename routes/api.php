@@ -15,24 +15,7 @@ use App\Http\Resources\CountryResource;
 use App\Http\Resources\PostulationResource;
 use App\Models\Migrants\Country;
 use App\Models\Registrations\Postulation;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
-Route::get('/user', function (Request $request) {
-    $user = $request->user();
-    return response()->json([
-        'id' => $user->id,
-        'name' => $user->name,
-        'email' => $user->email,
-        'entities' => $user->entities->map(function ($entity) {
-            return [
-                'id' => $entity->id,
-                'name' => $entity->entitiable->name,
-                'acronym' => $entity->entitiable->acronym,
-            ];
-        }),
-    ]);
-})->middleware('auth:sanctum');
 
 // Authenticaction | Autenticación
 Route::post('/login', [AuthController::class, 'login']);

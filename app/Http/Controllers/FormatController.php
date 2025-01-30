@@ -32,7 +32,8 @@ class FormatController extends Controller
         $compensatories = Registration::filterByX('block.assignment', $entityType)
             ->whereHas('block.entity', function ($query) use ($request) {
                 $query->where('id', $request->query('entity_id'));
-            })->filter(['compensatory_id' => ['$ne' => 7]])->get();
+            })
+            ->filter(['compensatory_id' => ['$ne' => 7]])->get();
 
         $municipalities = Block::filterByX('assignment', $entityType)->with('municipality')
             ->where('entity_id', '=', $request->query('entity_id'))
