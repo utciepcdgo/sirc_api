@@ -22,19 +22,7 @@ class AuthController extends Controller
 
             return response()->json([
                 'token' => $token,
-                'user' => [
-                    'id' => $user->id,
-                    'name' => $user->name,
-                    'email' => $user->email,
-                    'entities' => $user->entities->map(function ($entity) {
-                        return [
-                            'id' => $entity->id,
-                            'type' => $entity->entitiable_type,
-                            'name' => $entity->entitiable->name,
-                            'acronym' => $entity->entitiable->acronym,
-                        ];
-                    }),
-                ],
+                'user' => $this->formatUser($user),
             ]);
         }
 
@@ -43,20 +31,7 @@ class AuthController extends Controller
 
     public function user(Request $request)
     {
-        //        return response()->json($request->user());
-        return response()->json([
-            'id' => $request->user()->id,
-            'name' => $request->user()->name,
-            'email' => $request->user()->email,
-            'entities' => $request->user()->entities->map(function ($entity) {
-                return [
-                    'id' => $entity->id,
-                    'type' => $entity->entitiable_type,
-                    'name' => $entity->entitiable->name,
-                    'acronym' => $entity->entitiable->acronym,
-                ];
-            }),
-        ]);
+        return response()->json($this->formatUser($request->user()));
     }
 
     public function logout(Request $request)
@@ -64,5 +39,22 @@ class AuthController extends Controller
         $request->user()->tokens()->delete();
 
         return response()->json(['message' => 'Sesión cerrada']);
+    }
+
+    private function formatUser($user)
+    {
+        return [
+            'id' => $user->id,
+            'name' => $user->name,
+            'email' => $user->email,
+            'entities' => $user->entities->map(function ($entity) {
+                return [
+                    'id' => $entity->id,
+                    'type' => $entity->entitiable_type,
+                    'name' => $entity->entitiable->name,
+                    'acronym' => $entity->entitiable->acronym,
+                ];
+            }),
+        ];
     }
 }
