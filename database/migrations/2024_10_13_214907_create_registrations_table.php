@@ -28,6 +28,8 @@ return new class extends Migration
             $table->string('voter_key')->comment('Clave de Elector');
             $table->string('curp');
             $table->json('voter_card');
+            $table->string('reelection');
+            $table->string('mote')->nullable();
             // Relationships
             $table->foreignIdFor(Block::class);
             $table->foreignIdFor(Position::class);

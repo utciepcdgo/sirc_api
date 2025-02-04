@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 use App\Models\Files\FileType;
@@ -8,15 +10,21 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * @property int $id
- * @property string $name
  * @property string $format
  * @property string $url
- * @property int $filetype_id
- * @property FileType $filetype
+ * @property FileType $filetype_id
+ * @property Registration $registration_id
  */
 class File extends Model
 {
     public $timestamps = false;
+
+    protected $fillable = [
+        'filetype_id',
+        'registration_id',
+        'format',
+        'url',
+    ];
 
     public function filetype(): BelongsTo
     {

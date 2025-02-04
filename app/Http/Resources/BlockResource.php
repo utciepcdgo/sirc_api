@@ -30,6 +30,7 @@ class BlockResource extends JsonResource
                     'total' => $this->registrations->count(),
                     'women' => $this->registrations->where('sex_id', '=', 1)->count(),
                     'man' => $this->registrations->where('sex_id', '=', 2)->count(),
+                    'compensatories' => $this->registrations->where('compensatory_id', '<', 7)->count(),
                 ],
                 'list' => $includeRegistrations
                     ? RegistrationResource::collection($this->whenLoaded('registrations'))

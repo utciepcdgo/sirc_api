@@ -33,12 +33,14 @@ use Ramsey\Uuid\Uuid;
  * @property string $name
  * @property string $first_name
  * @property string $second_name
+ * @property string $mote - Mote o sobrenombre (opcional).
  * @property string $birthplace - Lugar y fecha de nacimiento.
  * @property string $residence - Incluye la dirección y el tiempo de residencia.
  * @property string $occupation
  * @property string $voter_key - Clave de Elector.
  * @property string $curp
  * @property string $voter_card - Campos extra (Núm. de emisión, OCR, CIC, Sección Electoral)
+ * @property string $reelection - Reelección.
  * @property int $council_number - Número de Regiduría
  * @property int $block_id - ID del bloque al que pertenece.
  * @property Position $position_id - Cargo que ocupa.
@@ -57,12 +59,14 @@ class Registration extends Model
         'name',
         'first_name',
         'second_name',
+        'mote',
         'birthplace',
         'residence',
         'occupation',
         'voter_key',
         'curp',
         'voter_card',
+        'reelection',
         'block_id',
         'position_id',
         'postulation_id',

@@ -10,9 +10,11 @@
     "require": {
         "php": "^8.3",
         "abbasudo/laravel-purity": "^3.3",
+        "aws/aws-sdk-php": "^3.339",
         "laravel/framework": "^11.9",
         "laravel/sanctum": "^4.0",
-        "laravel/tinker": "^2.9"
+        "laravel/tinker": "^2.9",
+        "league/flysystem-aws-s3-v3": "^3.29"
     },
     "require-dev": {
         "driftingly/rector-laravel": "^1.2",

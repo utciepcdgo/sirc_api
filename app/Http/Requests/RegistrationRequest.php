@@ -7,6 +7,7 @@ namespace App\Http\Requests;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Validation\Rule;
 
 class RegistrationRequest extends FormRequest
 {
@@ -28,12 +29,29 @@ class RegistrationRequest extends FormRequest
             'sex_id' => ['required', 'exists:sexes,id'],
             'gender_id' => ['required', 'exists:genders,id'],
             'compensatory_id' => ['required', 'exists:compensatories,id'],
+            'reelection' => ['required', 'in:Si,No'],
+            'mote' => [
+                // Si postulation_id = 3 y position_id = 1, se permite un valor opcional
+                Rule::when(
+                    $this->postulation_id === 3 && $this->position_id === 1,
+                    ['nullable', 'string', 'max:255']
+                ),
+                // Si no se cumplen las condiciones, no debe aceptar valores (solo null)
+                Rule::prohibitedIf(! ($this->postulation_id === 3 && $this->position_id === 1)),
+            ],
         ];
     }
 
     public function authorize(): true
     {
         return true;
+    }
+
+    public function messages()
+    {
+        return [
+            'mote.prohibited' => 'El mote solo es permitido para Candidaturas Propietarias a Presidencia Municipal',
+        ];
     }
 
     public function failedValidation(Validator $validator)
@@ -53,5 +71,4 @@ class RegistrationRequest extends FormRequest
             'voter_card' => json_encode($this->voter_card),
         ]);
     }
-
 }
