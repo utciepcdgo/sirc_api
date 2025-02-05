@@ -38,6 +38,8 @@ class RegistrationResource extends JsonResource
             'block' => [
                 'id' => $this->block->id,
                 'municipality' => $this->block->municipality->name,
+                'assignments' => json_decode($this->block->assignment->councils ?? '{}')->list,
+                'councils' => $this->block->municipality->councils,
             ],
             'position' => Position::find($this->position_id),
             'postulation' => Postulation::find($this->postulation_id),
@@ -52,7 +54,8 @@ class RegistrationResource extends JsonResource
             'coalition' => [
                 'is_assigned' => ($this->block->assignment->municipality || $this->block->assignment->syndic || empty(json_decode($this->block->assignment->councils ?? '{}')->list)),
                 'name' => $this->block->entity->entitiable->coalition->name ?? null
-            ]
+            ],
+            'reelection' => $this->reelection
         ];
     }
 }
