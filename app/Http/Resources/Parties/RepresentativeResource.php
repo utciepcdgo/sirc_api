@@ -16,11 +16,7 @@ class RepresentativeResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'ownership' => $this->ownership,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
-
             'entity_id' => $this->entity_id,
-
             'entity' => new EntityResource($this->whenLoaded('entity')),
         ];
     }
