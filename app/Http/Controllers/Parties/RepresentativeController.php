@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Parties;
 
 use App\Http\Controllers\Controller;
@@ -18,33 +20,44 @@ class RepresentativeController extends Controller
         return RepresentativeResource::collection($representatives);
     }
 
-
     public function store(RepresentativeRequest $request)
     {
-        // TODO: Check if entity_id is passed in the request
-        $entityId = $request->input('entity_id');
-        $existingCount = Representative::where('entity_id', $entityId)->count();
+        // Si ya hay un o dos (máximo 2) representantes, actualizar información, no crear uno nuevo.
+        // Si no se encuentra ningún representante, crear uno nuevo.
+        $validated = $request->validated();
+        $entityId = $request->all()[0]['entity_id'];
 
-        if ($existingCount >= 2) {
-            return response()->json(['message' => 'No se pueden registrar más de dos personas por Partido Polìtico/Coalición'], 400);
+        $representatives = Representative::where('entity_id', $entityId)->get();
+
+        if ($representatives->count() >= 1 && $representatives->count() <= 2) {
+            foreach ($representatives as $index => $representative) {
+                $representative->update([
+                    'name' => $validated[$index]['name'],
+                    'ownership' => $validated[$index]['ownership'],
+                    'entity_id' => $validated[$index]['entity_id'],
+                ]);
+            }
+        } else {
+            $representatives = collect($request->validated())->map(function ($data) {
+                return Representative::create($data);
+            });
+
+            RepresentativeResource::collection($representatives);
         }
 
-        $representatives = collect($request->validated())->map(function ($data) {
-            return Representative::create($data);
-        });
+        return response()->json(['message' => 'Operation completed successfully']);
 
-        return RepresentativeResource::collection($representatives);
-    }
-
-    public function show(Representative $representative)
-    {
-
-        return new RepresentativeResource($representative);
     }
 
     public function update(RepresentativeRequest $request, Representative $representative)
     {
         $representative->update($request->validated());
+
+        return new RepresentativeResource($representative);
+    }
+
+    public function show(Representative $representative)
+    {
 
         return new RepresentativeResource($representative);
     }

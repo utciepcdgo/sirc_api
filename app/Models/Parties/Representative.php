@@ -2,6 +2,7 @@
 
 namespace App\Models\Parties;
 
+use Abbasudo\Purity\Traits\Filterable;
 use App\Models\Entity;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -14,6 +15,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  */
 class Representative extends Model
 {
+    use Filterable;
+
     protected $fillable = [
         'name',
         'ownership',
