@@ -23,9 +23,11 @@ class AwsController extends Controller
         $fileName = $request->input('fileName');
         $contentType = $request->input('contentType');
 
+        dd($document, $fileName, $contentType, $request->all());
+
         // Generate a unique key for storing the file in S3.
         // You can adjust the naming convention as needed.
-        $key = $document.'/'.time().'-'.$fileName;
+        $key = 'SIRC/' . $document.'/'.time().'-'.$fileName;
 
         // Instantiate the S3 client using your configuration.
         // Ensure that your config/filesystems.php is properly set up with your S3 credentials.
