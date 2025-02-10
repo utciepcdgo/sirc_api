@@ -10,7 +10,10 @@ use Illuminate\Database\Seeder;
 class AssignmentsSeeder extends Seeder
 {
     /**
-     * Municipality and "Sindico" columns are false if the registration is for the owner of the block in question.
+     * Municipality and "syndic" columns are false if the registration is for the owner of the block in question.
+     *
+     * Municipality y "syndic" son falsos si el registro es para el propietario del bloque en cuestión.-
+     * En otras palabras, si es verdadero o tiene un valor, entonces el registro es para la coalición.
      */
     public function run(): void
     {

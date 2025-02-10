@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use App\Http\Resources\FormatResource;
-use App\Models\Block;
 use App\Models\Entity;
 use App\Models\Parties\Representative;
 use App\Models\Registration;
@@ -17,7 +16,8 @@ class FormatController extends Controller
     public function index(Request $request): JsonResponse
     {
         // Obtenemos el tipo de entidad Partido, Coaliciòn o Independiente.
-        $entityType = Entity::find($request->query('entity_id'))->entitiable_type;
+        $entityType = (string) $request->query('entity_type');
+        $entityId = $request->query('entity_id');
 
         /**
          * Si el tipo de entidad es Independiente, retornamos un error dado que este tipo
@@ -29,50 +29,46 @@ class FormatController extends Controller
             ], 400);
         }
 
-        $compensatories = Registration::filterByX('block.assignment', $entityType)
-            ->whereHas('block.entity', function ($query) use ($request) {
-                $query->where('id', $request->query('entity_id'));
-            })
-            ->filter(['compensatory_id' => ['$ne' => 7]])->get();
+        $registrations = Registration::whereHas('block', function ($query) use ($entityId, $entityType) {
+            $query->where('entity_id', '=', $entityId)
+                ->when($entityType === 'App\Models\Coalition', function ($query) {
+                    // Si $entityType es "App\Models\Coalition", se utiliza whereNotNull
+                    $query->whereNotNull('shared_entity_id');
+                }, function ($query) {
+                    // De lo contrario, se utiliza whereNull
+                    $query->whereNull('shared_entity_id');
+                });
+        })->with(['block.municipality']);
 
-        $municipalities = Block::filterByX('assignment', $entityType)->with('municipality')
-            ->where('entity_id', '=', $request->query('entity_id'))
-            ->whereHas('registrations')->get()->pluck('municipality');
+        $totalRegistrations = $registrations->count();
 
-        // Nos ahorramos una consulta dado que el número de municipios es igual al número de registros.
-        $totalRegistrations = $municipalities->count();
+        $compensatory = $registrations->filter(['compensatory_id' => ['$ne' => 7]])->get();
 
-        $entity = Entity::find($request->query('entity_id'));
+        $municipalities = $registrations->get()->pluck('block.municipality.name')->unique();
 
-        $representantives = Representative::where('entity_id', $request->query('entity_id'))->get();
+        $entity = $entityType === "App\Models\Coalition" ? Entity::find($entityId)->entitiable->coalition : Entity::find($entityId)->entitiable;
+
+        $representatives = Representative::where('entity_id', $entityType === "App\Models\Coalition" ? Entity::find($entityId)->entitiable->coalition->entities->first()->id : $entityId)->get();
 
         return response()->json([
             'data' => [
-                'compensatories' => FormatResource::collection($compensatories),
+                'compensatories' => FormatResource::collection($compensatory),
                 'municipalities' => $municipalities,
                 'total_registrations' => $totalRegistrations,
                 'entity' => [
-                    'name' => $entity->entitiable->name,
-                    'acronym' => $entity->entitiable->acronym,
+                    'name' => $entity->name,
+                    'acronym' => $entity->acronym,
                 ],
-                'subscribed' => $representantives,
+                'subscribed' => $representatives,
             ],
         ]);
     }
 
-    public function store(Request $request)
-    {
-    }
+    public function store(Request $request) {}
 
-    public function show($id)
-    {
-    }
+    public function show($id) {}
 
-    public function update(Request $request, $id)
-    {
-    }
+    public function update(Request $request, $id) {}
 
-    public function destroy($id)
-    {
-    }
+    public function destroy($id) {}
 }

@@ -19,9 +19,9 @@ trait FilterableByRelation
     public static function filterByX(string $relation, string $filteringBy): Builder
     {
         return (new static)->newModelQuery()->whereHas($relation, function ($query) use ($filteringBy) {
-            $query->where('municipality', self::_filterByHelper($filteringBy)[0])
-                ->orWhere('syndic', self::_filterByHelper($filteringBy)[0])
-                ->orWhere('councils', self::_filterByHelper($filteringBy)[1]);
+            $query->where('municipality', '=', self::_filterByHelper($filteringBy)[0])
+                ->orWhere('syndic', '=', self::_filterByHelper($filteringBy)[0])
+                ->orWhere('councils',  '=', self::_filterByHelper($filteringBy)[1]);
         });
     }
 

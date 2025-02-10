@@ -27,6 +27,7 @@ Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanc
 Route::get('/user', [AuthController::class, 'user'])->middleware('auth:sanctum');
 
 Route::apiResource('/registrations', RegistrationController::class);
+Route::post('/registrations/{registration}/substitute', [RegistrationController::class, 'substitute']);
 Route::apiResource('/blocks', BlockController::class);
 
 // Sexes

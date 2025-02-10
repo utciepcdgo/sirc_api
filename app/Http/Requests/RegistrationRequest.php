@@ -58,7 +58,7 @@ class RegistrationRequest extends FormRequest
     {
         throw new HttpResponseException(response()->json([
             'success' => false,
-            'message' => 'Validation errors',
+            'message' => 'Errores en la validación de los datos',
             'data' => $validator->errors(),
         ], 400));
     }
