@@ -37,7 +37,7 @@ class RegistrationResource extends JsonResource
             'voter_card' => $this->voter_card,
             'block' => [
                 'id' => $this->block->id,
-                'municipality' => $this->block->municipality->name,
+                'municipality' => $this->block->municipality,
                 'assignments' => json_decode($this->block->assignment->councils ?? '{}')->list,
                 'councils' => $this->block->municipality->councils,
             ],
