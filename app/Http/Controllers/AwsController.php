@@ -21,13 +21,20 @@ class AwsController extends Controller
 
         $document = $request->input('document');
         $fileName = $request->input('fileName');
+        $formatId = $request->input('formatId');
+        $partyAcronym = $request->input('partyAcronym');
+        $municipality = $request->input('municipality');
+        $postulation = $request->input('postulation');
+        $position = $request->input('position');
+        $candidacy = $request->input('candidacy');
+        $fileFormat = $request->input('fileFormat');
         $contentType = $request->input('contentType');
 
-        dd($document, $fileName, $contentType, $request->all());
+        //        dd($document, $fileName, $contentType, $request->all());
 
         // Generate a unique key for storing the file in S3.
         // You can adjust the naming convention as needed.
-        $key = 'SIRC/' . $document.'/'.time().'-'.$fileName;
+        $key = 'SIRC25/'.$partyAcronym.'/'.$municipality.'/'.$postulation.'/'.$position.'/'.$formatId.'_'.$candidacy.'_'.time().'.'.$fileFormat;
 
         // Instantiate the S3 client using your configuration.
         // Ensure that your config/filesystems.php is properly set up with your S3 credentials.

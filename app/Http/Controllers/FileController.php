@@ -14,11 +14,10 @@ class FileController extends Controller
 
     public function store(Request $request): JsonResponse
     {
-        dd($request->all());
         // Validate the incoming query parameters.
         $validated = $request->validate([
-            'filetype_id' => 'required|string|exists:filetypes,id',
-            'registration_id' => 'required|integer|exists:registrations,id',
+            'filetype_id' => 'required|exists:filetypes,id',
+            'registration_id' => 'required|exists:registrations,id',
             'format' => 'required|string',
             'url' => 'required|string',
         ]);
