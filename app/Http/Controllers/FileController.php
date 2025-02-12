@@ -31,4 +31,35 @@ class FileController extends Controller
         ], 201);
 
     }
+
+    // Show all files from Registration
+    public function show(Request $request): JsonResponse
+    {
+        // Validate the incoming query parameters.
+        $validated = $request->validate([
+            'registration_id' => 'required|exists:registrations,id',
+        ]);
+
+        // Get all files from the registration
+        $files = File::where('registration_id', $validated['registration_id'])->get();
+
+        return response()->json([
+            'success' => true,
+            'files' => $files,
+        ], 200);
+    }
+
+    // Delete a file
+    public function destroy(Request $request): JsonResponse
+    {
+        // Find the file
+        $file = File::find($request->file_id);
+
+        // Delete the file record
+        $file->delete();
+
+        return response()->json(data: [
+            'success' => true,
+        ], status: 200);
+    }
 }

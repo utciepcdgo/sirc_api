@@ -65,6 +65,7 @@ Route::get('/filetypes', function () {
 
 // Files | Archivos
 Route::post('/file', [FileController::class, 'store']);
+Route::get('/files', [FileController::class, 'show']);
 
 // AWS
 Route::post('/aws_s3_signed_url', [AwsController::class, 'index']);

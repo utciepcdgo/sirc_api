@@ -15,6 +15,8 @@ return new class extends Migration {
             $table->string('format');
             $table->foreignIdFor(FileType::class, 'filetype_id');
             $table->foreignIdFor(Registration::class, 'registration_id');
+
+            $table->timestamps();
         });
     }
 

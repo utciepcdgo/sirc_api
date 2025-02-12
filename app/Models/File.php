@@ -17,7 +17,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  */
 class File extends Model
 {
-    public $timestamps = false;
+    public $timestamps = true;
 
     protected $fillable = [
         'filetype_id',
@@ -29,5 +29,10 @@ class File extends Model
     public function filetype(): BelongsTo
     {
         return $this->belongsTo(FileType::class, 'filetype_id');
+    }
+
+    public function registration(): BelongsTo
+    {
+        return $this->belongsTo(Registration::class, 'registration_id');
     }
 }

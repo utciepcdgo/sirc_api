@@ -33,7 +33,6 @@ class AwsController extends Controller
         //        dd($document, $fileName, $contentType, $request->all());
 
         // Generate a unique key for storing the file in S3.
-        // You can adjust the naming convention as needed.
         $key = 'SIRC25/'.$partyAcronym.'/'.$municipality.'/'.$postulation.'/'.$position.'/'.$formatId.'_'.$candidacy.'_'.time().'.'.$fileFormat;
 
         // Instantiate the S3 client using your configuration.
