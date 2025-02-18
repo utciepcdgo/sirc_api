@@ -4,13 +4,17 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\FilesResource;
 use App\Models\File;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class FileController extends Controller
 {
-    public function index() {}
+    public function index()
+    {
+    }
 
     public function store(Request $request): JsonResponse
     {
@@ -41,7 +45,8 @@ class FileController extends Controller
         ]);
 
         // Get all files from the registration
-        $files = File::where('registration_id', $validated['registration_id'])->get();
+        $files = FilesResource::collection(File::where('registration_id', $validated['registration_id'])->get());
+//        $files = File::where('registration_id', $validated['registration_id'])->get();
 
         return response()->json([
             'success' => true,
@@ -60,6 +65,23 @@ class FileController extends Controller
 
         return response()->json(data: [
             'success' => true,
-        ], status: 200);
+        ]);
+    }
+
+    public function downloadFile($file_id)
+    {
+        // Buscamos el archivo en la base de datos
+        $file = File::findOrFail($file_id);
+
+        // Generamos el enlace temporal (válido por 5 minutos)
+        $temporaryUrl = Storage::disk('s3')->temporaryUrl(
+            $file->url, now()->addMinutes(5)
+        );
+
+        // Retornamos la respuesta en formato JSON
+        return response()->json([
+            'success' => true,
+            'url' => $temporaryUrl,
+        ]);
     }
 }
