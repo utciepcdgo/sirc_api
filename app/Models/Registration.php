@@ -14,6 +14,7 @@ use App\Traits\FilterableByRelation;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Ramsey\Uuid\Uuid;
 
@@ -52,8 +53,8 @@ use Ramsey\Uuid\Uuid;
 class Registration extends Model
 {
     use Filterable;
-    use HasUuids;
     use FilterableByRelation;
+    use HasUuids;
 
     protected $fillable = [
         'name',
@@ -70,6 +71,7 @@ class Registration extends Model
         'block_id',
         'position_id',
         'postulation_id',
+        'council_number',
         'sex_id',
         'gender_id',
         'compensatory_id',
@@ -142,7 +144,23 @@ class Registration extends Model
      */
     public function uniqueIds(): array
     {
-        return ['uuid']; 		//your new column name
+        return ['uuid'];        //your new column name
+    }
+
+    /**
+     * @return HasMany<File>
+     */
+    public function files(): HasMany
+    {
+        return $this->hasMany(File::class, 'registration_id', 'id');
+    }
+
+    /**
+     * @return bool
+     */
+    public function isAssigned(): bool
+    {
+        return $this->block->assignment->municipality || $this->block->assignment->syndic || !empty($this->block->assignment->councils);
     }
 
     protected function casts(): array

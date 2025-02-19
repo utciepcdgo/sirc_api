@@ -11,6 +11,7 @@ use App\Http\Controllers\FormatController;
 use App\Http\Controllers\GenreController;
 use App\Http\Controllers\MigrantController;
 use App\Http\Controllers\Parties\RepresentativeController;
+use App\Http\Controllers\ReceiptController;
 use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\SexController;
 use App\Http\Resources\CountryResource;
@@ -71,5 +72,8 @@ Route::get('request-download/{file_id}', [FileController::class, 'downloadFile']
 
 // AWS
 Route::post('/aws_s3_signed_url', [AwsController::class, 'index']);
+
+// Receipt | Acuse de Recepción
+Route::get('/receipt', [ReceiptController::class, 'index']);
 
 

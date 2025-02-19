@@ -58,7 +58,6 @@ class RepresentativeController extends Controller
 
     public function show(Representative $representative)
     {
-
         return new RepresentativeResource($representative);
     }
 

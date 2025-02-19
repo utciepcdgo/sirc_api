@@ -39,16 +39,17 @@ class FormatController extends Controller
                     $query->whereNull('shared_entity_id');
                 });
         })->with(['block.municipality']);
+//        dd($registrations->get()->pluck('block.municipality.name')->unique());
 
         $totalRegistrations = $registrations->count();
-
-        $compensatory = $registrations->filter(['compensatory_id' => ['$ne' => 7]])->get();
-
         $municipalities = $registrations->get()->pluck('block.municipality.name')->unique();
+        $compensatory = $registrations->filter(['compensatory_id' => ['$ne' => 7]])->get();
 
         $entity = $entityType === "App\Models\Coalition" ? Entity::find($entityId)->entitiable->coalition : Entity::find($entityId)->entitiable;
 
-        $representatives = Representative::where('entity_id', $entityType === "App\Models\Coalition" ? Entity::find($entityId)->entitiable->coalition->entities->first()->id : $entityId)->get();
+        $representatives = Representative::where('entity_id', ($entityType === "App\Models\Coalition" ? Entity::find($entityId)->entitiable->coalition->entities->first()->id : $entityId))->get();
+
+//        dd($representatives, $entityType, $entityId, $entity->name);
 
         return response()->json([
             'data' => [
