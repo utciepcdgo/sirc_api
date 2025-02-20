@@ -42,6 +42,12 @@ class ReceiptController extends Controller
             $query->where('entity_id', '=', $entityId);
         })->with(['block.municipality', 'postulation', 'position', 'compensatory', 'sex', 'files'])->get();
 
+        // Si no hay registros, retornar un error.
+        if ($registrations->isEmpty()) {
+            return response()->json(['message' => 'No hay registros para generar el acuse'], 404);
+        }
+
+        // Agrupar registros por municipio
         $data = [];
 
         foreach ($registrations as $registration) {
