@@ -31,8 +31,8 @@ class RegistrationRequest extends FormRequest
             'position_id' => ['required', 'exists:positions,id'],
             'postulation_id' => ['required', 'exists:postulations,id'],
             'sex_id' => ['required', 'exists:sexes,id'],
-            'gender_id' => ['required', 'exists:genders,id'],
             'compensatory_id' => ['required', 'exists:compensatories,id'],
+            'gender_id' => [Rule::requiredIf($this->compensatory_id === 3), 'exists:genders,id'],
             'reelection' => ['required', 'in:Si,No'],
             'mote' => [
                 // Si postulation_id = 3 y position_id = 1, se permite un valor opcional
