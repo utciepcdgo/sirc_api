@@ -17,8 +17,8 @@ class ReceiptResource extends JsonResource
             'name' => $this->name,
             'path' => $this->path,
             'sha256' => $this->hash,
-            'created_at' => $this->created_at->diffForHumans(),
-            'updated_at' => $this->updated_at->diffForHumans(),
+            'created_at' => $this->created_at->format('d/m/Y'),
+            'updated_at' => $this->updated_at->format('d/m/Y'),
 
             'entity_id' => $this->entity_id,
 

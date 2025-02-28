@@ -76,5 +76,6 @@ Route::post('/aws_s3_signed_url', [AwsController::class, 'index']);
 // Receipt | Acuse de Recepción
 Route::post('/receipt', [ReceiptController::class, 'store']);
 Route::get('/receipt', [ReceiptController::class, 'index']);
+Route::get('/receipt/download/{receipt}', [ReceiptController::class, 'download']);
 
 

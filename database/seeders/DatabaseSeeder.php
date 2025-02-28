@@ -178,6 +178,7 @@ class DatabaseSeeder extends Seeder
             ['name' => 'Homosexual'],
             ['name' => 'Intersexual'],
             ['name' => 'Pansexual'],
+
             ['name' => 'Queer'],
             ['name' => 'Transexual'],
             ['name' => 'Transgénero'],
@@ -236,9 +237,9 @@ class DatabaseSeeder extends Seeder
             ['name' => 'Informe de gastos de precampaña', 'allowed_to' => ['all']],
             ['name' => 'Sistema Nacional de Registro de Precandidatas y Candidatos', 'allowed_to' => ['all']],
             ['name' => 'Pertenencia a grupo de discapacidad (Formato 1)', 'allowed_to' => ['compensatory_id' => 1]],
-            ['name' => 'Pertenencia a grupo de la diversidad sexual (Formato 2)', 'allowed_to' => ['compensatory_id' => 2]],
-            ['name' => 'Pertenencia a grupo migrante (Formato 3)', 'allowed_to' => ['compensatory_id' => 4]],
-            ['name' => 'Pertenencia a grupo indígena (Formato 4)', 'allowed_to' => ['compensatory_id' => 5]],
+            ['name' => 'Pertenencia a grupo de la diversidad sexual (Formato 2)', 'allowed_to' => ['compensatory_id' => 3]],
+            ['name' => 'Pertenencia a grupo migrante (Formato 3)', 'allowed_to' => ['compensatory_id' => 5]],
+            ['name' => 'Pertenencia a grupo indígena (Formato 4)', 'allowed_to' => ['compensatory_id' => 6]],
             ['name' => 'Solicitud de Registro (Formato 5)', 'allowed_to' => ['all']],
             ['name' => 'Declaración de aceptación de la Candidatura (Formato 6)', 'allowed_to' => ['all']],
             ['name' => 'Carta bajo protesta (Formato 7)', 'allowed_to' => ['all']],
@@ -246,6 +247,7 @@ class DatabaseSeeder extends Seeder
             ['name' => '8 de 8 contra la violencia (Formato 9)', 'allowed_to' => ['all']],
             ['name' => 'Consentimiento a la Red Nacional de Candidatas y Mujeres Electas (AMCEE) (Formato 10)', 'allowed_to' => ['sex' => 1]],
             ['name' => 'Cumplimiento de requisitos', 'allowed_to' => ['all']],
+            ['name' => 'Fotografía', 'allowed_to' => ['postulation_id' => 3, 'position_id' => 1]],
         ];
 
         foreach ($fileTypes as $fileType) {

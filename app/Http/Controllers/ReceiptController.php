@@ -42,6 +42,7 @@ class ReceiptController extends Controller
         ini_set('default_charset', '');
         mb_http_output('pass');
         mb_detect_order(['UTF-8']);
+        Carbon::setLocale('es');
 
         $entityId = $request->query('entity_id');
         $partyOrigin = Entity::find($entityId)->entitiable;
@@ -109,13 +110,13 @@ class ReceiptController extends Controller
                 $spreadsheet1->setCellValue('D5', $record['compensatory']);
                 $spreadsheet1->setCellValue('E5', $record['party']);
                 $spreadsheet1->setCellValue('F5', $record['sex']);
-                $spreadsheet1->setCellValue('G5', implode(', ', $record['files']));
+                $spreadsheet1->setCellValue('G5', implode(PHP_EOL, $record['files']))->getStyle('G5')->getAlignment()->setWrapText(true);
 
                 foreach (range('A', 'G') as $one) {
                     $spreadsheet1->getStyle($one . '5')->applyFromArray($styleArray3);
                 }
 
-                $spreadsheet1->getStyle('F5')->getAlignment()->setWrapText(true);
+                $spreadsheet1->getStyle('G5')->getAlignment()->setWrapText(true);
 
                 // Ocultamos registro de los próximos acuses.
                 //                DB::table('candidatos')->where('id', '=', $registro->id)->update(['reporte_id' => 1]);
@@ -156,17 +157,23 @@ class ReceiptController extends Controller
 
         $fileName = 'ACUSE_' . $partyOrigin->acronym . '_' . time() . '.xlsx';
 
-        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-        header("Content-Disposition: attachment; filename=\"{$fileName}\"");
-        header('Cache-Control: max-age=0');
-        // Escribir archivoen disco.
-        $writer->save(storage_path('app/acuses/' . $fileName));
+        // Escribir archivo en disco.
+        $localPath = storage_path('app/acuses/' . $fileName);
+        $writer->save($localPath);
+
+        // Verificar si el archivo se guardó correctamente
+        if (!file_exists($localPath)) {
+            return response()->json(['message' => 'Error al guardar el archivo en el disco'], 500);
+        }
+
         // Obtener el archivo
-        $file = storage_path('app/acuses/' . $fileName);
+        $file = file_get_contents($localPath);
+
         // Obtener HASH 256 del archivo
-        $hash = hash_file('sha256', $file);
+        $hash = hash('sha256', $file);
+
         // Subir archivo a S3
-        Storage::disk('s3')->put(('SIRC25/' . $partyOrigin->acronym . '/ACUSES/' . $fileName), $file);
+        Storage::disk('s3')->put('SIRC25/' . $partyOrigin->acronym . '/ACUSES/' . $fileName, $file);
         // Crear registro en la base de datos con el modelo Registrations\Receipt
 
         Receipt::create([
@@ -176,11 +183,27 @@ class ReceiptController extends Controller
             'hash' => $hash,
         ]);
 
+        $temporaryUrl = Storage::disk('s3')->temporaryUrl(
+            'SIRC25/' . $partyOrigin->acronym . '/ACUSES/' . $fileName, now()->addMinutes(5)
+        );
+
         return response()->json([
             'message' => 'Acuse generado correctamente',
             'hash' => $hash,
-            'url' => Storage::disk('s3')->url('SIRC25/' . $partyOrigin->acronym . '/ACUSES/' . $fileName),
+            'url' => $temporaryUrl,
         ], 200);
 
+    }
+
+    public function download(Receipt $receipt)
+    {
+        $temporaryUrl = Storage::disk('s3')->temporaryUrl(
+            $receipt->path, now()->addMinutes(5)
+        );
+
+        return response()->json([
+            'success' => true,
+            'url' => $temporaryUrl,
+        ]);
     }
 }
