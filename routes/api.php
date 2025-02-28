@@ -74,6 +74,7 @@ Route::get('request-download/{file_id}', [FileController::class, 'downloadFile']
 Route::post('/aws_s3_signed_url', [AwsController::class, 'index']);
 
 // Receipt | Acuse de Recepción
+Route::post('/receipt', [ReceiptController::class, 'store']);
 Route::get('/receipt', [ReceiptController::class, 'index']);
 
 
