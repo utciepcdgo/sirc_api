@@ -130,7 +130,7 @@ class ReceiptController extends Controller
             $spreadsheet1->getStyle('A3:G3')->getAlignment()->setHorizontal('right');
             $spreadsheet1->getStyle('A4:G4')->getAlignment()->setHorizontal('right');
 
-            $spreadsheet1->setCellValue('A2', $partyOrigin->name);
+            $spreadsheet1->setCellValue('A2', $partyOrigin->name ?? 'N/A');
 
             $spreadsheet1->setCellValue('A3', 'Victoria de Durango, Dgo,. a '.Carbon::now()->format('d').' de '.Carbon::now()->monthName.' de 2025');
 

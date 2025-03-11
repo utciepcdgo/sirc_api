@@ -22,32 +22,44 @@ class RepresentativeController extends Controller
 
     public function store(RepresentativeRequest $request)
     {
-        // Si ya hay un o dos (máximo 2) representantes, actualizar información, no crear uno nuevo.
-        // Si no se encuentra ningún representante, crear uno nuevo.
         $validated = $request->validated();
-        $entityId = $request->all()[0]['entity_id'];
+        $entityId = $validated[0]['entity_id']; // Extract entity_id
 
-        $representatives = Representative::where('entity_id', $entityId)->get();
+        // Fetch existing representatives for the given entity_id (max 2 records)
+        $existingRepresentatives = Representative::where('entity_id', $entityId)->orderBy('id')->take(2)->get();
 
-        if ($representatives->count() >= 1 && $representatives->count() <= 2) {
-            foreach ($representatives as $index => $representative) {
-                $representative->update([
-                    'name' => $validated[$index]['name'],
-                    'ownership' => $validated[$index]['ownership'],
-                    'entity_id' => $validated[$index]['entity_id'],
-                ]);
+        // Ensure we correctly match request data to existing representatives
+        $updatedRepresentatives = collect();
+
+        foreach ($validated as $index => $data) {
+            if (isset($existingRepresentatives[$index])) {
+                // en: Only update if the new data is different from the existing record
+                // es: Solo actualiza si los nuevos datos son diferentes al registro existente
+                $rep = $existingRepresentatives[$index];
+
+                if ($rep->name !== $data['name'] || $rep->ownership !== $data['ownership']) {
+                    $rep->update($data);
+                }
+            } else {
+                // en: Insert a new representative if no matching record exists
+                // es: Inserta un nuevo representante si no existe un registro coincidente
+                $rep = Representative::create($data);
             }
-        } else {
-            $representatives = collect($request->validated())->map(function ($data) {
-                return Representative::create($data);
-            });
 
-            RepresentativeResource::collection($representatives);
+            $updatedRepresentatives->push($rep);
         }
 
-        return response()->json(['message' => 'Operation completed successfully']);
+        // Ensure only two representatives exist by deleting extra ones
+        if ($existingRepresentatives->count() > $validated) {
+            Representative::whereNotIn('id', $updatedRepresentatives->pluck('id'))->where('entity_id', $entityId)->delete();
+        }
 
+        return response()->json([
+            'message' => 'Operation completed successfully',
+            'data' => RepresentativeResource::collection($updatedRepresentatives)
+        ]);
     }
+
 
     public function update(RepresentativeRequest $request, Representative $representative)
     {

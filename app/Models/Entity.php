@@ -61,7 +61,7 @@ class Entity extends Model
      */
     public function blocks(): BelongsToMany
     {
-        return $this->belongsToMany(Block::class, 'block_entity');
+        return $this->belongsToMany(Block::class, 'block_entity', 'entity_id', 'block_id');
     }
 
     /**
@@ -70,5 +70,14 @@ class Entity extends Model
     public function representatives(): HasMany
     {
         return $this->hasMany(Representative::class);
+    }
+
+    /**
+     * @param Block $block
+     * @return void
+     */
+    public function attachBlock(Block $block): void
+    {
+        $this->blocks()->attach($block->id);
     }
 }
