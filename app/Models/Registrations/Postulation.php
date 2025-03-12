@@ -19,7 +19,7 @@ class Postulation extends Model
     protected function cast(): array
     {
         return [
-            'id' => 'int',
+            'id' => 'string',
             'name' => 'string',
             'active' => 'boolean',
         ];

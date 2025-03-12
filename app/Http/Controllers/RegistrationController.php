@@ -23,10 +23,20 @@ class RegistrationController extends Controller
         // Assert that the registration is not already registered, since there
         // should be one for postulation and position, for this we will check
         // postulation_id and position_id.
-        $registration = Registration::where('postulation_id', $request->postulation_id)
-            ->where('position_id', $request->position_id)
-            ->where('block_id', $request->block_id)
-            ->first();
+
+        $registration = Registration::where(function ($query) use ($request) {
+            // If postulation is 3 or 4, check postulation and position, if found, return the first one.
+            if ($request->postulation_id === 3 || $request->postulation_id === 4) {
+                $query->where('postulation_id', $request->postulation_id)
+                    ->where('position_id', $request->position_id);
+            }
+            // If postulation is 5 check postulation, position and council number.
+            if ($request->postulation_id === 5) {
+                $query->where('postulation_id', $request->postulation_id)
+                    ->where('position_id', $request->position_id)
+                    ->where('council_number', $request->council_number);
+            }
+        })->first();
 
         //        dd($registration);
 
@@ -60,7 +70,7 @@ class RegistrationController extends Controller
     public function substitute(SubstitutionRequest $request, Registration $registration)
     {
 
-//        dd($registration);
+        //        dd($registration);
 
         DB::beginTransaction();
 

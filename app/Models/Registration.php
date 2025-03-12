@@ -169,6 +169,7 @@ class Registration extends Model
             'birthplace' => 'json',
             'residence' => 'json',
             'voter_card' => 'json',
+            'id' => 'string'
         ];
     }
 }

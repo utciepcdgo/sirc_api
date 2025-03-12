@@ -20,16 +20,6 @@ class BlocksSeeder extends Seeder
     public function run(): void
     {
 
-        //        $blocks = [
-        //            [
-        //                'municipality_id' => 1,
-        //                'entity_id' => 12,
-        //                'votes_obtained' => '1,819',
-        //                'valid_vote_issued' => '14,759',
-        //                'rentability' => 12.32],
-        //        ];
-
-
         $this->call(MC::class);
         $this->call(MorenaSeeder::class);
         $this->call(PAN::class);
@@ -39,7 +29,6 @@ class BlocksSeeder extends Seeder
         $this->call(PES::class);
         $this->call(REN::class);
         $this->call(PV::class);
-
 
     }
 }

@@ -15,4 +15,11 @@ class Sex extends Model
     protected $fillable = [
         'name',
     ];
+
+    protected function casts(): array
+    {
+        return [
+            'id' => 'string',
+        ];
+    }
 }
