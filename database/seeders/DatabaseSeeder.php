@@ -41,7 +41,7 @@ class DatabaseSeeder extends Seeder
             ['name' => 'Partido del Trabajo', 'acronym' => 'PT', 'logo' => 'https://s3.us-east-1.amazonaws.com/static.appsiepcdurango.mx/emblemas/PT.svg', 'coalition_id' => 1],
             ['name' => 'Movimiento Ciudadano', 'acronym' => 'MC', 'logo' => 'https://s3.us-east-1.amazonaws.com/static.appsiepcdurango.mx/emblemas/MC.svg', 'coalition_id' => null],
             ['name' => 'Morena', 'acronym' => 'MORENA', 'logo' => 'https://s3.us-east-1.amazonaws.com/static.appsiepcdurango.mx/emblemas/MORENA.svg', 'coalition_id' => 1],
-            ['name' => 'Partido Encuentro Solidario', 'acronym' => 'PES', 'logo' => 'https://s3.us-east-1.amazonaws.com/static.appsiepcdurango.mx/emblemas/PES.svg', 'coalition_id' => null],
+            ['name' => 'Partido Encuentro Solidario Durango', 'acronym' => 'PES', 'logo' => 'https://s3.us-east-1.amazonaws.com/static.appsiepcdurango.mx/emblemas/PES.svg', 'coalition_id' => null],
             ['name' => 'Partido Villista', 'acronym' => 'PV', 'logo' => 'https://s3.us-east-1.amazonaws.com/static.appsiepcdurango.mx/emblemas/PV.svg', 'coalition_id' => null],
             ['name' => 'Partido Estatal Renovación', 'acronym' => 'RENOVACIÓN', 'logo' => 'https://s3.us-east-1.amazonaws.com/static.appsiepcdurango.mx/emblemas/RENOVACION.svg', 'coalition_id' => null],
             ['name' => 'TERMI', 'acronym' => 'TERMI', 'logo' => 'https://s3.us-east-1.amazonaws.com/static.appsiepcdurango.mx/emblemas/TERMI.svg', 'coalition_id' => null],
