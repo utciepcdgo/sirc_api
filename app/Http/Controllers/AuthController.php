@@ -50,7 +50,7 @@ class AuthController extends Controller
             'entities' => $user->entities->map(function ($entity) {
                 return [
                     'id' => $entity->id,
-                    'type' => $entity->entitiable_type,
+                    'entitiable_type' => $entity->entitiable_type,
                     'name' => $entity->entitiable->name,
                     'acronym' => $entity->entitiable->acronym,
                 ];

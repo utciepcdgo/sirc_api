@@ -14,7 +14,7 @@ class FileTypeResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'allowed_to' => $this->allowed_to,
+            'allowed_to' => json_decode((string) $this->allowed_to, true),
         ];
     }
 }

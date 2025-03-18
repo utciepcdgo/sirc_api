@@ -25,23 +25,26 @@ class RegistrationRequest extends FormRequest
             'voter_card' => ['required', 'json'],
             'council_number' => [
                 // Si postulation_id = 5 (Regidor) es obligatorio, de lo contrario es nulo
-                Rule::requiredIf($this->postulation_id === 5)
+                Rule::requiredIf($this->postulation_id === '5'),
             ],
             'block_id' => ['required', 'exists:blocks,id'],
             'position_id' => ['required', 'exists:positions,id'],
             'postulation_id' => ['required', 'exists:postulations,id'],
             'sex_id' => ['required', 'exists:sexes,id'],
             'compensatory_id' => ['required', 'exists:compensatories,id'],
-            'gender_id' => [Rule::requiredIf($this->compensatory_id === 3), 'exists:genders,id'],
+            'gender_id' => [
+                Rule::requiredIf($this->input('compensatory_id') === '3'),
+                'exists:genders,id',
+            ],
             'reelection' => ['required', 'in:Si,No'],
             'mote' => [
                 // Si postulation_id = 3 y position_id = 1, se permite un valor opcional
                 Rule::when(
-                    $this->postulation_id === 3 && $this->position_id === 1,
+                    $this->postulation_id === '3' && $this->position_id === '1',
                     ['nullable', 'string', 'max:255']
                 ),
                 // Si no se cumplen las condiciones, no debe aceptar valores (solo null)
-                Rule::prohibitedIf(! ($this->postulation_id === 3 && $this->position_id === 1)),
+                Rule::prohibitedIf(! ($this->postulation_id === '3' && $this->position_id === '1')),
             ],
         ];
     }
