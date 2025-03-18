@@ -26,14 +26,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-
-        User::factory()->create([
-            'name' => 'Alejandro Parra',
-            'email' => 'test@example.com',
-            'password' => bcrypt('password'),
-        ]);
-
         $parties = [
             ['name' => 'Partido Acción Nacional', 'acronym' => 'PAN', 'logo' => 'https://s3.us-east-1.amazonaws.com/static.appsiepcdurango.mx/emblemas/PAN.svg', 'coalition_id' => null],
             ['name' => 'Partido Revolucionario Institucional', 'acronym' => 'PRI', 'logo' => 'https://s3.us-east-1.amazonaws.com/static.appsiepcdurango.mx/emblemas/PRI.svg', 'coalition_id' => null],
@@ -211,19 +203,29 @@ class DatabaseSeeder extends Seeder
             UsersSeeder::class,
         ]);
 
+        /**
+         * Assign entities to users
+         * Asignación de entidades (Partidos P.) a usuarios
+         */
         $entity_user = [
-            ['entity_id' => 2, 'user_id' => 2],
-            ['entity_id' => 3, 'user_id' => 3],
-            ['entity_id' => 4, 'user_id' => 4],
-            ['entity_id' => 5, 'user_id' => 5],
-            ['entity_id' => 6, 'user_id' => 6],
-            ['entity_id' => 7, 'user_id' => 7],
-            ['entity_id' => 8, 'user_id' => 8],
-            ['entity_id' => 9, 'user_id' => 9],
-            ['entity_id' => 10, 'user_id' => 10],
-            ['entity_id' => 11, 'user_id' => 4],
-            ['entity_id' => 11, 'user_id' => 5],
-            ['entity_id' => 11, 'user_id' => 7],
+            ['entity_id' => 2, 'user_id' => 1], // PAN
+            ['entity_id' => 2, 'user_id' => 2], // PAN
+            ['entity_id' => 3, 'user_id' => 3], // PRI
+            ['entity_id' => 3, 'user_id' => 4], // PRI
+            ['entity_id' => 4, 'user_id' => 5], // PVEM
+            ['entity_id' => 4, 'user_id' => 6], // PVEM
+            ['entity_id' => 5, 'user_id' => 7], // PT
+            ['entity_id' => 5, 'user_id' => 8], // PT
+            ['entity_id' => 6, 'user_id' => 9], // MC
+            ['entity_id' => 6, 'user_id' => 10], // MC
+            ['entity_id' => 7, 'user_id' => 11], // MORENA
+            ['entity_id' => 7, 'user_id' => 12], // MORENA
+            ['entity_id' => 8, 'user_id' => 15], // PES
+            ['entity_id' => 8, 'user_id' => 16], // PES
+            ['entity_id' => 9, 'user_id' => 17], // PV
+            ['entity_id' => 9, 'user_id' => 18], // PV
+            ['entity_id' => 10, 'user_id' => 13], // RENOVACIÓN
+            ['entity_id' => 10, 'user_id' => 14], // RENOVACIÓN
         ];
 
         foreach ($entity_user as $entity) {
@@ -237,18 +239,18 @@ class DatabaseSeeder extends Seeder
             ['name' => 'Constancia de registro en plataforma electoral', 'allowed_to' => ['all']],
             ['name' => 'Informe de gastos de precampaña', 'allowed_to' => ['all']],
             ['name' => 'Sistema Nacional de Registro de Precandidatas y Candidatos', 'allowed_to' => ['all']],
-            ['name' => 'Pertenencia a grupo de discapacidad (Formato 1)', 'allowed_to' => ['compensatory_id' => "1"]],
-            ['name' => 'Pertenencia a grupo de la diversidad sexual (Formato 2)', 'allowed_to' => ['compensatory_id' => "3"]],
-            ['name' => 'Pertenencia a grupo migrante (Formato 3)', 'allowed_to' => ['compensatory_id' => "5"]],
-            ['name' => 'Pertenencia a grupo indígena (Formato 4)', 'allowed_to' => ['compensatory_id' => "6"]],
+            ['name' => 'Pertenencia a grupo de discapacidad (Formato 1)', 'allowed_to' => ['compensatory_id' => '1']],
+            ['name' => 'Pertenencia a grupo de la diversidad sexual (Formato 2)', 'allowed_to' => ['compensatory_id' => '3']],
+            ['name' => 'Pertenencia a grupo migrante (Formato 3)', 'allowed_to' => ['compensatory_id' => '5']],
+            ['name' => 'Pertenencia a grupo indígena (Formato 4)', 'allowed_to' => ['compensatory_id' => '6']],
             ['name' => 'Solicitud de Registro (Formato 5)', 'allowed_to' => ['all']],
             ['name' => 'Declaración de aceptación de la Candidatura (Formato 6)', 'allowed_to' => ['all']],
             ['name' => 'Carta bajo protesta (Formato 7)', 'allowed_to' => ['all']],
-            ['name' => 'Elección consecutiva (Formato 8)', 'allowed_to' => ['reelection' => "Si"]],
+            ['name' => 'Elección consecutiva (Formato 8)', 'allowed_to' => ['reelection' => 'Si']],
             ['name' => '8 de 8 contra la violencia (Formato 9)', 'allowed_to' => ['all']],
-            ['name' => 'Consentimiento a la Red Nacional de Candidatas y Mujeres Electas (AMCEE) (Formato 10)', 'allowed_to' => ['sex' => "1"]],
+            ['name' => 'Consentimiento a la Red Nacional de Candidatas y Mujeres Electas (AMCEE) (Formato 10)', 'allowed_to' => ['sex' => '1']],
             ['name' => 'Cumplimiento de requisitos', 'allowed_to' => ['all']],
-            ['name' => 'Fotografía', 'allowed_to' => ['postulation_id' => "3", 'position_id' => "1"]],
+            ['name' => 'Fotografía', 'allowed_to' => ['postulation_id' => '3', 'position_id' => '1']],
         ];
 
         foreach ($fileTypes as $fileType) {

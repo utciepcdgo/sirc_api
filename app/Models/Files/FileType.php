@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * @property int $id
  * @property string $name
- * @property object $allowed_to
+ * @property array $allowed_to
  */
 class FileType extends Model
 {
@@ -15,5 +15,12 @@ class FileType extends Model
     protected $table = 'filetypes';
     public $timestamps = false;
 
+
+    protected function casts(): array
+    {
+        return [
+            'allowed_to' => 'json',
+        ];
+    }
 
 }

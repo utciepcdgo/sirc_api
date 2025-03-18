@@ -11,12 +11,17 @@ class AuthController extends Controller
 {
     public function login(Request $request)
     {
+        // Validate input (allow both email and username)
         $credentials = $request->validate([
-            'email' => 'required|email',
-            'password' => 'required',
+            'login' => 'required|string',  // Can be email or username
+            'password' => 'required|string',
         ]);
 
-        if (Auth::attempt($credentials)) {
+        // Determine if the input is an email or username
+        $loginField = filter_var($credentials['login'], FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
+
+        // Attempt authentication using the detected field
+        if (Auth::attempt([$loginField => $credentials['login'], 'password' => $credentials['password']])) {
             $user = Auth::user();
             $token = $user->createToken('auth_token')->plainTextToken;
 
