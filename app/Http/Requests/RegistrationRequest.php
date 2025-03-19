@@ -14,9 +14,17 @@ class RegistrationRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'min:3'],
-            'first_name' => ['required', 'min:3'],
-            'second_name' => ['required', 'min:3'],
+            'name' => ['required', 'string', 'min:3'],
+            'first_name' => ['required', 'string', function ($attribute, $value, $fail) {
+                if ($value !== 'X' && strlen($value) < 3) {
+                    $fail("El campo $attribute debe tener al menos 3 caracteres o ser 'X'.");
+                }
+            }],
+            'second_name' => ['required', 'string', function ($attribute, $value, $fail) {
+                if ($value !== 'X' && strlen($value) < 3) {
+                    $fail("El campo $attribute debe tener al menos 3 caracteres o ser 'X'.");
+                }
+            }],
             'birthplace' => ['required', 'json'],
             'residence' => ['required', 'json'],
             'occupation' => ['required', 'min:3'],

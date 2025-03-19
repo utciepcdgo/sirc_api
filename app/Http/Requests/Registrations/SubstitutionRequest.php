@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Registrations;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class SubstitutionRequest extends FormRequest
 {
@@ -18,13 +19,16 @@ class SubstitutionRequest extends FormRequest
             'voter_key' => ['required'],
             'curp' => ['required'],
             'voter_card' => ['required', 'json'],
-            'reelection' => ['required'],
+            'reelection' => ['required', 'in:Si,No'],
             'mote' => ['nullable'],
             'block_id' => ['required', 'exists:blocks,id'],
             'position_id' => ['required', 'exists:positions,id'],
             'postulation_id' => ['required', 'exists:postulations,id'],
             'sex_id' => ['required', 'exists:sexes,id'],
-            'gender_id' => ['required', 'exists:genders,id'],
+            'gender_id' => [
+                Rule::requiredIf($this->input('compensatory_id') === '3'),
+                'exists:genders,id',
+            ],
             'compensatory_id' => ['required', 'exists:compensatories,id'],
             'registration_id' => ['required', 'exists:registrations,id'],
         ];
