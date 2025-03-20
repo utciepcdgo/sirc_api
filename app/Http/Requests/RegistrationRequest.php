@@ -29,7 +29,7 @@ class RegistrationRequest extends FormRequest
             'residence' => ['required', 'json'],
             'occupation' => ['required', 'min:3'],
             'voter_key' => ['required', 'regex:/^[A-Z]{6}[0-9]{8}[A-Z]{1}[0-9]{3}/'],
-            'curp' => ['required', 'regex:/^([A-Z][AEIOUX][A-Z]{2}\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])[HM](?:AS|B[CS]|C[CLMSH]|D[FG]|G[TR]|HG|JC|M[CNS]|N[ETL]|OC|PL|Q[TR]|S[PLR]|T[CSL]|VZ|YN|ZS)[B-DF-HJ-NP-TV-Z]{3}[A-Z\d])(\d)$/'],
+            'curp' => ['required', 'regex:/^([A-Z][AEIOUX][A-Z]{2}\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])[HM](?:AS|B[CS]|C[CLMSH]|D[FG]|G[TR]|HG|JC|M[CNS]|N[ETL]|OC|PL|Q[TR]|S[PLR]|T[CSL]|VZ|YN|ZS)[B-DF-HJ-NP-TV-Z]{3}[0-9A-J][0-9])$/'],
             'voter_card' => ['required', 'json'],
             'council_number' => [
                 // Si postulation_id = 5 (Regidor) es obligatorio, de lo contrario es nulo

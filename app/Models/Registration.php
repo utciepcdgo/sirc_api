@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Models;
 
 use Abbasudo\Purity\Traits\Filterable;
+use App\Enums\RegistrationStatus;
 use App\Models\Registrations\Compensatory;
 use App\Models\Registrations\Gender;
 use App\Models\Registrations\Position;
@@ -49,6 +50,7 @@ use Ramsey\Uuid\Uuid;
  * @property Sex $sex_id - Sexo de la candidatura.
  * @property Gender $gender_id - Género de la candidatura.
  * @property Compensatory $compensatory_id - Medida compensatoria.
+ * @property string $status - Estado del registro.
  */
 class Registration extends Model
 {
@@ -75,6 +77,7 @@ class Registration extends Model
         'sex_id',
         'gender_id',
         'compensatory_id',
+        'status',
     ];
 
     protected $with = ['sex', 'gender', 'postulation', 'position', 'compensatory', 'migrant'];
@@ -155,12 +158,33 @@ class Registration extends Model
         return $this->hasMany(File::class, 'registration_id', 'id');
     }
 
-    /**
-     * @return bool
-     */
     public function isAssigned(): bool
     {
-        return $this->block->assignment->municipality || $this->block->assignment->syndic || !empty($this->block->assignment->councils);
+        return $this->block->assignment->municipality || $this->block->assignment->syndic || ! empty($this->block->assignment->councils);
+    }
+
+    /**
+     * Get the registration status Presented or not.
+     */
+    public function isPresented(): bool
+    {
+        return $this->status->is(RegistrationStatus::FORMALLY_PRESENTED);
+    }
+
+    /**
+     * Set the registration status to Presented.
+     */
+    public function setPresented(): void
+    {
+        $this->update(['status' => RegistrationStatus::FORMALLY_PRESENTED]);
+    }
+
+    /**
+     * Set the registration status to Awaiting Presentation.
+     */
+    public function setAwaitingPresentation(): void
+    {
+        $this->update(['status' => RegistrationStatus::AWAITING_PRESENTATION]);
     }
 
     protected function casts(): array
@@ -169,7 +193,8 @@ class Registration extends Model
             'birthplace' => 'json',
             'residence' => 'json',
             'voter_card' => 'json',
-            'id' => 'string'
+            'id' => 'string',
+            'status' => RegistrationStatus::class,
         ];
     }
 }

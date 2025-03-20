@@ -86,6 +86,16 @@ class Substitution extends Model
         return $this->belongsTo(Registration::class);
     }
 
+    /**
+     * Set registation status to SUBSTITUTED.
+     *
+     * @return void
+     */
+    public function markAsSubstituted(): void
+    {
+        $this->registration->update(['status' => 'SUBSTITUTED']);
+    }
+
     protected function casts(): array
     {
         return [

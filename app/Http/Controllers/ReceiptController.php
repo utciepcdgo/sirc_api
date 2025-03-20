@@ -6,11 +6,13 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\FilesResource;
 use App\Http\Resources\Registrations\ReceiptResource;
+use App\Mail\RegistrationsFormallySubmittedMail;
 use App\Models\Entity;
 use App\Models\Registration;
 use App\Models\Registrations\Receipt;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use PhpOffice\PhpSpreadsheet\Reader;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
@@ -42,13 +44,16 @@ class ReceiptController extends Controller
         ini_set('default_charset', '');
         mb_http_output('pass');
         mb_detect_order(['UTF-8']);
+
         Carbon::setLocale('es');
 
         $entityId = $request->query('entity_id');
         $partyOrigin = Entity::find($entityId)->entitiable;
+        $recipients = explode(',', env('MAIL_RECIPIENTS'));
 
         $registrations = Registration::whereHas('block', function ($query) use ($entityId) {
-            $query->where('entity_id', '=', $entityId);
+            $query->where('entity_id', '=', $entityId)
+                ->where('status', '=', 'AWAITING_PRESENTATION');
         })->with(['block.municipality', 'postulation', 'position', 'compensatory', 'sex', 'files'])->get();
 
         // Si no hay registros, retornar un error.
@@ -64,8 +69,8 @@ class ReceiptController extends Controller
             $municipalityName = $registration->block->municipality->name;
 
             $data[$municipalityName][] = [
-                'name' => ($registration->first_name.' '.$registration->second_name.' '.$registration->name),
-                'postulation' => $registration->postulation_id === 5 ? ($registration->postulation->name.' '.$registration->council_number) : $registration->postulation->name,
+                'name' => ($registration->first_name . ' ' . $registration->second_name . ' ' . $registration->name),
+                'postulation' => $registration->postulation_id === 5 ? ($registration->postulation->name . ' ' . $registration->council_number) : $registration->postulation->name,
                 'position' => $registration->position->name,
                 'compensatory' => $registration->compensatory->name,
                 'sex' => $registration->sex->name,
@@ -73,6 +78,8 @@ class ReceiptController extends Controller
                 'party' => $registration->isAssigned() ? $registration->block->sharedEntity->entitiable->name : $registration->block->entity->entitiable->name,
                 'files' => FilesResource::collection($registration->files)->pluck('filetype.name')->toArray(),
             ];
+
+            $registration->setPresented();
         }
 
         // 1. Cargar la plantilla
@@ -113,7 +120,7 @@ class ReceiptController extends Controller
                 $spreadsheet1->setCellValue('G5', implode(PHP_EOL, $record['files']))->getStyle('G5')->getAlignment()->setWrapText(true);
 
                 foreach (range('A', 'G') as $one) {
-                    $spreadsheet1->getStyle($one.'5')->applyFromArray($styleArray3);
+                    $spreadsheet1->getStyle($one . '5')->applyFromArray($styleArray3);
                 }
 
                 $spreadsheet1->getStyle('G5')->getAlignment()->setWrapText(true);
@@ -132,9 +139,9 @@ class ReceiptController extends Controller
 
             $spreadsheet1->setCellValue('A2', $partyOrigin->name ?? 'N/A');
 
-            $spreadsheet1->setCellValue('A3', 'Victoria de Durango, Dgo,. a '.Carbon::now()->format('d').' de '.Carbon::now()->monthName.' de 2025');
+            $spreadsheet1->setCellValue('A3', 'Victoria de Durango, Dgo,. a ' . Carbon::now()->format('d') . ' de ' . Carbon::now()->monthName . ' de 2025');
 
-            $spreadsheet1->setCellValue('A4', Carbon::now()->format('H:i').' Horas');
+            $spreadsheet1->setCellValue('A4', Carbon::now()->format('H:i') . ' Horas');
 
             //Insert headers rows
             $spreadsheet1->insertNewRowBefore(5, 2);
@@ -147,8 +154,8 @@ class ReceiptController extends Controller
             );
 
             foreach (range('A', 'G') as $one) {
-                $spreadsheet1->getStyle($one.'5')->applyFromArray($styleArray1);
-                $spreadsheet1->getStyle($one.'6')->applyFromArray($styleArray2);
+                $spreadsheet1->getStyle($one . '5')->applyFromArray($styleArray1);
+                $spreadsheet1->getStyle($one . '6')->applyFromArray($styleArray2);
             }
         }
 
@@ -158,14 +165,14 @@ class ReceiptController extends Controller
         // 5. Exportar (descargar) o guardar el archivo
         $writer = new Xlsx($spreadsheet);
 
-        $fileName = 'ACUSE_'.$partyOrigin->acronym.'_'.time().'.xlsx';
+        $fileName = 'ACUSE_' . $partyOrigin->acronym . '_' . time() . '.xlsx';
 
         // Escribir archivo en disco.
-        $localPath = storage_path('app/acuses/'.$fileName);
+        $localPath = storage_path('app/acuses/' . $fileName);
         $writer->save($localPath);
 
         // Verificar si el archivo se guardó correctamente
-        if (! file_exists($localPath)) {
+        if (!file_exists($localPath)) {
             return response()->json(['message' => 'Error al guardar el archivo en el disco'], 500);
         }
 
@@ -176,25 +183,33 @@ class ReceiptController extends Controller
         $hash = hash('sha256', $file);
 
         // Subir archivo a S3
-        Storage::disk('s3')->put('SIRC25/'.$partyOrigin->acronym.'/ACUSES/'.$fileName, $file);
+        Storage::disk('s3')->put('SIRC25/' . $partyOrigin->acronym . '/ACUSES/' . $fileName, $file);
         // Crear registro en la base de datos con el modelo Registrations\Receipt
 
         Receipt::create([
             'entity_id' => $partyOrigin->id,
             'name' => $fileName,
-            'path' => 'SIRC25/'.$partyOrigin->acronym.'/ACUSES/'.$fileName,
+            'path' => 'SIRC25/' . $partyOrigin->acronym . '/ACUSES/' . $fileName,
             'hash' => $hash,
         ]);
 
         $temporaryUrl = Storage::disk('s3')->temporaryUrl(
-            'SIRC25/'.$partyOrigin->acronym.'/ACUSES/'.$fileName, now()->addMinutes(5)
+            'SIRC25/' . $partyOrigin->acronym . '/ACUSES/' . $fileName, now()->addMinutes(5)
         );
+
+        foreach ($recipients as $recipient) {
+            Mail::to($recipient)->send(new RegistrationsFormallySubmittedMail([
+                'party' => $partyOrigin->name,
+                'hash' => $hash,
+                'count' => $registrations->count(),
+            ], $localPath));
+        }
 
         return response()->json([
             'message' => 'Acuse generado correctamente',
             'hash' => $hash,
             'url' => $temporaryUrl,
-        ], 200);
+        ]);
 
     }
 

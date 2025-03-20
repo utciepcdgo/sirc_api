@@ -53,11 +53,12 @@ class RegistrationResource extends JsonResource
                 'acronym' => $this->block->entity->entitiable->acronym,
             ],
             'coalition' => [
-                'is_assigned' => ($this->block->assignment->municipality || $this->block->assignment->syndic || !empty(json_decode($this->block->assignment->councils ?? '{}')->list)),
+                'is_assigned' => ($this->block->assignment->municipality || $this->block->assignment->syndic || ! empty(json_decode($this->block->assignment->councils ?? '{}')->list)),
                 'name' => $this->block->entity->entitiable->coalition->name ?? null,
                 'acronym' => $this->block->entity->entitiable->coalition->acronym ?? null,
             ],
-            'reelection' => $this->reelection
+            'reelection' => $this->reelection,
+            'status' => $this->status->label(),
         ];
     }
 }

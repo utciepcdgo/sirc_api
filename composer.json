@@ -10,7 +10,7 @@
     "require": {
         "php": "^8.3",
         "abbasudo/laravel-purity": "^3.3",
-        "aws/aws-sdk-php": "^3.339",
+        "aws/aws-sdk-php": "^3.342",
         "laravel/framework": "^11.9",
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.9",

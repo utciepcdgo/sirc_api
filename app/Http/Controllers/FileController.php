@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\FilesResource;
 use App\Models\File;
+use App\Models\Registration;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -28,6 +29,10 @@ class FileController extends Controller
 
         // Create the file record in the database.
         $fileRecord = File::create($validated);
+
+        // Mark registration as awaiting presentation
+        $registration = Registration::find($validated['registration_id']);
+        $registration->setAwaitingPresentation();
 
         return response()->json([
             'success' => true,
@@ -62,6 +67,10 @@ class FileController extends Controller
 
         // Delete the file record
         $file->delete();
+
+        // Mark registration as awaiting presentation
+        $registration = Registration::find($validated['registration_id']);
+        $registration->setAwaitingPresentation();
 
         return response()->json(data: [
             'success' => true,

@@ -12,7 +12,7 @@ class AwsController extends Controller
 {
     public function index(Request $request): JsonResponse
     {
-        // Validate incoming data
+        // Validamos...
         $request->validate([
             'document' => 'required|string',
             'fileName' => 'required|string',
@@ -32,11 +32,9 @@ class AwsController extends Controller
 
         //        dd($document, $fileName, $contentType, $request->all());
 
-        // Generate a unique key for storing the file in S3.
+        // Creamos el nombre del archivo con ruta completa.
         $key = 'SIRC25/'.$partyAcronym.'/'.$municipality.'/'.$postulation.'/'.$position.'/'.$formatId.'_'.$candidacy.'_'.time().'.'.$fileFormat;
 
-        // Instantiate the S3 client using your configuration.
-        // Ensure that your config/filesystems.php is properly set up with your S3 credentials.
         $s3Client = new S3Client([
             'region' => config('filesystems.disks.s3.region'),
             'version' => 'latest',
@@ -46,18 +44,18 @@ class AwsController extends Controller
             ],
         ]);
 
-        // Prepare the command for a PutObject operation.
+        // Usamos el comando PutObject para generar un URL firmada.
         $command = $s3Client->getCommand('PutObject', [
             'Bucket' => config('filesystems.disks.s3.bucket'),
             'Key' => $key,
             'ContentType' => $contentType,
         ]);
 
-        // Generate a pre-signed URL valid for 5 minutes.
+        // Generamos la URL firmada con una duración de 5 minutos (es suficiente timepo xd).
         $presignedRequest = $s3Client->createPresignedRequest($command, '+5 minutes');
         $signedUrl = (string) $presignedRequest->getUri();
 
-        // Return the signed URL and the key (to associate the file later in your application)
+        // Retornamos la URL firmada y la ruta del archivo.
         return response()->json([
             'url' => $signedUrl,
             'key' => $key,

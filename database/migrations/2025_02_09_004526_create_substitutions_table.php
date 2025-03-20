@@ -30,7 +30,8 @@ class CreateSubstitutionsTable extends Migration
             $table->foreignId('gender_id');
             $table->foreignId('compensatory_id');
             $table->foreignId('registration_id');
-
+            // Status
+            $table->enum('status', ['FORMALLY_PRESENTED', 'AWAITING_PRESENTATION', 'SUBSTITUTED'])->default('AWAITING_PRESENTATION');
             // Timestamps
             $table->timestamps();
         });

@@ -76,10 +76,13 @@ class RegistrationController extends Controller
 
         try {
             // 1. Archivar la información de la persona actual en el historial
-            Substitution::create(array_merge($registration->toArray(), ['registration_id' => $registration->id]));
+            Substitution::create(array_merge($registration->toArray(), ['registration_id' => $registration->id]))->markAsSubstituted();
 
             // 2. Actualizar el registro principal con la nueva información
             $registration->update($request->validated());
+
+            // 3. Cambiar el estado del registro a "En espera de ser presentado"
+            $registration->setAwaitingPresentation();
 
             DB::commit();
 
@@ -94,6 +97,13 @@ class RegistrationController extends Controller
                 'message' => 'Error al sustituir la persona.',
                 'error' => $e->getMessage(),
             ], 500);
+        } catch (\Throwable $e) {
+            DB::rollback();
+
+            return response()->json([
+                'message' => 'Error al sustituir la persona.',
+                'error' => $e->getMessage(),
+            ], 500);
         }
     }
 
@@ -101,6 +111,10 @@ class RegistrationController extends Controller
     {
         $registration->update($request->validated());
 
+        // Mark as pending presentation
+        $registration->setAwaitingPresentation();
+
+        // Return the updated registration
         return new RegistrationResource($registration);
     }
 }
