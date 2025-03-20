@@ -31,7 +31,7 @@ class FileController extends Controller
         $fileRecord = File::create($validated);
 
         // Mark registration as awaiting presentation
-        $registration = Registration::find($validated['registration_id']);
+        $registration = Registration::find($fileRecord->registration_id);
         $registration->setAwaitingPresentation();
 
         return response()->json([
@@ -65,12 +65,12 @@ class FileController extends Controller
         // Find the file
         $file = File::find($request->file_id);
 
+        // Mark registration as awaiting presentation
+        $registration = Registration::find($file->registration_id);
+        $registration->setAwaitingPresentation();
+
         // Delete the file record
         $file->delete();
-
-        // Mark registration as awaiting presentation
-        $registration = Registration::find($validated['registration_id']);
-        $registration->setAwaitingPresentation();
 
         return response()->json(data: [
             'success' => true,
