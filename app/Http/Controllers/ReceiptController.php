@@ -75,7 +75,9 @@ class ReceiptController extends Controller
                 'compensatory' => $registration->compensatory->name,
                 'sex' => $registration->sex->name,
                 // Colocar Coalición si el registro pertenece a ella o el Partido Polìtico.
-                'party' => $registration->isAssigned() ? $registration->block->sharedEntity->entitiable->name : $registration->block->entity->entitiable->name,
+                'party' => $registration->isAssigned()
+                    ? optional(optional($registration->block->sharedEntity)->entitiable)->name ?? 'N/A'
+                    : optional(optional($registration->block->entity)->entitiable)->name ?? 'N/A',
                 'files' => FilesResource::collection($registration->files)->pluck('filetype.name')->toArray(),
             ];
 
