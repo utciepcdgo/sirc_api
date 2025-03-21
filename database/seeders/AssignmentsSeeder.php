@@ -377,6 +377,41 @@ class AssignmentsSeeder extends Seeder
             ['block_id' => 349, 'municipality' => true, 'syndic' => true, 'councils' => null],
             ['block_id' => 350, 'municipality' => true, 'syndic' => true, 'councils' => null],
             ['block_id' => 351, 'municipality' => true, 'syndic' => true, 'councils' => null],
+
+            ['block_id' => 352, 'municipality' => true, 'syndic' => true, 'councils' => null], // UyG
+            ['block_id' => 353, 'municipality' => true, 'syndic' => true, 'councils' => null], // UyG
+            ['block_id' => 354, 'municipality' => true, 'syndic' => true, 'councils' => null], // UyG
+            ['block_id' => 355, 'municipality' => true, 'syndic' => true, 'councils' => null], // UyG
+            ['block_id' => 356, 'municipality' => true, 'syndic' => true, 'councils' => null], // UyG
+            ['block_id' => 357, 'municipality' => true, 'syndic' => true, 'councils' => null], // UyG
+            ['block_id' => 358, 'municipality' => true, 'syndic' => true, 'councils' => null], // UyG
+            ['block_id' => 359, 'municipality' => true, 'syndic' => true, 'councils' => null], // UyG
+            ['block_id' => 360, 'municipality' => true, 'syndic' => true, 'councils' => null], // UyG
+            ['block_id' => 361, 'municipality' => true, 'syndic' => true, 'councils' => null], // UyG
+            ['block_id' => 362, 'municipality' => true, 'syndic' => true, 'councils' => null], // UyG
+            ['block_id' => 363, 'municipality' => true, 'syndic' => true, 'councils' => null], // UyG
+            ['block_id' => 364, 'municipality' => true, 'syndic' => true, 'councils' => null], // UyG
+            ['block_id' => 365, 'municipality' => true, 'syndic' => true, 'councils' => null], // UyG
+            ['block_id' => 366, 'municipality' => true, 'syndic' => true, 'councils' => null], // UyG
+            ['block_id' => 367, 'municipality' => true, 'syndic' => true, 'councils' => null], // UyG
+            ['block_id' => 368, 'municipality' => true, 'syndic' => true, 'councils' => null], // UyG
+            ['block_id' => 369, 'municipality' => true, 'syndic' => true, 'councils' => null], // UyG
+            ['block_id' => 370, 'municipality' => true, 'syndic' => true, 'councils' => null], // UyG
+            ['block_id' => 371, 'municipality' => true, 'syndic' => true, 'councils' => null], // UyG
+            ['block_id' => 372, 'municipality' => true, 'syndic' => true, 'councils' => null], // UyG
+            ['block_id' => 373, 'municipality' => true, 'syndic' => true, 'councils' => null], // UyG
+            ['block_id' => 374, 'municipality' => true, 'syndic' => true, 'councils' => null], // UyG
+            ['block_id' => 375, 'municipality' => true, 'syndic' => true, 'councils' => null], // UyG
+            ['block_id' => 376, 'municipality' => true, 'syndic' => true, 'councils' => null], // UyG
+            ['block_id' => 377, 'municipality' => true, 'syndic' => true, 'councils' => null], // UyG
+            ['block_id' => 378, 'municipality' => true, 'syndic' => true, 'councils' => null], // UyG
+            ['block_id' => 379, 'municipality' => true, 'syndic' => true, 'councils' => null], // UyG
+            ['block_id' => 380, 'municipality' => true, 'syndic' => true, 'councils' => null], // UyG
+            ['block_id' => 381, 'municipality' => true, 'syndic' => true, 'councils' => null], // UyG
+            ['block_id' => 382, 'municipality' => true, 'syndic' => true, 'councils' => null], // UyG
+            ['block_id' => 383, 'municipality' => true, 'syndic' => true, 'councils' => null], // UyG
+            ['block_id' => 384, 'municipality' => true, 'syndic' => true, 'councils' => null], // UyG
+            ['block_id' => 385, 'municipality' => true, 'syndic' => true, 'councils' => null] // UyG
         ];
 
         foreach ($assignments as $assignment) {

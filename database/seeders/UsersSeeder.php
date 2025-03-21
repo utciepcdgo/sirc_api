@@ -120,6 +120,24 @@ class UsersSeeder extends Seeder
                 'email' => 'iepcpv02@gmail.com',
                 'password' => bcrypt('84mrn2'),
             ],
+            [
+                'name' => 'IEPCUyG',
+                'username' => 'IEPCUyG01',
+                'email' => 'iepcuyg01@gmail.com',
+                'password' => bcrypt('s5d61g'),
+            ],
+            [
+                'name' => 'IEPCUyG',
+                'username' => 'IEPCUyG02',
+                'email' => 'iepcuyg02@gmail.com',
+                'password' => bcrypt('h03jd4'),
+            ],
+            [
+                'name' => 'IEPCUyG',
+                'username' => 'IEPCUyG03',
+                'email' => 'iepcuyg03@gmail.com',
+                'password' => bcrypt('g68hr1'),
+            ],
         ];
 
         foreach ($users as $index => $user) {

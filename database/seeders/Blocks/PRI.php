@@ -3,6 +3,7 @@
 namespace Database\Seeders\Blocks;
 
 use App\Models\Block;
+use App\Models\Entity;
 use Illuminate\Database\Seeder;
 use Ramsey\Uuid\Uuid;
 
@@ -326,8 +327,13 @@ class PRI extends Seeder
             ],
         ];
 
+        $entity = Entity::findOrFail(3);
+
         foreach ($blocks as $block) {
-            Block::create($block);
+            $block = Block::create($block);
+
+            /** @var Block $block */
+            $entity->attachBlock($block);
         }
 
     }

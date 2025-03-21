@@ -13,6 +13,7 @@ use Database\Seeders\Blocks\PT;
 use Database\Seeders\Blocks\PV;
 use Database\Seeders\Blocks\PVEM;
 use Database\Seeders\Blocks\REN;
+use Database\Seeders\Blocks\UyG;
 use Illuminate\Database\Seeder;
 
 class BlocksSeeder extends Seeder
@@ -29,6 +30,7 @@ class BlocksSeeder extends Seeder
         $this->call(PES::class);
         $this->call(REN::class);
         $this->call(PV::class);
+        $this->call(UyG::class);
 
     }
 }

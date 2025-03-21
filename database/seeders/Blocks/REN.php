@@ -53,7 +53,7 @@ class REN extends Seeder
             ['municipality_id' => 39, 'entity_id' => 10, 'shared_entity_id' => null, 'votes_obtained' => '0', 'valid_vote_issued' => '0', 'rentability' => '0', 'uuid' => Uuid::uuid4()->toString()],
         ];
 
-        $entity = Entity::findOrFail(4);
+        $entity = Entity::findOrFail(10);
 
         foreach ($blocks as $block) {
             $block = Block::create($block);

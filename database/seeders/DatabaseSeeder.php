@@ -36,7 +36,6 @@ class DatabaseSeeder extends Seeder
             ['name' => 'Partido Encuentro Solidario Durango', 'acronym' => 'PES', 'logo' => 'https://s3.us-east-1.amazonaws.com/static.appsiepcdurango.mx/emblemas/PES.svg', 'coalition_id' => null],
             ['name' => 'Partido Villista', 'acronym' => 'PV', 'logo' => 'https://s3.us-east-1.amazonaws.com/static.appsiepcdurango.mx/emblemas/PV.svg', 'coalition_id' => null],
             ['name' => 'Partido Estatal Renovación', 'acronym' => 'RENOVACIÓN', 'logo' => 'https://s3.us-east-1.amazonaws.com/static.appsiepcdurango.mx/emblemas/RENOVACION.svg', 'coalition_id' => null],
-            ['name' => 'TERMI', 'acronym' => 'TERMI', 'logo' => 'https://s3.us-east-1.amazonaws.com/static.appsiepcdurango.mx/emblemas/TERMI.svg', 'coalition_id' => null],
             ['name' => 'Unidad y Grandeza', 'acronym' => 'UyG', 'logo' => 'https://s3.us-east-1.amazonaws.com/static.appsiepcdurango.mx/emblemas/UyG.svg', 'coalition_id' => null],
         ];
 
@@ -67,7 +66,7 @@ class DatabaseSeeder extends Seeder
             ['entitiable_id' => 8, 'entitiable_type' => 'App\Models\Party'], // PV 9
             ['entitiable_id' => 9, 'entitiable_type' => 'App\Models\Party'], // RENOVACIÓN 10
             ['entitiable_id' => 1, 'entitiable_type' => 'App\Models\Coalition'], // SHHD 11
-            ['entitiable_id' => 1, 'entitiable_type' => 'App\Models\Independent'], // SHHD 11
+            ['entitiable_id' => 10, 'entitiable_type' => 'App\Models\Party'], // UyG 13
         ];
 
         foreach ($entities as $entity) {
@@ -226,6 +225,9 @@ class DatabaseSeeder extends Seeder
             ['entity_id' => 9, 'user_id' => 18], // PV
             ['entity_id' => 10, 'user_id' => 13], // RENOVACIÓN
             ['entity_id' => 10, 'user_id' => 14], // RENOVACIÓN
+            ['entity_id' => 12, 'user_id' => 19], // UNIDAD Y GRANDEZA
+            ['entity_id' => 12, 'user_id' => 20], // UNIDAD Y GRANDEZA
+            ['entity_id' => 12, 'user_id' => 21], // UNIDAD Y GRANDEZA
         ];
 
         foreach ($entity_user as $entity) {

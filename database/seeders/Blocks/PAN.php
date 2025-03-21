@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Database\Seeders\Blocks;
 
 use App\Models\Block;
+use App\Models\Entity;
 use Illuminate\Database\Seeder;
 use Ramsey\Uuid\Uuid;
 
@@ -327,8 +328,13 @@ class PAN extends Seeder
             ],
         ];
 
+        $entity = Entity::findOrFail(2);
+
         foreach ($blocks as $block) {
-            Block::create($block);
+            $block = Block::create($block);
+
+            /** @var Block $block */
+            $entity->attachBlock($block);
         }
     }
 }
