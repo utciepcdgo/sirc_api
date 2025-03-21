@@ -12,6 +12,7 @@ use App\Models\Registrations\Position;
 use App\Models\Registrations\Postulation;
 use App\Models\Registrations\Sex;
 use App\Traits\FilterableByRelation;
+use App\Traits\HasRegistrationStatus;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -57,6 +58,7 @@ class Registration extends Model
     use Filterable;
     use FilterableByRelation;
     use HasUuids;
+    use HasRegistrationStatus;
 
     protected $fillable = [
         'name',
@@ -163,29 +165,6 @@ class Registration extends Model
         return $this->block->assignment->municipality || $this->block->assignment->syndic || ! empty($this->block->assignment->councils);
     }
 
-    /**
-     * Get the registration status Presented or not.
-     */
-    public function isPresented(): bool
-    {
-        return $this->status->is(RegistrationStatus::FORMALLY_PRESENTED);
-    }
-
-    /**
-     * Set the registration status to Presented.
-     */
-    public function setPresented(): void
-    {
-        $this->update(['status' => RegistrationStatus::FORMALLY_PRESENTED]);
-    }
-
-    /**
-     * Set the registration status to Awaiting Presentation.
-     */
-    public function setAwaitingPresentation(): void
-    {
-        $this->update(['status' => RegistrationStatus::AWAITING_PRESENTATION]);
-    }
 
     protected function casts(): array
     {
