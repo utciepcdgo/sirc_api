@@ -10,7 +10,7 @@ trait HasRegistrationStatus {
     /**
      * Get the registration status.
      */
-    public function getStatus(): RegistrationStatus
+    public function getStatus(): ?RegistrationStatus
     {
         return $this->status;
     }

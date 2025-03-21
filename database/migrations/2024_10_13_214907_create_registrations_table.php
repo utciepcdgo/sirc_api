@@ -38,7 +38,13 @@ return new class extends Migration
             $table->foreignIdFor(Gender::class)->default(8); // No especificado | Ninguno;
             $table->foreignIdFor(Compensatory::class);
             // Status
-            $table->enum('status', ['FORMALLY_PRESENTED', 'AWAITING_PRESENTATION', 'SUBSTITUTED'])->default('AWAITING_PRESENTATION');
+            $table->enum('status', [
+                'FORMALLY_PRESENTED',
+                'AWAITING_PRESENTATION',
+                'SUBSTITUTED',
+                'APPROVED',
+                'REJECTED',
+            ])->default('AWAITING_PRESENTATION');
             // Timestamps
             $table->timestamps();
         });

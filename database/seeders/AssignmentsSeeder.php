@@ -20,45 +20,45 @@ class AssignmentsSeeder extends Seeder
     public function run(): void
     {
         $assignments = [
-            ['block_id' => 1, 'municipality' => false, 'syndic' => false, 'councils' => null],
-            ['block_id' => 2, 'municipality' => false, 'syndic' => false, 'councils' => null],
-            ['block_id' => 3, 'municipality' => false, 'syndic' => false, 'councils' => null],
-            ['block_id' => 4, 'municipality' => false, 'syndic' => false, 'councils' => null],
-            ['block_id' => 5, 'municipality' => false, 'syndic' => false, 'councils' => null],
-            ['block_id' => 6, 'municipality' => false, 'syndic' => false, 'councils' => null],
-            ['block_id' => 7, 'municipality' => false, 'syndic' => false, 'councils' => null],
-            ['block_id' => 8, 'municipality' => false, 'syndic' => false, 'councils' => null],
-            ['block_id' => 9, 'municipality' => false, 'syndic' => false, 'councils' => null],
-            ['block_id' => 10, 'municipality' => false, 'syndic' => false, 'councils' => null],
-            ['block_id' => 11, 'municipality' => false, 'syndic' => false, 'councils' => null],
-            ['block_id' => 12, 'municipality' => false, 'syndic' => false, 'councils' => null],
-            ['block_id' => 13, 'municipality' => false, 'syndic' => false, 'councils' => null],
-            ['block_id' => 14, 'municipality' => false, 'syndic' => false, 'councils' => null],
-            ['block_id' => 15, 'municipality' => false, 'syndic' => false, 'councils' => null],
-            ['block_id' => 16, 'municipality' => false, 'syndic' => false, 'councils' => null],
-            ['block_id' => 17, 'municipality' => false, 'syndic' => false, 'councils' => null],
-            ['block_id' => 18, 'municipality' => false, 'syndic' => false, 'councils' => null],
-            ['block_id' => 19, 'municipality' => false, 'syndic' => false, 'councils' => null],
-            ['block_id' => 20, 'municipality' => false, 'syndic' => false, 'councils' => null],
-            ['block_id' => 21, 'municipality' => false, 'syndic' => false, 'councils' => null],
-            ['block_id' => 22, 'municipality' => false, 'syndic' => false, 'councils' => null],
-            ['block_id' => 23, 'municipality' => false, 'syndic' => false, 'councils' => null],
-            ['block_id' => 24, 'municipality' => false, 'syndic' => false, 'councils' => null],
-            ['block_id' => 25, 'municipality' => false, 'syndic' => false, 'councils' => null],
-            ['block_id' => 26, 'municipality' => false, 'syndic' => false, 'councils' => null],
-            ['block_id' => 27, 'municipality' => false, 'syndic' => false, 'councils' => null],
-            ['block_id' => 28, 'municipality' => false, 'syndic' => false, 'councils' => null],
-            ['block_id' => 29, 'municipality' => false, 'syndic' => false, 'councils' => null],
-            ['block_id' => 30, 'municipality' => false, 'syndic' => false, 'councils' => null],
-            ['block_id' => 31, 'municipality' => false, 'syndic' => false, 'councils' => null],
-            ['block_id' => 32, 'municipality' => false, 'syndic' => false, 'councils' => null],
-            ['block_id' => 33, 'municipality' => false, 'syndic' => false, 'councils' => null],
-            ['block_id' => 34, 'municipality' => false, 'syndic' => false, 'councils' => null],
-            ['block_id' => 35, 'municipality' => false, 'syndic' => false, 'councils' => null],
-            ['block_id' => 36, 'municipality' => false, 'syndic' => false, 'councils' => null],
-            ['block_id' => 37, 'municipality' => false, 'syndic' => false, 'councils' => null],
-            ['block_id' => 38, 'municipality' => false, 'syndic' => false, 'councils' => null],
-            ['block_id' => 39, 'municipality' => false, 'syndic' => false, 'councils' => null],
+            ['block_id' => 1, 'municipality' => true, 'syndic' => true, 'councils' => null],
+            ['block_id' => 2, 'municipality' => true, 'syndic' => true, 'councils' => null],
+            ['block_id' => 3, 'municipality' => true, 'syndic' => true, 'councils' => null],
+            ['block_id' => 4, 'municipality' => true, 'syndic' => true, 'councils' => null],
+            ['block_id' => 5, 'municipality' => true, 'syndic' => true, 'councils' => null],
+            ['block_id' => 6, 'municipality' => true, 'syndic' => true, 'councils' => null],
+            ['block_id' => 7, 'municipality' => true, 'syndic' => true, 'councils' => null],
+            ['block_id' => 8, 'municipality' => true, 'syndic' => true, 'councils' => null],
+            ['block_id' => 9, 'municipality' => true, 'syndic' => true, 'councils' => null],
+            ['block_id' => 10, 'municipality' => true, 'syndic' => true, 'councils' => null],
+            ['block_id' => 11, 'municipality' => true, 'syndic' => true, 'councils' => null],
+            ['block_id' => 12, 'municipality' => true, 'syndic' => true, 'councils' => null],
+            ['block_id' => 13, 'municipality' => true, 'syndic' => true, 'councils' => null],
+            ['block_id' => 14, 'municipality' => true, 'syndic' => true, 'councils' => null],
+            ['block_id' => 15, 'municipality' => true, 'syndic' => true, 'councils' => null],
+            ['block_id' => 16, 'municipality' => true, 'syndic' => true, 'councils' => null],
+            ['block_id' => 17, 'municipality' => true, 'syndic' => true, 'councils' => null],
+            ['block_id' => 18, 'municipality' => true, 'syndic' => true, 'councils' => null],
+            ['block_id' => 19, 'municipality' => true, 'syndic' => true, 'councils' => null],
+            ['block_id' => 20, 'municipality' => true, 'syndic' => true, 'councils' => null],
+            ['block_id' => 21, 'municipality' => true, 'syndic' => true, 'councils' => null],
+            ['block_id' => 22, 'municipality' => true, 'syndic' => true, 'councils' => null],
+            ['block_id' => 23, 'municipality' => true, 'syndic' => true, 'councils' => null],
+            ['block_id' => 24, 'municipality' => true, 'syndic' => true, 'councils' => null],
+            ['block_id' => 25, 'municipality' => true, 'syndic' => true, 'councils' => null],
+            ['block_id' => 26, 'municipality' => true, 'syndic' => true, 'councils' => null],
+            ['block_id' => 27, 'municipality' => true, 'syndic' => true, 'councils' => null],
+            ['block_id' => 28, 'municipality' => true, 'syndic' => true, 'councils' => null],
+            ['block_id' => 29, 'municipality' => true, 'syndic' => true, 'councils' => null],
+            ['block_id' => 30, 'municipality' => true, 'syndic' => true, 'councils' => null],
+            ['block_id' => 31, 'municipality' => true, 'syndic' => true, 'councils' => null],
+            ['block_id' => 32, 'municipality' => true, 'syndic' => true, 'councils' => null],
+            ['block_id' => 33, 'municipality' => true, 'syndic' => true, 'councils' => null],
+            ['block_id' => 34, 'municipality' => true, 'syndic' => true, 'councils' => null],
+            ['block_id' => 35, 'municipality' => true, 'syndic' => true, 'councils' => null],
+            ['block_id' => 36, 'municipality' => true, 'syndic' => true, 'councils' => null],
+            ['block_id' => 37, 'municipality' => true, 'syndic' => true, 'councils' => null],
+            ['block_id' => 38, 'municipality' => true, 'syndic' => true, 'councils' => null],
+            ['block_id' => 39, 'municipality' => true, 'syndic' => true, 'councils' => null],
 
             ['block_id' => 40, 'municipality' => true, 'syndic' => true, 'councils' => [1, 2, 3, 4, 7]], // MORENA
             ['block_id' => 41, 'municipality' => true, 'syndic' => true, 'councils' => [1, 2, 3, 4, 5, 6, 7]], // MORENA
@@ -100,84 +100,85 @@ class AssignmentsSeeder extends Seeder
             ['block_id' => 77, 'municipality' => true, 'syndic' => true, 'councils' => [1, 4, 5, 7]], // MORENA
             ['block_id' => 78, 'municipality' => false, 'syndic' => false, 'councils' => [1, 2, 3, 7]], // MORENA
 
-            ['block_id' => 79, 'municipality' => true, 'syndic' => true, 'councils' => null],
-            ['block_id' => 80, 'municipality' => true, 'syndic' => true, 'councils' => null],
-            ['block_id' => 81, 'municipality' => true, 'syndic' => true, 'councils' => null],
-            ['block_id' => 82, 'municipality' => true, 'syndic' => true, 'councils' => null],
-            ['block_id' => 83, 'municipality' => true, 'syndic' => true, 'councils' => null],
-            ['block_id' => 84, 'municipality' => true, 'syndic' => true, 'councils' => null],
-            ['block_id' => 85, 'municipality' => true, 'syndic' => true, 'councils' => null],
-            ['block_id' => 86, 'municipality' => true, 'syndic' => true, 'councils' => null],
-            ['block_id' => 87, 'municipality' => true, 'syndic' => true, 'councils' => null],
-            ['block_id' => 88, 'municipality' => true, 'syndic' => true, 'councils' => null],
-            ['block_id' => 89, 'municipality' => true, 'syndic' => true, 'councils' => null],
-            ['block_id' => 90, 'municipality' => true, 'syndic' => true, 'councils' => null],
-            ['block_id' => 91, 'municipality' => true, 'syndic' => true, 'councils' => null],
-            ['block_id' => 92, 'municipality' => true, 'syndic' => true, 'councils' => null],
-            ['block_id' => 93, 'municipality' => true, 'syndic' => true, 'councils' => null],
-            ['block_id' => 94, 'municipality' => true, 'syndic' => true, 'councils' => null],
-            ['block_id' => 95, 'municipality' => true, 'syndic' => true, 'councils' => null],
-            ['block_id' => 96, 'municipality' => true, 'syndic' => true, 'councils' => null],
-            ['block_id' => 97, 'municipality' => true, 'syndic' => true, 'councils' => null],
-            ['block_id' => 98, 'municipality' => true, 'syndic' => true, 'councils' => null],
-            ['block_id' => 99, 'municipality' => true, 'syndic' => true, 'councils' => null],
-            ['block_id' => 100, 'municipality' => true, 'syndic' => true, 'councils' => null],
-            ['block_id' => 101, 'municipality' => true, 'syndic' => true, 'councils' => null],
-            ['block_id' => 102, 'municipality' => true, 'syndic' => true, 'councils' => null],
-            ['block_id' => 103, 'municipality' => true, 'syndic' => true, 'councils' => null],
-            ['block_id' => 104, 'municipality' => true, 'syndic' => true, 'councils' => null],
-            ['block_id' => 105, 'municipality' => true, 'syndic' => true, 'councils' => null],
-            ['block_id' => 106, 'municipality' => true, 'syndic' => true, 'councils' => null],
-            ['block_id' => 107, 'municipality' => true, 'syndic' => true, 'councils' => null],
-            ['block_id' => 108, 'municipality' => true, 'syndic' => true, 'councils' => null],
-            ['block_id' => 109, 'municipality' => true, 'syndic' => true, 'councils' => null],
-            ['block_id' => 110, 'municipality' => true, 'syndic' => true, 'councils' => null],
-            ['block_id' => 111, 'municipality' => true, 'syndic' => true, 'councils' => null],
-            ['block_id' => 112, 'municipality' => true, 'syndic' => true, 'councils' => null],
-            ['block_id' => 113, 'municipality' => true, 'syndic' => true, 'councils' => null],
-            ['block_id' => 114, 'municipality' => true, 'syndic' => true, 'councils' => null],
-            ['block_id' => 115, 'municipality' => true, 'syndic' => true, 'councils' => null],
-            ['block_id' => 116, 'municipality' => true, 'syndic' => true, 'councils' => null],
-            ['block_id' => 117, 'municipality' => true, 'syndic' => true, 'councils' => null],
-            ['block_id' => 118, 'municipality' => true, 'syndic' => true, 'councils' => null],
-            ['block_id' => 119, 'municipality' => true, 'syndic' => true, 'councils' => null],
-            ['block_id' => 120, 'municipality' => true, 'syndic' => true, 'councils' => null],
-            ['block_id' => 121, 'municipality' => true, 'syndic' => true, 'councils' => null],
-            ['block_id' => 122, 'municipality' => true, 'syndic' => true, 'councils' => null],
-            ['block_id' => 123, 'municipality' => true, 'syndic' => true, 'councils' => null],
-            ['block_id' => 124, 'municipality' => true, 'syndic' => true, 'councils' => null],
-            ['block_id' => 125, 'municipality' => true, 'syndic' => true, 'councils' => null],
-            ['block_id' => 126, 'municipality' => true, 'syndic' => true, 'councils' => null],
-            ['block_id' => 127, 'municipality' => true, 'syndic' => true, 'councils' => null],
-            ['block_id' => 128, 'municipality' => true, 'syndic' => true, 'councils' => null],
-            ['block_id' => 129, 'municipality' => true, 'syndic' => true, 'councils' => null],
-            ['block_id' => 130, 'municipality' => true, 'syndic' => true, 'councils' => null],
-            ['block_id' => 131, 'municipality' => true, 'syndic' => true, 'councils' => null],
-            ['block_id' => 132, 'municipality' => true, 'syndic' => true, 'councils' => null],
-            ['block_id' => 133, 'municipality' => true, 'syndic' => true, 'councils' => null],
-            ['block_id' => 134, 'municipality' => true, 'syndic' => true, 'councils' => null],
-            ['block_id' => 135, 'municipality' => true, 'syndic' => true, 'councils' => null],
-            ['block_id' => 136, 'municipality' => true, 'syndic' => true, 'councils' => null],
-            ['block_id' => 137, 'municipality' => true, 'syndic' => true, 'councils' => null],
-            ['block_id' => 138, 'municipality' => true, 'syndic' => true, 'councils' => null],
-            ['block_id' => 139, 'municipality' => true, 'syndic' => true, 'councils' => null],
-            ['block_id' => 140, 'municipality' => true, 'syndic' => true, 'councils' => null],
-            ['block_id' => 141, 'municipality' => true, 'syndic' => true, 'councils' => null],
-            ['block_id' => 142, 'municipality' => true, 'syndic' => true, 'councils' => null],
-            ['block_id' => 143, 'municipality' => true, 'syndic' => true, 'councils' => null],
-            ['block_id' => 144, 'municipality' => true, 'syndic' => true, 'councils' => null],
-            ['block_id' => 145, 'municipality' => true, 'syndic' => true, 'councils' => null],
-            ['block_id' => 146, 'municipality' => true, 'syndic' => true, 'councils' => null],
-            ['block_id' => 147, 'municipality' => true, 'syndic' => true, 'councils' => null],
-            ['block_id' => 148, 'municipality' => true, 'syndic' => true, 'councils' => null],
-            ['block_id' => 149, 'municipality' => true, 'syndic' => true, 'councils' => null],
-            ['block_id' => 150, 'municipality' => true, 'syndic' => true, 'councils' => null],
-            ['block_id' => 151, 'municipality' => true, 'syndic' => true, 'councils' => null],
-            ['block_id' => 152, 'municipality' => true, 'syndic' => true, 'councils' => null],
-            ['block_id' => 153, 'municipality' => true, 'syndic' => true, 'councils' => null],
-            ['block_id' => 154, 'municipality' => true, 'syndic' => true, 'councils' => null],
-            ['block_id' => 155, 'municipality' => true, 'syndic' => true, 'councils' => null],
-            ['block_id' => 156, 'municipality' => true, 'syndic' => true, 'councils' => null],
+            ['block_id' => 79, 'municipality' => false, 'syndic' => false, 'councils' => [0]], // PAN
+            ['block_id' => 80, 'municipality' => true, 'syndic' => true, 'councils' => [1, 2, 3, 4, 5, 6, 7]], // PAN - Indé
+            ['block_id' => 81, 'municipality' => false, 'syndic' => false, 'councils' => [0]], // PAN
+            ['block_id' => 82, 'municipality' => false, 'syndic' => false, 'councils' => [0]], // PAN
+            ['block_id' => 83, 'municipality' => false, 'syndic' => false, 'councils' => [0]], // PAN
+            ['block_id' => 84, 'municipality' => false, 'syndic' => false, 'councils' => [0]], // PAN
+            ['block_id' => 85, 'municipality' => false, 'syndic' => false, 'councils' => [0]], // PAN
+            ['block_id' => 86, 'municipality' => false, 'syndic' => false, 'councils' => [0]], // PAN
+            ['block_id' => 87, 'municipality' => false, 'syndic' => false, 'councils' => [0]], // PAN
+            ['block_id' => 88, 'municipality' => false, 'syndic' => false, 'councils' => [0]], // PAN
+            ['block_id' => 89, 'municipality' => false, 'syndic' => false, 'councils' => [0]], // PAN
+            ['block_id' => 90, 'municipality' => true, 'syndic' => true, 'councils' => [1, 2, 3, 4, 5, 6, 7]], // PAN - Ocampo
+            ['block_id' => 91, 'municipality' => false, 'syndic' => false, 'councils' => [0]], // PAN
+            ['block_id' => 92, 'municipality' => false, 'syndic' => false, 'councils' => [0]], // PAN
+            ['block_id' => 93, 'municipality' => false, 'syndic' => false, 'councils' => [0]], // PAN
+            ['block_id' => 94, 'municipality' => false, 'syndic' => false, 'councils' => [0]], // PAN
+            ['block_id' => 95, 'municipality' => false, 'syndic' => false, 'councils' => [0]], // PAN
+            ['block_id' => 96, 'municipality' => false, 'syndic' => false, 'councils' => [0]], // PAN
+            ['block_id' => 97, 'municipality' => false, 'syndic' => false, 'councils' => [0]], // PAN
+            ['block_id' => 98, 'municipality' => false, 'syndic' => false, 'councils' => [0]], // PAN
+            ['block_id' => 99, 'municipality' => false, 'syndic' => false, 'councils' => [0]], // PAN
+            ['block_id' => 100, 'municipality' => true, 'syndic' => true, 'councils' => [1, 2, 3, 4, 5, 6, 7, 8, 9]], // PAN - Guadalupe Victoria
+            ['block_id' => 101, 'municipality' => false, 'syndic' => false, 'councils' => [0]], // PAN
+            ['block_id' => 102, 'municipality' => false, 'syndic' => false, 'councils' => [0]], // PAN
+            ['block_id' => 103, 'municipality' => false, 'syndic' => false, 'councils' => [0]], // PAN
+            ['block_id' => 104, 'municipality' => false, 'syndic' => false, 'councils' => [0]], // PAN
+            ['block_id' => 105, 'municipality' => false, 'syndic' => false, 'councils' => [0]], // PAN
+            ['block_id' => 106, 'municipality' => false, 'syndic' => false, 'councils' => [0]], // PAN
+            ['block_id' => 107, 'municipality' => false, 'syndic' => false, 'councils' => [0]], // PAN
+            ['block_id' => 108, 'municipality' => false, 'syndic' => false, 'councils' => [0]], // PAN
+            ['block_id' => 109, 'municipality' => true, 'syndic' => true, 'councils' => [1, 2, 3, 4, 5, 6, 7]], // PAN - Guanaceví
+            ['block_id' => 110, 'municipality' => false, 'syndic' => false, 'councils' => [0]], // PAN
+            ['block_id' => 111, 'municipality' => false, 'syndic' => false, 'councils' => [0]], // PAN
+            ['block_id' => 112, 'municipality' => false, 'syndic' => false, 'councils' => [0]], // PAN
+            ['block_id' => 113, 'municipality' => false, 'syndic' => false, 'councils' => [0]], // PAN
+            ['block_id' => 114, 'municipality' => false, 'syndic' => false, 'councils' => [0]], // PAN
+            ['block_id' => 115, 'municipality' => false, 'syndic' => false, 'councils' => [0]], // PAN
+            ['block_id' => 116, 'municipality' => false, 'syndic' => false, 'councils' => [0]], // PAN
+            ['block_id' => 117, 'municipality' => true, 'syndic' => true, 'councils' => [1, 2, 3, 4, 5, 6, 7]], // PAN - Hidalgo
+
+            ['block_id' => 118, 'municipality' => true, 'syndic' => true, 'councils' => [1, 2, 3, 4, 5, 6, 7]], // PRI - Guanaceví
+            ['block_id' => 119, 'municipality' => false, 'syndic' => false, 'councils' => [0]], // PRI
+            ['block_id' => 120, 'municipality' => false, 'syndic' => false, 'councils' => [0]], // PRI
+            ['block_id' => 121, 'municipality' => false, 'syndic' => false, 'councils' => [0]], // PRI
+            ['block_id' => 122, 'municipality' => false, 'syndic' => false, 'councils' => [0]], // PRI
+            ['block_id' => 123, 'municipality' => false, 'syndic' => false, 'councils' => [0]], // PRI
+            ['block_id' => 124, 'municipality' => false, 'syndic' => false, 'councils' => [0]], // PRI
+            ['block_id' => 125, 'municipality' => false, 'syndic' => false, 'councils' => [0]], // PRI
+            ['block_id' => 126, 'municipality' => false, 'syndic' => false, 'councils' => [0]], // PRI
+            ['block_id' => 127, 'municipality' => false, 'syndic' => false, 'councils' => [0]], // PRI
+            ['block_id' => 128, 'municipality' => true, 'syndic' => true, 'councils' => [1, 2, 3, 4, 5, 6, 7]], // PRI - Ocampo
+            ['block_id' => 129, 'municipality' => true, 'syndic' => true, 'councils' => [1, 2, 3, 4, 5, 6, 7]], // PRI - Hidalgo
+            ['block_id' => 130, 'municipality' => false, 'syndic' => false, 'councils' => [0]], // PRI
+            ['block_id' => 131, 'municipality' => false, 'syndic' => false, 'councils' => [0]], // PRI
+            ['block_id' => 132, 'municipality' => false, 'syndic' => false, 'councils' => [0]], // PRI
+            ['block_id' => 133, 'municipality' => false, 'syndic' => false, 'councils' => [0]], // PRI
+            ['block_id' => 134, 'municipality' => false, 'syndic' => false, 'councils' => [0]], // PRI
+            ['block_id' => 135, 'municipality' => false, 'syndic' => false, 'councils' => [0]], // PRI
+            ['block_id' => 136, 'municipality' => true, 'syndic' => true, 'councils' => [1, 2, 3, 4, 5, 6, 7]], // PRI - Indé
+            ['block_id' => 137, 'municipality' => false, 'syndic' => false, 'councils' => [0]], // PRI
+            ['block_id' => 138, 'municipality' => false, 'syndic' => false, 'councils' => [0]], // PRI
+            ['block_id' => 139, 'municipality' => false, 'syndic' => false, 'councils' => [0]], // PRI
+            ['block_id' => 140, 'municipality' => false, 'syndic' => false, 'councils' => [0]], // PRI
+            ['block_id' => 141, 'municipality' => false, 'syndic' => false, 'councils' => [0]], // PRI
+            ['block_id' => 142, 'municipality' => true, 'syndic' => true, 'councils' => [1, 2, 3, 4, 5, 6, 7, 8, 9]], // PRI - Guadalupe Victoria
+            ['block_id' => 143, 'municipality' => false, 'syndic' => false, 'councils' => [0]], // PRI
+            ['block_id' => 144, 'municipality' => false, 'syndic' => false, 'councils' => [0]], // PRI
+            ['block_id' => 145, 'municipality' => false, 'syndic' => false, 'councils' => [0]], // PRI
+            ['block_id' => 146, 'municipality' => false, 'syndic' => false, 'councils' => [0]], // PRI
+            ['block_id' => 147, 'municipality' => false, 'syndic' => false, 'councils' => [0]], // PRI
+            ['block_id' => 148, 'municipality' => false, 'syndic' => false, 'councils' => [0]], // PRI
+            ['block_id' => 149, 'municipality' => false, 'syndic' => false, 'councils' => [0]], // PRI
+            ['block_id' => 150, 'municipality' => false, 'syndic' => false, 'councils' => [0]], // PRI
+            ['block_id' => 151, 'municipality' => false, 'syndic' => false, 'councils' => [0]], // PRI
+            ['block_id' => 152, 'municipality' => false, 'syndic' => false, 'councils' => [0]], // PRI
+            ['block_id' => 153, 'municipality' => false, 'syndic' => false, 'councils' => [0]], // PRI
+            ['block_id' => 154, 'municipality' => false, 'syndic' => false, 'councils' => [0]], // PRI
+            ['block_id' => 155, 'municipality' => false, 'syndic' => false, 'councils' => [0]], // PRI
+            ['block_id' => 156, 'municipality' => false, 'syndic' => false, 'councils' => [0]], // PRI
 
             ['block_id' => 157, 'municipality' => true, 'syndic' => true, 'councils' => [2, 3, 8, 9]], // PT
             ['block_id' => 158, 'municipality' => false, 'syndic' => false, 'councils' => [3, 6, 7]], // PT

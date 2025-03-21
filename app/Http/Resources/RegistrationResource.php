@@ -58,7 +58,7 @@ class RegistrationResource extends JsonResource
                 'acronym' => $this->block->entity->entitiable->coalition->acronym ?? null,
             ],
             'reelection' => $this->reelection,
-            'status' => $this->status->label(),
+            'status' => $this->getStatus()?->label(),
         ];
     }
 }
