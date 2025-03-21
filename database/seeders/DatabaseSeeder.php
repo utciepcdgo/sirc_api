@@ -37,7 +37,7 @@ class DatabaseSeeder extends Seeder
             ['name' => 'Partido Villista', 'acronym' => 'PV', 'logo' => 'https://s3.us-east-1.amazonaws.com/static.appsiepcdurango.mx/emblemas/PV.svg', 'coalition_id' => null],
             ['name' => 'Partido Estatal Renovación', 'acronym' => 'RENOVACIÓN', 'logo' => 'https://s3.us-east-1.amazonaws.com/static.appsiepcdurango.mx/emblemas/RENOVACION.svg', 'coalition_id' => null],
             ['name' => 'TERMI', 'acronym' => 'TERMI', 'logo' => 'https://s3.us-east-1.amazonaws.com/static.appsiepcdurango.mx/emblemas/TERMI.svg', 'coalition_id' => null],
-            ['name' => 'Unidad y Grandeza', 'acronym' => 'UG', 'logo' => 'https://s3.us-east-1.amazonaws.com/static.appsiepcdurango.mx/emblemas/UG.svg', 'coalition_id' => null],
+            ['name' => 'Unidad y Grandeza', 'acronym' => 'UyG', 'logo' => 'https://s3.us-east-1.amazonaws.com/static.appsiepcdurango.mx/emblemas/UyG.svg', 'coalition_id' => null],
         ];
 
         foreach ($parties as $party) {
