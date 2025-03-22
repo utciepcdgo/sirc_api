@@ -70,11 +70,11 @@ class AssignmentsSeeder extends Seeder
             ['block_id' => 47, 'municipality' => true, 'syndic' => true, 'councils' => [1, 2, 4, 5, 6, 7]], // MORENA
             ['block_id' => 48, 'municipality' => true, 'syndic' => true, 'councils' => [1, 2, 3, 4, 7, 8, 9]], // MORENA
             ['block_id' => 49, 'municipality' => true, 'syndic' => true, 'councils' => [1, 2, 3, 7]], // MORENA
-            ['block_id' => 50, 'municipality' => true, 'syndic' => true, 'councils' => [1, 2, 3, 4, 7]], // MORENA
-            ['block_id' => 51, 'municipality' => true, 'syndic' => true, 'councils' => [1, 2, 3, 7]], // MORENA
+            ['block_id' => 50, 'municipality' => true, 'syndic' => true, 'councils' => [1, 2, 3, 4, 6, 7]], // MORENA · SAN BERNARDO · CAMBIO
+            ['block_id' => 51, 'municipality' => false, 'syndic' => false, 'councils' => [1, 2, 3, 7]], // MORENA · NAZAS · CAMBIO
             ['block_id' => 52, 'municipality' => true, 'syndic' => true, 'councils' => [1, 2, 5, 7, 8, 9]], // MORENA
             ['block_id' => 53, 'municipality' => false, 'syndic' => false, 'councils' => [1, 2, 3, 7]], // MORENA
-            ['block_id' => 54, 'municipality' => true, 'syndic' => true, 'councils' => [1, 2, 3, 4, 6, 7]], // MORENA
+            ['block_id' => 54, 'municipality' => true, 'syndic' => true, 'councils' => [1, 2, 3, 4, 5, 6]], // MORENA · SAN LUIS DE CORDERO · CAMBIO
             ['block_id' => 55, 'municipality' => true, 'syndic' => true, 'councils' => [1, 2, 3, 4, 5, 8, 11, 12, 13, 14, 15]], // MORENA
             ['block_id' => 56, 'municipality' => true, 'syndic' => true, 'councils' => [1, 2, 3, 4, 5, 9, 10, 11, 12, 13, 14, 15]], // MORENA
             ['block_id' => 57, 'municipality' => true, 'syndic' => true, 'councils' => [1, 2, 3, 4, 7]], // MORENA
@@ -89,15 +89,15 @@ class AssignmentsSeeder extends Seeder
             ['block_id' => 66, 'municipality' => true, 'syndic' => true, 'councils' => [1, 2, 3, 4, 6, 7]], // MORENA
             ['block_id' => 67, 'municipality' => true, 'syndic' => true, 'councils' => [1, 2, 3, 5, 7]], // MORENA
             ['block_id' => 68, 'municipality' => false, 'syndic' => false, 'councils' => [1, 3, 5, 6, 8]], // MORENA
-            ['block_id' => 69, 'municipality' => true, 'syndic' => true, 'councils' => [1, 2, 3, 4, 7]], // MORENA
+            ['block_id' => 69, 'municipality' => true, 'syndic' => true, 'councils' => [1, 2, 3, 4, 5]], // MORENA · INDÉ · CAMBIO
             ['block_id' => 70, 'municipality' => true, 'syndic' => true, 'councils' => [1, 3, 4, 6, 7, 10, 11, 13, 15, 16, 17]], // MORENA
             ['block_id' => 71, 'municipality' => true, 'syndic' => true, 'councils' => [1, 2, 3, 4, 7, 8, 9]], // MORENA
             ['block_id' => 72, 'municipality' => false, 'syndic' => false, 'councils' => [1, 4, 5, 6]], // MORENA
             ['block_id' => 73, 'municipality' => true, 'syndic' => true, 'councils' => [1, 2, 3, 4, 5, 6]], // MORENA
             ['block_id' => 74, 'municipality' => false, 'syndic' => false, 'councils' => [2, 3, 5, 8]], // MORENA
-            ['block_id' => 75, 'municipality' => true, 'syndic' => true, 'councils' => [1, 2, 3, 4, 7]], // MORENA
-            ['block_id' => 76, 'municipality' => false, 'syndic' => false, 'councils' => [1, 5, 6]], // MORENA
-            ['block_id' => 77, 'municipality' => true, 'syndic' => true, 'councils' => [1, 4, 5, 7]], // MORENA
+            ['block_id' => 75, 'municipality' => true, 'syndic' => true, 'councils' => [1, 2, 3, 4, 5]], // MORENA · SAN PEDRO DEL GALLO · CAMBIO
+            ['block_id' => 76, 'municipality' => false, 'syndic' => false, 'councils' => [1, 5, 6]], // MORENA · CANATLÁN · CAMBIO
+            ['block_id' => 77, 'municipality' => false, 'syndic' => false, 'councils' => [1, 4, 5, 7]], // MORENA · MEZQUITAL · CAMBIO
             ['block_id' => 78, 'municipality' => false, 'syndic' => false, 'councils' => [1, 2, 3, 7]], // MORENA
 
             ['block_id' => 79, 'municipality' => false, 'syndic' => false, 'councils' => [0]], // PAN
@@ -185,22 +185,22 @@ class AssignmentsSeeder extends Seeder
             ['block_id' => 159, 'municipality' => true, 'syndic' => true, 'councils' => [4, 5, 6]], // PT
             ['block_id' => 160, 'municipality' => false, 'syndic' => false, 'councils' => [2, 5, 9, 12, 14]], // PT
             ['block_id' => 161, 'municipality' => true, 'syndic' => true, 'councils' => [4, 5]], // PT
-            ['block_id' => 162, 'municipality' => false, 'syndic' => false, 'councils' => [4, 5]], // PT
+            ['block_id' => 162, 'municipality' => true, 'syndic' => true, 'councils' => [4, 5]], // PT · NAZAS · CAMBIO
             ['block_id' => 163, 'municipality' => false, 'syndic' => false, 'councils' => [4, 6]], // PT
             ['block_id' => 164, 'municipality' => false, 'syndic' => false, 'councils' => [7]], // PT
-            ['block_id' => 165, 'municipality' => false, 'syndic' => false, 'councils' => [8]], // PT
+            ['block_id' => 165, 'municipality' => false, 'syndic' => false, 'councils' => [8]], // PT · CANATLÁN · CAMBIO
             ['block_id' => 166, 'municipality' => false, 'syndic' => false, 'councils' => [5]], // PT
-            ['block_id' => 167, 'municipality' => false, 'syndic' => false, 'councils' => [5]], // PT
+            ['block_id' => 167, 'municipality' => false, 'syndic' => false, 'councils' => [5]], // PT · SAN BERNARDO · CAMBIO
             ['block_id' => 168, 'municipality' => false, 'syndic' => false, 'councils' => [5]], // PT
             ['block_id' => 169, 'municipality' => true, 'syndic' => true, 'councils' => [4, 5]], // PT
-            ['block_id' => 170, 'municipality' => false, 'syndic' => false, 'councils' => [5, 6]], // PT
+            ['block_id' => 170, 'municipality' => false, 'syndic' => false, 'councils' => [6, 7]], // PT · SAN PEDRO DEL GALLO · CAMBIO
             ['block_id' => 171, 'municipality' => false, 'syndic' => false, 'councils' => [7]], // PT
             ['block_id' => 172, 'municipality' => false, 'syndic' => false, 'councils' => [6]], // PT
-            ['block_id' => 173, 'municipality' => false, 'syndic' => false, 'councils' => [5]], // PT
+            ['block_id' => 173, 'municipality' => false, 'syndic' => false, 'councils' => [7]], // PT · SAN LUIS DE CORDERO · CAMBIO
             ['block_id' => 174, 'municipality' => false, 'syndic' => false, 'councils' => [7, 10]], // PT
             ['block_id' => 175, 'municipality' => false, 'syndic' => false, 'councils' => [5]], // PT
             ['block_id' => 176, 'municipality' => false, 'syndic' => false, 'councils' => [5]], // PT
-            ['block_id' => 177, 'municipality' => false, 'syndic' => false, 'councils' => [5, 6]], // PT
+            ['block_id' => 177, 'municipality' => false, 'syndic' => false, 'councils' => [6, 7]], // PT
             ['block_id' => 178, 'municipality' => true, 'syndic' => true, 'councils' => [1, 2, 3, 4, 5, 6, 7]], // PT
             ['block_id' => 179, 'municipality' => false, 'syndic' => false, 'councils' => [6]], // PT
             ['block_id' => 180, 'municipality' => false, 'syndic' => false, 'councils' => [5]], // PT
@@ -213,16 +213,16 @@ class AssignmentsSeeder extends Seeder
             ['block_id' => 187, 'municipality' => false, 'syndic' => false, 'councils' => [6]], // PT
             ['block_id' => 188, 'municipality' => false, 'syndic' => false, 'councils' => [5]], // PT
             ['block_id' => 189, 'municipality' => false, 'syndic' => false, 'councils' => [5]], // PT
-            ['block_id' => 190, 'municipality' => false, 'syndic' => false, 'councils' => [6]], // PT
+            ['block_id' => 190, 'municipality' => false, 'syndic' => false, 'councils' => [6]], // PT · MEZQUITAL · CAMBIO
             ['block_id' => 191, 'municipality' => false, 'syndic' => false, 'councils' => [0]], // PT
             ['block_id' => 192, 'municipality' => false, 'syndic' => false, 'councils' => [6]], // PT
             ['block_id' => 193, 'municipality' => false, 'syndic' => false, 'councils' => [6]], // PT
             ['block_id' => 194, 'municipality' => true, 'syndic' => true, 'councils' => [1, 2, 3, 4, 5, 6, 7, 8, 9]], // PT
             ['block_id' => 195, 'municipality' => false, 'syndic' => false, 'councils' => [6]], // PT
 
-            ['block_id' => 196, 'municipality' => true, 'syndic' => true, 'councils' => [2, 3, 4, 7, 9]], // PVEM
+            ['block_id' => 196, 'municipality' => true, 'syndic' => true, 'councils' => [2, 3, 4, 7, 9]], // PVEM · CANATLÁN · CAMBIO
             ['block_id' => 197, 'municipality' => true, 'syndic' => true, 'councils' => [1, 4, 6, 9]], // PVEM
-            ['block_id' => 198, 'municipality' => false, 'syndic' => false, 'councils' => [2, 3, 8, 9]], // PVEM
+            ['block_id' => 198, 'municipality' => true, 'syndic' => true, 'councils' => [2, 3, 8, 9]], // PVEM · MEZQUITAL · CAMBIO
             ['block_id' => 199, 'municipality' => true, 'syndic' => true, 'councils' => [2, 4, 9]], // PVEM
             ['block_id' => 200, 'municipality' => false, 'syndic' => false, 'councils' => [3]], // PVEM
             ['block_id' => 201, 'municipality' => false, 'syndic' => false, 'councils' => [3, 4]], // PVEM
@@ -243,12 +243,12 @@ class AssignmentsSeeder extends Seeder
             ['block_id' => 216, 'municipality' => false, 'syndic' => false, 'councils' => [8]], // PVEM
             ['block_id' => 217, 'municipality' => true, 'syndic' => true, 'councils' => [1, 2, 3, 4, 5, 6]], // PVEM
             ['block_id' => 218, 'municipality' => false, 'syndic' => false, 'councils' => [5]], // PVEM
-            ['block_id' => 219, 'municipality' => false, 'syndic' => false, 'councils' => [6]], // PVEM
+            ['block_id' => 219, 'municipality' => false, 'syndic' => false, 'councils' => [6]], // PVEM · NAZAS · CAMBIO
             ['block_id' => 220, 'municipality' => false, 'syndic' => false, 'councils' => [0]], // PVEM
             ['block_id' => 221, 'municipality' => false, 'syndic' => false, 'councils' => [0]], // PVEM
             ['block_id' => 222, 'municipality' => false, 'syndic' => false, 'councils' => [5]], // PVEM
             ['block_id' => 223, 'municipality' => false, 'syndic' => false, 'councils' => [0]], // PVEM
-            ['block_id' => 224, 'municipality' => false, 'syndic' => false, 'councils' => [6]], // PVEM
+            ['block_id' => 224, 'municipality' => false, 'syndic' => false, 'councils' => [0]], // PVEM · SAN BERNARDO · CAMBIO
             ['block_id' => 225, 'municipality' => false, 'syndic' => false, 'councils' => [0]], // PVEM
             ['block_id' => 226, 'municipality' => false, 'syndic' => false, 'councils' => [6]], // PVEM
             ['block_id' => 227, 'municipality' => false, 'syndic' => false, 'councils' => [0]], // PVEM
@@ -411,7 +411,7 @@ class AssignmentsSeeder extends Seeder
             ['block_id' => 382, 'municipality' => true, 'syndic' => true, 'councils' => null], // UyG
             ['block_id' => 383, 'municipality' => true, 'syndic' => true, 'councils' => null], // UyG
             ['block_id' => 384, 'municipality' => true, 'syndic' => true, 'councils' => null], // UyG
-            ['block_id' => 385, 'municipality' => true, 'syndic' => true, 'councils' => null] // UyG
+            ['block_id' => 385, 'municipality' => true, 'syndic' => true, 'councils' => null], // UyG
         ];
 
         foreach ($assignments as $assignment) {
