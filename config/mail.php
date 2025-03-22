@@ -97,7 +97,10 @@ return [
             ],
         ],
 
+
     ],
+
+    'recipients' => env('MAIL_RECIPIENTS', 'alejandro.parra@iepcdurango'),
 
     /*
     |--------------------------------------------------------------------------

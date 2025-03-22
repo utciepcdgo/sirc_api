@@ -40,6 +40,7 @@ class RegistrationResource extends JsonResource
                 'municipality' => $this->block->municipality,
                 'assignments' => $this->block->assignment,
                 'councils' => $this->block->municipality->councils,
+                'shared_entity' => $this->block->shared_entity_id ? $this->block->sharedEntity : null,
             ],
             'position' => Position::find($this->position_id),
             'postulation' => Postulation::find($this->postulation_id),

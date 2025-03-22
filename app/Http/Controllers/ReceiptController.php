@@ -49,7 +49,7 @@ class ReceiptController extends Controller
 
         $entityId = $request->query('entity_id');
         $partyOrigin = Entity::find($entityId)->entitiable;
-        $recipients = explode(',', env('MAIL_RECIPIENTS'));
+        $recipients = explode(',', config('mail.recipients'));
 
         $registrations = Registration::whereHas('block', function ($query) use ($entityId) {
             $query->where('entity_id', '=', $entityId)
@@ -75,9 +75,7 @@ class ReceiptController extends Controller
                 'compensatory' => $registration->compensatory->name,
                 'sex' => $registration->sex->name,
                 // Colocar Coalición si el registro pertenece a ella o el Partido Polìtico.
-                'party' => $registration->isAssigned()
-                    ? optional(optional($registration->block->sharedEntity)->entitiable)->name ?? 'N/A'
-                    : optional(optional($registration->block->entity)->entitiable)->name ?? 'N/A',
+                'party' => $registration->block?->sharedEntity?->entitiable?->name ?? $registration->block?->entity?->entitiable->name,
                 'files' => FilesResource::collection($registration->files)->pluck('filetype.name')->toArray(),
             ];
 
