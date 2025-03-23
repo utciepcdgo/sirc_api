@@ -185,13 +185,13 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Compensatory::insert([
-            ['name' => 'Jóven'],
-            ['name' => 'Discapacidad permanente'],
-            ['name' => 'Diversidad sexual'],
-            ['name' => 'Persona adulta mayor'],
-            ['name' => 'Migrante'],
-            ['name' => 'Indígena'],
-            ['name' => 'Ninguna'],
+            ['name' => 'Jóven'],                    // 1
+            ['name' => 'Discapacidad permanente'],  // 2
+            ['name' => 'Diversidad sexual'],        // 3
+            ['name' => 'Persona adulta mayor'],     // 4
+            ['name' => 'Migrante'],                 // 5
+            ['name' => 'Indígena'],                 // 6
+            ['name' => 'Ninguna'],                  // 7
         ]);
 
         $this->call([
@@ -241,7 +241,7 @@ class DatabaseSeeder extends Seeder
             ['name' => 'Constancia de registro en plataforma electoral', 'allowed_to' => ['all']],
             ['name' => 'Informe de gastos de precampaña', 'allowed_to' => ['all']],
             ['name' => 'Sistema Nacional de Registro de Precandidatas y Candidatos', 'allowed_to' => ['all']],
-            ['name' => 'Pertenencia a grupo de discapacidad (Formato 1)', 'allowed_to' => ['compensatory_id' => '1']],
+            ['name' => 'Pertenencia a grupo de discapacidad (Formato 1)', 'allowed_to' => ['compensatory_id' => '2']],
             ['name' => 'Pertenencia a grupo de la diversidad sexual (Formato 2)', 'allowed_to' => ['compensatory_id' => '3']],
             ['name' => 'Pertenencia a grupo migrante (Formato 3)', 'allowed_to' => ['compensatory_id' => '5']],
             ['name' => 'Pertenencia a grupo indígena (Formato 4)', 'allowed_to' => ['compensatory_id' => '6']],

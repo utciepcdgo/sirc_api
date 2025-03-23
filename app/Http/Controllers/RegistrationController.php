@@ -9,13 +9,16 @@ use App\Http\Requests\Registrations\SubstitutionRequest;
 use App\Http\Resources\RegistrationResource;
 use App\Models\Registration;
 use App\Models\Registrations\Substitution;
+use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\DB;
 
 class RegistrationController extends Controller
 {
-    public function index()
+    public function index(): JsonResource
     {
-        return RegistrationResource::collection(Registration::all());
+        return RegistrationResource::collection(
+            Registration::filter()->get()
+        );
     }
 
     public function store(RegistrationRequest $request)

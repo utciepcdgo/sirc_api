@@ -25,9 +25,9 @@ class RegistrationResource extends JsonResource
         return [
             'id' => $this->id,
             'uuid' => $this->uuid,
-            'name' => strtoupper($this->name),
-            'first_name' => strtoupper($this->first_name),
-            'second_name' => strtoupper($this->second_name),
+            'name' => mb_strtoupper($this->name),
+            'first_name' => mb_strtoupper($this->first_name),
+            'second_name' => mb_strtoupper($this->second_name),
             'mote' => $this->mote ?? null,
             'birthplace' => json_decode($this->birthplace),
             'residence' => json_decode($this->residence),
@@ -52,6 +52,7 @@ class RegistrationResource extends JsonResource
             'entity' => [
                 'name' => $this->block->entity->entitiable->name,
                 'acronym' => $this->block->entity->entitiable->acronym,
+                'logo' => $this->block->entity->entitiable->logo,
             ],
             'coalition' => [
                 'is_assigned' => (
