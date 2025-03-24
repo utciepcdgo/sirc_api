@@ -170,12 +170,11 @@ class DatabaseSeeder extends Seeder
             ['name' => 'Homosexual'],
             ['name' => 'Intersexual'],
             ['name' => 'Pansexual'],
-
             ['name' => 'Queer'],
             ['name' => 'Transexual'],
             ['name' => 'Transgénero'],
             ['name' => 'Travesti'],
-            //            ['name' => 'Prefiero no decirlo'],
+            ['name' => 'Ninguno'],
         ]);
 
         Sex::insert([

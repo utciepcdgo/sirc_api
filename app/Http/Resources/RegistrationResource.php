@@ -69,6 +69,8 @@ class RegistrationResource extends JsonResource
             ],
             'reelection' => $this->reelection,
             'status' => $this->getStatus()?->label(),
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
         ];
     }
 }

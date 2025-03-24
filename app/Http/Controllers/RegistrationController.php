@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use App\Enums\RegistrationStatus;
 use App\Http\Requests\RegistrationRequest;
 use App\Http\Requests\Registrations\SubstitutionRequest;
 use App\Http\Resources\RegistrationResource;
@@ -17,7 +18,21 @@ class RegistrationController extends Controller
     public function index(): JsonResource
     {
         return RegistrationResource::collection(
-            Registration::filter()->get()
+            Registration::filter()->where('status', '=', 'FORMALLY_PRESENTED')
+                ->join('blocks', 'registrations.block_id', '=', 'blocks.id')
+                ->join('municipalities', 'blocks.municipality_id', '=', 'municipalities.id')
+                ->orderBy('municipalities.id')
+                ->orderBy('postulation_id')
+                ->orderByRaw('
+                    CASE
+                        WHEN postulation_id = 5 THEN council_number
+                        ELSE 0
+                    END ASC
+                ')
+                ->orderBy('position_id') // OWNER before SUBSTITUTE
+                ->select('registrations.*')
+                ->filter()
+                ->get()
         );
     }
 
