@@ -35,7 +35,7 @@ return new class extends Migration
             $table->foreignIdFor(Position::class);
             $table->foreignIdFor(Postulation::class);
             $table->foreignIdFor(Sex::class);
-            $table->foreignIdFor(Gender::class)->default(8); // No especificado | Ninguno;
+            $table->foreignIdFor(Gender::class)->default(12); // No especificado | Ninguno;
             $table->foreignIdFor(Compensatory::class);
             // Status
             $table->enum('status', [
