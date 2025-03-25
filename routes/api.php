@@ -68,6 +68,7 @@ Route::get('/filetypes', function () {
 Route::post('/file', [FileController::class, 'store']);
 Route::get('/files', [FileController::class, 'show']);
 Route::delete('/file/{file_id}', [FileController::class, 'destroy']);
+Route::get('/files/{registration_id}/zip', [FileController::class, 'downloadRegistrationFilesZip']);
 Route::get('request-download/{file_id}', [FileController::class, 'downloadFile']);
 
 // AWS

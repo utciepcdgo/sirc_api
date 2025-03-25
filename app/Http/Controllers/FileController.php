@@ -10,6 +10,9 @@ use App\Models\Registration;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
+use ZipArchive;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class FileController extends Controller
 {
@@ -51,7 +54,7 @@ class FileController extends Controller
 
         // Get all files from the registration
         $files = FilesResource::collection(File::where('registration_id', $validated['registration_id'])->get());
-//        $files = File::where('registration_id', $validated['registration_id'])->get();
+        //        $files = File::where('registration_id', $validated['registration_id'])->get();
 
         return response()->json([
             'success' => true,
@@ -92,5 +95,40 @@ class FileController extends Controller
             'success' => true,
             'url' => $temporaryUrl,
         ]);
+    }
+
+    public function downloadRegistrationFilesZip($registration_id): StreamedResponse|JsonResponse|BinaryFileResponse
+    {
+        // Fetch registration and its related files
+        $registration = Registration::with('files')->findOrFail($registration_id);
+        $files = $registration->files;
+
+        if ($files->isEmpty()) {
+            return response()->json(['success' => false, 'message' => 'No se encontraron archivos.'], 404);
+        }
+
+        // Create a unique temporary ZIP file
+        $zipFileName = 'registration_files_' . $registration->id . '.zip';
+        $tempZipPath = storage_path('app/temp/' . $zipFileName);
+
+        // Ensure temp folder exists
+        if (!file_exists(storage_path('app/temp'))) {
+            mkdir(storage_path('app/temp'), 0777, true);
+        }
+
+        $zip = new ZipArchive;
+
+        if ($zip->open($tempZipPath, ZipArchive::CREATE | ZipArchive::OVERWRITE) === true) {
+            foreach ($files as $file) {
+                $fileContents = Storage::disk('s3')->get($file->url); // Read file from S3
+                $zip->addFromString(basename($file->url), $fileContents); // Add to zip
+            }
+            $zip->close();
+        } else {
+            return response()->json(['success' => false, 'message' => 'No se pudo crear el ZIP.'], 500);
+        }
+
+        // Stream ZIP file to user
+        return response()->download($tempZipPath)->deleteFileAfterSend(true);
     }
 }
