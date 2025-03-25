@@ -15,11 +15,9 @@ class FilesResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'url' => $this->url,
             'format' => $this->format,
-            'registration_id' => $this->registration_id,
-            'created_at' => $this->created_at->format('d-m-Y H:i:s'),
-            'filetype' => $this->filetype,
+            'url' => $this->url,
+            'filetype' => $this->filetype->name,
         ];
     }
 }

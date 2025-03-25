@@ -18,7 +18,7 @@ class RegistrationController extends Controller
     public function index(): JsonResource
     {
         return RegistrationResource::collection(
-            Registration::filter()->where('status', '=', 'FORMALLY_PRESENTED')
+            Registration::query()->with('files')->filter()->where('status', '=', 'FORMALLY_PRESENTED')
                 ->join('blocks', 'registrations.block_id', '=', 'blocks.id')
                 ->join('municipalities', 'blocks.municipality_id', '=', 'municipalities.id')
                 ->orderBy('municipalities.id')

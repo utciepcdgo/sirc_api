@@ -122,7 +122,7 @@ class DatabaseSeeder extends Seeder
             ['id' => 3, 'name' => 'Coneto de Comonfort', 'abbreviation' => 'COC', 'shield' => 'https://s3.us-east-1.amazonaws.com/static.appsiepcdurango.mx/escudos/COC.png', 'councils' => 7],
             ['id' => 4, 'name' => 'Cuencamé', 'abbreviation' => 'CME', 'shield' => 'https://s3.us-east-1.amazonaws.com/static.appsiepcdurango.mx/escudos/CME.png', 'councils' => 9],
             ['id' => 5, 'name' => 'Durango', 'abbreviation' => 'DGO', 'shield' => 'https://s3.us-east-1.amazonaws.com/static.appsiepcdurango.mx/escudos/DGO.png', 'councils' => 17],
-            ['id' => 6, 'name' => 'General Simón Bolívar', 'abbreviation' => 'SIM', 'shield' => 'https://s3.us-east-1.amazonaws.com/static.appsiepcdurango.mx/escudos/SIM.png', 'councils' => 1],
+            ['id' => 6, 'name' => 'General Simón Bolívar', 'abbreviation' => 'SIM', 'shield' => 'https://s3.us-east-1.amazonaws.com/static.appsiepcdurango.mx/escudos/SIM.png', 'councils' => 7],
             ['id' => 7, 'name' => 'Gómez Palacio', 'abbreviation' => 'GZP', 'shield' => 'https://s3.us-east-1.amazonaws.com/static.appsiepcdurango.mx/escudos/GZP.png', 'councils' => 15],
             ['id' => 8, 'name' => 'Guadalupe Victoria', 'abbreviation' => 'GVC', 'shield' => 'https://s3.us-east-1.amazonaws.com/static.appsiepcdurango.mx/escudos/GVC.png', 'councils' => 9],
             ['id' => 9, 'name' => 'Guanaceví', 'abbreviation' => 'GVI', 'shield' => 'https://s3.us-east-1.amazonaws.com/static.appsiepcdurango.mx/escudos/GVI.png', 'councils' => 7],

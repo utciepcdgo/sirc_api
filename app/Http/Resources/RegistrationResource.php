@@ -69,6 +69,7 @@ class RegistrationResource extends JsonResource
             ],
             'reelection' => $this->reelection,
             'status' => $this->getStatus()?->label(),
+            'files' => FilesResource::collection($this->whenLoaded('files')),
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];
