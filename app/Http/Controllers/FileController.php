@@ -11,8 +11,8 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
-use ZipArchive;
 use Symfony\Component\HttpFoundation\StreamedResponse;
+use ZipArchive;
 
 class FileController extends Controller
 {
@@ -77,6 +77,7 @@ class FileController extends Controller
 
         return response()->json(data: [
             'success' => true,
+            'message' => 'Archivo eliminado correctamente.',
         ]);
     }
 
@@ -108,7 +109,7 @@ class FileController extends Controller
         }
 
         // Create a unique temporary ZIP file
-        $zipFileName = 'registration_files_' . $registration->id . '.zip';
+        $zipFileName = $registration->name . '_' . $registration->first_name . '_' . $registration->second_name . '_' . time() . '.zip';
         $tempZipPath = storage_path('app/temp/' . $zipFileName);
 
         // Ensure temp folder exists
