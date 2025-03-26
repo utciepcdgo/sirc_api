@@ -14,7 +14,6 @@ class ReviewerProfileResource extends JsonResource
         return [
             'id' => $this->id,
             'role' => $this->role,
-
             'user_id' => $this->user_id,
         ];
     }
