@@ -4,35 +4,47 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
-use App\Enums\RegistrationStatus;
 use App\Http\Requests\RegistrationRequest;
 use App\Http\Requests\Registrations\SubstitutionRequest;
 use App\Http\Resources\RegistrationResource;
 use App\Models\Registration;
 use App\Models\Registrations\Substitution;
-use Illuminate\Http\Resources\Json\JsonResource;
+use App\Models\Reviewer;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Support\Facades\DB;
 
 class RegistrationController extends Controller
 {
-    public function index(): JsonResource
+    public function index(Request $request): AnonymousResourceCollection|JsonResponse
     {
-        return RegistrationResource::collection(
-            Registration::query()->with('files')->filter()->where('status', '=', 'FORMALLY_PRESENTED')
-                ->join('blocks', 'registrations.block_id', '=', 'blocks.id')
-                ->join('municipalities', 'blocks.municipality_id', '=', 'municipalities.id')
-                ->orderBy('municipalities.id')
-                ->orderBy('postulation_id')
-                ->orderByRaw('
+        $user = $request->user();
+
+        $reviewer = Reviewer::where('user_id', $user->id)->with('entities')->first();
+
+        if (! $reviewer) {
+            return response()->json(['error' => 'Access denied: no reviewer profile found.'], 403);
+        }
+
+        $entityIds = $reviewer->entities->pluck('id');
+
+        return RegistrationResource::collection(Registration::whereHas('block.entity', function ($query) use ($entityIds) {
+            $query->whereIn('id', $entityIds);
+        })
+            ->join('blocks', 'registrations.block_id', '=', 'blocks.id')
+            ->join('municipalities', 'blocks.municipality_id', '=', 'municipalities.id')
+            ->orderBy('municipalities.id')
+            ->orderBy('postulation_id')
+            ->orderByRaw('
                     CASE
                         WHEN postulation_id = 5 THEN council_number
                         ELSE 0
                     END ASC
                 ')
-                ->orderBy('position_id') // OWNER before SUBSTITUTE
-                ->select('registrations.*')
-                ->filter()
-                ->get()
+            ->orderBy('position_id') // OWNER before SUBSTITUTE
+            ->select('registrations.*')
+            ->get()
         );
     }
 

@@ -27,7 +27,7 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
 Route::get('/user', [AuthController::class, 'user'])->middleware('auth:sanctum');
 
-Route::apiResource('/registrations', RegistrationController::class);
+Route::middleware('auth:sanctum')->apiResource('/registrations', RegistrationController::class);
 Route::post('/registrations/{registration}/substitute', [RegistrationController::class, 'substitute']);
 Route::apiResource('/blocks', BlockController::class);
 

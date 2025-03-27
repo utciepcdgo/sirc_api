@@ -54,7 +54,7 @@ class ReviewersSeeder extends Seeder
             ['reviewer_id' => 1, 'entity_id' => 7], // PT- PVEM - MORENA
             ['reviewer_id' => 2, 'entity_id' => 2], // PAN - PRI
             ['reviewer_id' => 2, 'entity_id' => 3], // PAN - PRI
-            ['reviewer_id' => 2, 'entity_id' => 3], // PAN - PRI
+            ['reviewer_id' => 2, 'entity_id' => 12], // PAN - PRI
             ['reviewer_id' => 3, 'entity_id' => 6], // MC
             ['reviewer_id' => 4, 'entity_id' => 8], // PESD
             ['reviewer_id' => 5, 'entity_id' => 9], // PV
