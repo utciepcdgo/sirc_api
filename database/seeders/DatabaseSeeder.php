@@ -258,5 +258,9 @@ class DatabaseSeeder extends Seeder
             FileType::create($fileType);
         }
 
+        $this->call([
+           ReviewersSeeder::class
+        ]);
+
     }
 }

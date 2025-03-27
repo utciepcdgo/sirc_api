@@ -5,19 +5,19 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateReviewerProfilesTable extends Migration
+class CreateReviewersTable extends Migration
 {
     public function up(): void
     {
-        Schema::create('reviewer_profiles', function (Blueprint $table) {
+        Schema::create('reviewers', function (Blueprint $table) {
             $table->id();
-            $table->enum('role', ['reviewer', 'super_reviewer'])->default('reviewer');
+            $table->enum('role', ['REVIEWER', 'SUPERVISOR'])->default('reviewer');
             $table->foreignIdFor(User::class)->constrained('users');
         });
     }
 
     public function down(): void
     {
-        Schema::dropIfExists('reviewer_profiles');
+        Schema::dropIfExists('reviewers');
     }
 }

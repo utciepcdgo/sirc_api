@@ -2,12 +2,12 @@
 
 namespace App\Http\Resources;
 
-use App\Models\ReviewerProfile;
+use App\Models\Reviewer;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-/** @mixin ReviewerProfile */
-class ReviewerProfileResource extends JsonResource
+/** @mixin Reviewer */
+class ReviewerResource extends JsonResource
 {
     public function toArray(Request $request): array
     {
