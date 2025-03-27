@@ -23,15 +23,21 @@ class RegistrationController extends Controller
 
         $reviewer = Reviewer::where('user_id', $user->id)->with('entities')->first();
 
-        if (! $reviewer) {
-            return response()->json(['error' => 'Access denied: no reviewer profile found.'], 403);
+        if (!$reviewer) {
+            return response()->json(['error' => 'Accedo denegado. El usuario identificado no es un revisor.'], 403);
+        }
+
+        // Si es un supervisor, retornar todos los registros
+        if ($reviewer->isAdmin()) {
+            return RegistrationResource::collection(Registration::all());
         }
 
         $entityIds = $reviewer->entities->pluck('id');
 
-        return RegistrationResource::collection(Registration::whereHas('block.entity', function ($query) use ($entityIds) {
-            $query->whereIn('id', $entityIds);
-        })
+        return RegistrationResource::collection(Registration::where('status', '=', 'FORMALLY_PRESENTED')
+            ->whereHas('block.entity', function ($query) use ($entityIds) {
+                $query->whereIn('id', $entityIds);
+            })
             ->join('blocks', 'registrations.block_id', '=', 'blocks.id')
             ->join('municipalities', 'blocks.municipality_id', '=', 'municipalities.id')
             ->orderBy('municipalities.id')
