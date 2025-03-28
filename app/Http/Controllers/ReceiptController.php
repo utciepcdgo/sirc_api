@@ -55,7 +55,8 @@ class ReceiptController extends Controller
         $registrations = Registration::whereHas('block', function ($query) use ($entityId) {
             $query->where('entity_id', '=', $entityId)
                 ->where('status', '=', 'AWAITING_PRESENTATION');
-        })->with(['block.municipality', 'postulation', 'position', 'compensatory', 'sex', 'files'])->get();
+        })->with(['block.municipality', 'postulation', 'position', 'compensatory', 'sex', 'files'])
+            ->cursor();
 
         // Si no hay registros, retornar un error.
         if ($registrations->isEmpty()) {
