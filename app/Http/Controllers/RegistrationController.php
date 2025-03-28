@@ -29,12 +29,12 @@ class RegistrationController extends Controller
 
         // Si es un supervisor, retornar todos los registros
         if ($reviewer->isAdmin()) {
-            return RegistrationResource::collection(Registration::all());
+            return RegistrationResource::collection(Registration::with('files')->get());
         }
 
         $entityIds = $reviewer->entities->pluck('id');
 
-        return RegistrationResource::collection(Registration::where('status', '=', 'FORMALLY_PRESENTED')
+        return RegistrationResource::collection(Registration::with('files')->where('status', '=', 'FORMALLY_PRESENTED')
             ->whereHas('block.entity', function ($query) use ($entityIds) {
                 $query->whereIn('id', $entityIds);
             })
