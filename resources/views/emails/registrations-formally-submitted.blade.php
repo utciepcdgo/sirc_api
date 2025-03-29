@@ -48,8 +48,6 @@
             </tbody>
         </table>
         <br>
-
-        <a href="https://adminsirc.appsiepcdurango.mx" class="button" style="background-color:#111; border-radius:5px; box-shadow:0 3px 6px rgba(0, 0, 0, 0.5); color:#fff; display:inline-block; font-size:10pt; margin-top:20px; padding:10px 20px; text-decoration:none" bgcolor="#111111">Ir al Panel del revisión</a>
         <br>
         <br>
         <small style="color:#777777;text-align:center;">Este mensaje es una notificación, favor de no responder.</small>
