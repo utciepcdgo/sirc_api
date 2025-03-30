@@ -100,6 +100,13 @@ class FileController extends Controller
 
     public function downloadRegistrationFilesZip($registration_id): StreamedResponse|JsonResponse|BinaryFileResponse
     {
+        ini_set('default_charset', '');
+        mb_http_output('pass');
+        mb_detect_order(['UTF-8']);
+        ini_set('max_execution_time', -1);
+        set_time_limit(-1);
+        ini_set('memory_limit', '1G');
+
         // Fetch registration and its related files
         $registration = Registration::with('files')->findOrFail($registration_id);
         $files = $registration->files;

@@ -19,6 +19,13 @@ class RegistrationController extends Controller
 {
     public function index(Request $request): AnonymousResourceCollection|JsonResponse
     {
+        ini_set('default_charset', '');
+        mb_http_output('pass');
+        mb_detect_order(['UTF-8']);
+        ini_set('max_execution_time', -1);
+        set_time_limit(-1);
+        ini_set('memory_limit', '1G');
+
         $user = $request->user();
 
         $reviewer = Reviewer::where('user_id', $user->id)->with('entities')->first();
