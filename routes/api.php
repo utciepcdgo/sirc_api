@@ -70,6 +70,7 @@ Route::get('/files', [FileController::class, 'show']);
 Route::delete('/file/{file_id}', [FileController::class, 'destroy']);
 Route::get('/files/{registration_id}/zip', [FileController::class, 'downloadRegistrationFilesZip']);
 Route::get('request-download/{file_id}', [FileController::class, 'downloadFile']);
+Route::get('/request-database', [FileController::class, 'downloadExcelDatabase']);
 
 // AWS
 Route::post('/aws_s3_signed_url', [AwsController::class, 'index']);
