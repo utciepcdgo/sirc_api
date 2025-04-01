@@ -209,13 +209,8 @@ class FileController extends Controller
 
         $row = 2;
 
-        Registration::with([
-            'block',
-            'postulation',
-            'position',
-            'compensatory',
-            'sex',
-        ])
+        Registration::query()
+            ->select('registrations.*')
             ->join('blocks', 'registrations.block_id', '=', 'blocks.id')
             ->join('municipalities', 'blocks.municipality_id', '=', 'municipalities.id')
             ->orderBy('municipalities.id')
@@ -228,6 +223,14 @@ class FileController extends Controller
                     END ASC
                 ')
             ->orderBy('position_id')
+            ->with([
+                'block',
+                'block.municipality',
+                'postulation',
+                'position',
+                'compensatory',
+                'sex',
+            ])
             ->cursor()
             ->each(function ($registration) use (&$row, $sheet) {
 
