@@ -324,6 +324,8 @@ class FileController extends Controller
         }, 'registro_base.xlsx', [
             'Content-Type' => 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
             'Cache-Control' => 'no-store, no-cache',
+            'Access-Control-Allow-Origin' => 'https://adminsirc.appsiepcdurango.mx',
+            'Access-Control-Expose-Headers' => 'Content-Disposition'
         ]);
     }
 }
